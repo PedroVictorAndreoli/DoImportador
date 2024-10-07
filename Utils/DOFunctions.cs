@@ -6,6 +6,8 @@ namespace DoImportador.Utils
     public class DOFunctions
     {
         public static DOConn DOConnTrans = null;
+
+
         public static string ParseSQLToPostgreSQL(string sSQL)
         {
             //como a maioria das consultas foi feita em SQL SERVER, é normal vir 'dbo.Nome_Tabela' nas consultas...
@@ -23,5 +25,7 @@ namespace DoImportador.Utils
             sSQL = sSQL.Replace("\n", "", comparisonType: StringComparison.InvariantCultureIgnoreCase);
             return sSQL;
         }
+
+s
     }
 }

@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\utils\\dofunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:utils\\dofunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,24 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:11:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "D:\\DataOn Git\\DoImportador\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAA9wBoAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T19:08:41.559Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -46,8 +37,34 @@
               "ToolTip": "D:\\DataOn Git\\DoImportador\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T18:49:44.046Z",
+              "WhenOpened": "2024-10-07T20:56:30.665Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DOFunctions.cs",
+              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Utils\\DOFunctions.cs",
+              "RelativeDocumentMoniker": "Utils\\DOFunctions.cs",
+              "ToolTip": "D:\\DataOn Git\\DoImportador\\Utils\\DOFunctions.cs",
+              "RelativeToolTip": "Utils\\DOFunctions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:41:06.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "D:\\DataOn Git\\DoImportador\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:08:41.559Z",
+              "EditorCaption": ""
             }
           ]
         }

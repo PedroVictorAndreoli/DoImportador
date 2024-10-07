@@ -1,7 +1,10 @@
+using DoImportador.Utils;
+
 namespace DoImportador
 {
     public partial class Form1 : Form
     {
+        public static string DbLocation = "";
         public Form1()
         {
             InitializeComponent();
@@ -41,6 +44,32 @@ namespace DoImportador
                 return folder.FileName;
             }
             return "";
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            txt_json_animals.Text = loadPath();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SQL_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

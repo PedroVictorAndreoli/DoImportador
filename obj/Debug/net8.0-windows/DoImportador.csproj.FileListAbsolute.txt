@@ -54,3 +54,4 @@ D:\DataOn Git\DoImportador\obj\Debug\net8.0-windows\DoImportador.pdb
 D:\DataOn Git\DoImportador\obj\Debug\net8.0-windows\DoImportador.genruntimeconfig.cache
 D:\DataOn Git\DoImportador\obj\Debug\net8.0-windows\ref\DoImportador.dll
 D:\DataOn Git\DoImportador\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+D:\DataOn Git\DoImportador\obj\Debug\net8.0-windows\DoImportador.sourcelink.json
