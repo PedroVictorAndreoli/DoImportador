@@ -33,13 +33,13 @@
             groupBox2 = new GroupBox();
             label6 = new Label();
             label7 = new Label();
-            textBox2 = new TextBox();
+            txt_db_destination = new TextBox();
             textBox3 = new TextBox();
             groupBox1 = new GroupBox();
             dsd = new Label();
             label5 = new Label();
-            txt_db = new TextBox();
-            textBox1 = new TextBox();
+            txt_db_origin = new TextBox();
+            txt_db_name = new TextBox();
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
             SQL = new RadioButton();
@@ -107,7 +107,7 @@
             // 
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(textBox2);
+            groupBox2.Controls.Add(txt_db_destination);
             groupBox2.Controls.Add(textBox3);
             groupBox2.Location = new Point(439, 26);
             groupBox2.Name = "groupBox2";
@@ -134,12 +134,13 @@
             label7.TabIndex = 32;
             label7.Text = "DBNameOrigin";
             // 
-            // textBox2
+            // txt_db_destination
             // 
-            textBox2.Location = new Point(6, 48);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(200, 23);
-            textBox2.TabIndex = 14;
+            txt_db_destination.Location = new Point(6, 48);
+            txt_db_destination.Name = "txt_db_destination";
+            txt_db_destination.Size = new Size(200, 23);
+            txt_db_destination.TabIndex = 14;
+            txt_db_destination.Text = "localhost";
             // 
             // textBox3
             // 
@@ -152,8 +153,8 @@
             // 
             groupBox1.Controls.Add(dsd);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txt_db);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txt_db_origin);
+            groupBox1.Controls.Add(txt_db_name);
             groupBox1.Location = new Point(7, 26);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(420, 93);
@@ -179,19 +180,19 @@
             label5.TabIndex = 32;
             label5.Text = "DBNameOrigin";
             // 
-            // txt_db
+            // txt_db_origin
             // 
-            txt_db.Location = new Point(6, 48);
-            txt_db.Name = "txt_db";
-            txt_db.Size = new Size(200, 23);
-            txt_db.TabIndex = 14;
+            txt_db_origin.Location = new Point(6, 48);
+            txt_db_origin.Name = "txt_db_origin";
+            txt_db_origin.Size = new Size(200, 23);
+            txt_db_origin.TabIndex = 14;
             // 
-            // textBox1
+            // txt_db_name
             // 
-            textBox1.Location = new Point(212, 48);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 23);
-            textBox1.TabIndex = 31;
+            txt_db_name.Location = new Point(212, 48);
+            txt_db_name.Name = "txt_db_name";
+            txt_db_name.Size = new Size(200, 23);
+            txt_db_name.TabIndex = 31;
             // 
             // radioButton3
             // 
@@ -305,6 +306,7 @@
             button2.TabIndex = 19;
             button2.Text = "Import";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
             // 
             // button1
             // 
@@ -400,7 +402,7 @@
         private Label label1;
         private TextBox txt_json_person;
         private Label dsd;
-        private TextBox txt_db;
+        private TextBox txt_db_origin;
         private TabPage tabPage2;
         private RichTextBox txt_sql;
         private Label label4;
@@ -408,12 +410,12 @@
         private RadioButton radioButton2;
         private RadioButton SQL;
         private Label label5;
-        private TextBox textBox1;
+        private TextBox txt_db_name;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Label label6;
         private Label label7;
-        private TextBox textBox2;
+        private TextBox txt_db_destination;
         private TextBox textBox3;
     }
 }

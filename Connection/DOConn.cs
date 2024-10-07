@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Npgsql;
 
 using System.Data;
+using System.Xml.Linq;
 
 
 namespace DoImportador.Connection
@@ -61,24 +62,11 @@ namespace DoImportador.Connection
         }
 
         //atmusinf_Control-1000 base de dados de demonstração para o site
-        public void ConnectionOpen(Int32 doID, string pBDName = "atmusinf_Control", bool pTransaction = false, enumProviderType providerType = enumProviderType.Auto)
+        public void ConnectionOpen(string dbname, EnumDataLake datalake, bool pTransaction = false)
         {
 
-            if (providerType == enumProviderType.Auto)
-            {
-                mvarProviderType = enumProviderType.SQLServer;
-                providerType = mvarProviderType;
-            }
-
-            if ((mvarDoConnection != null) && (mvarDoConnection.State == System.Data.ConnectionState.Closed))
-            {
-                mvarDoConnection.ConnectionString = getConnectionString(doID: doID, pBDName: pBDName, providerType: providerType);
-                mvarDoConnection.Open();
-            }
-            else
-            {
-                mvarDoConnection = GetNewConnection(doID: doID, pBDName: pBDName, providerType: providerType);
-            }
+            mvarDoConnection = GetNewConnection(dbname, datalake);
+            
 
             if (pTransaction == true)
             {
@@ -88,31 +76,14 @@ namespace DoImportador.Connection
         }
 
         //sisFlexControl_1000 base de dados de demonstração para o site
-        public IDbConnection GetNewConnection(Int32 doID, string pBDName = "atmusinf_Control", enumProviderType providerType = enumProviderType.Auto)
+        public IDbConnection GetNewConnection(string doID, EnumDataLake datalake)
         {
             IDbConnection cnn;
             string cnnString = "";
 
-            if (providerType == enumProviderType.Auto)
-            {
-                //Gefferson - 17/03/2022 - deixei pegando mssql por padrão até a gente ter o postgre
-                mvarProviderType = enumProviderType.SQLServer;
-                providerType = mvarProviderType;
-                //mvarProviderType = DOFunctions.getProviderType(doID: doID);
-                //providerType = mvarProviderType; 
-            }
+            cnnString = getConnectionString(doID, datalake);
 
-            cnnString = getConnectionString(doID: doID, pBDName: pBDName, providerType: providerType);
-
-            switch (providerType)
-            {
-                case enumProviderType.PostGreSQL:
-                    cnn = new NpgsqlConnection(cnnString);
-                    break;
-                default: //providerType.SQLServer
-                    cnn = new SqlConnection(cnnString);
-                    break;
-            }
+            cnn = new SqlConnection(cnnString);
 
             cnn.Open();
 
@@ -120,57 +91,15 @@ namespace DoImportador.Connection
         }
 
         //sisFlexControl_1000 base de dados de demonstração para o site
-        public string getConnectionString(Int32 doID, string pBDName = "atmusinf_Control", enumProviderType providerType = enumProviderType.Auto)
+        public string getConnectionString(string dbname, EnumDataLake datalake)
         {
-            return GetNewConnectionString(doID: doID, pBDName: pBDName, providerType: providerType);
+            return GetNewConnectionString(dbname, datalake);
         }
 
         //sisFlexControl_1000 base de dados de demonstração para o site
-        public String GetNewConnectionString(Int32 doID, string pBDName = "atmusinf_Control", enumProviderType providerType = enumProviderType.Auto)
+        public String GetNewConnectionString(string dbname, EnumDataLake datalake)
         {
-            string cnnString = "";
-
-            if (providerType == enumProviderType.Auto)
-            {
-                mvarProviderType = enumProviderType.SQLServer;
-                providerType = mvarProviderType;
-            }
-
-            switch (providerType)
-            {
-                case enumProviderType.SQLServer:
-                    if (pBDName == "atmusinf_Control" || pBDName == "")
-                    {
-
-#if !DEBUG
-                        cnnString = "Connection Timeout=120;Persist Security Info=False; Data Source=.\\MSSQLSERVER2022;Initial Catalog=atmusinf_Control-" + Convert.ToString((Convert.ToInt32(doID) != 0 ? Convert.ToInt32(doID) : Convert.ToInt32(1000))) +  ";User ID=atmusinf;Password=Atmus@#4080";                
-#else
-                        cnnString = "Connection Timeout=120;Persist Security Info=False; Data Source=" + Environment.MachineName + "\\MSSQLSERVER2022;Initial Catalog=atmusinf_Control-" + Convert.ToString((Convert.ToInt32(doID) != 0 ? Convert.ToInt32(doID) : Convert.ToInt32(1000))) + ";User ID=atmusinf;Password=Atmus@#4080";
-
-#endif
-                    }
-                    else
-                    {
-#if !DEBUG
-                        cnnString = "Connection Timeout=120;Persist Security Info=False; Data Source=.\\MSSQLSERVER2022;Initial Catalog=" + pBDName + ";User ID=atmusinf;Password=Atmus@#4080";                
-#else
-                        cnnString = "Connection Timeout=120;Persist Security Info=False; Data Source=" + Environment.MachineName + "\\MSSQLSERVER2022;Initial Catalog=" + pBDName + ";User ID=atmusinf;Password=Atmus@#4080";
-#endif
-                    }
-                    break;
-                case enumProviderType.PostGreSQL:
-                    if (pBDName == "atmusinf_Control" || pBDName == "")
-                    {
-                        cnnString = "Server=localhost;Port=15432;Database=atmusinf_Control-" + Convert.ToString((Convert.ToInt32(doID) != 0 ? Convert.ToInt32(doID) : Convert.ToInt32(1000))) + ";User Id=postgres;Password=Atmus@#4080;Pooling=true;MinPoolSize=0;MaxPoolSize=100;Command Timeout=600;Timeout=600;";
-                    }
-                    else
-                    {
-                        cnnString = "Server=localhost;Port=15432;Database=" + pBDName + ";User Id=postgres;Password=Atmus@#4080;Pooling=true;MinPoolSize=0;MaxPoolSize=100;Command Timeout=600;Timeout=600;";
-                    }
-                    break;
-            }
-
-            return cnnString;
+            return $"Connection Timeout=120;Persist Security Info=False; Data Source={(datalake == EnumDataLake.ORIGIN ? DOFunctions._hostOrigin : DOFunctions._hostDest)}\\MSSQLSERVER2022;Initial Catalog={dbname};User ID=atmusinf;Password=Atmus@#4080";
         }
 
         public void ConnectionClose(IDbConnection pCnn)

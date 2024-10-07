@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "D:\\DataOn Git\\DoImportador\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\connection\\doconn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:connection\\doconn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\services\\loaddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:services\\loaddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\enum\\enumprovidertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:enum\\enumprovidertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\utils\\dofunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:utils\\dofunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|d:\\dataon git\\doimportador\\services\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{216FA062-D30F-4903-B4C5-4D302B530F88}|DoImportador.csproj|solutionrelative:services\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +46,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "enumProviderType.cs",
+              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Enum\\enumProviderType.cs",
+              "RelativeDocumentMoniker": "Enum\\enumProviderType.cs",
+              "ToolTip": "D:\\DataOn Git\\DoImportador\\Enum\\enumProviderType.cs",
+              "RelativeToolTip": "Enum\\enumProviderType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T22:13:10.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DOConn.cs",
+              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Connection\\DOConn.cs",
+              "RelativeDocumentMoniker": "Connection\\DOConn.cs",
+              "ToolTip": "D:\\DataOn Git\\DoImportador\\Connection\\DOConn.cs",
+              "RelativeToolTip": "Connection\\DOConn.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAqwFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T22:09:59.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoadData.cs",
+              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Services\\LoadData.cs",
+              "RelativeDocumentMoniker": "Services\\LoadData.cs",
+              "ToolTip": "D:\\DataOn Git\\DoImportador\\Services\\LoadData.cs",
+              "RelativeToolTip": "Services\\LoadData.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAqwBMAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T22:03:29.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Person.cs",
+              "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Services\\Person.cs",
+              "RelativeDocumentMoniker": "Services\\Person.cs",
+              "ToolTip": "D:\\DataOn Git\\DoImportador\\Services\\Person.cs",
+              "RelativeToolTip": "Services\\Person.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T22:02:58.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -42,26 +110,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "DOFunctions.cs",
               "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Utils\\DOFunctions.cs",
               "RelativeDocumentMoniker": "Utils\\DOFunctions.cs",
               "ToolTip": "D:\\DataOn Git\\DoImportador\\Utils\\DOFunctions.cs",
               "RelativeToolTip": "Utils\\DOFunctions.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAACAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T19:41:06.164Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\DataOn Git\\DoImportador\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\DataOn Git\\DoImportador\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAhAAAA",
+              "ViewState": "AQIAADwAAAAAAAAAAIA9wE4AAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T19:08:41.559Z",
               "EditorCaption": ""

@@ -1,3 +1,4 @@
+using DoImportador.Services;
 using DoImportador.Utils;
 
 namespace DoImportador
@@ -69,6 +70,16 @@ namespace DoImportador
 
         private void SQL_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+        
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(txt_db_origin.Text, txt_db_destination.Text);
+            var data = LoadData.LoadDataDb(txt_db_name.Text, txt_sql.Text);
+
+            Console.WriteLine(data);
+
 
         }
     }

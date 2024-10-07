@@ -12,4 +12,10 @@ namespace DoImportador.Enum
         SQLServer = 0,
         PostGreSQL = 1
     }
+
+    public enum EnumDataLake
+    {
+        ORIGIN,
+        DESTINATION
+    }
 }

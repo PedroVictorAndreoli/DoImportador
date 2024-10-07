@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using DoImportador.Connection;
 using DoImportador.Utils;
 using Microsoft.Data.SqlClient;
+using DoImportador.Enum;
 
 namespace doAPI.Utils
 {
@@ -129,7 +130,7 @@ namespace doAPI.Utils
             return obj;
         }
 
-        public static IDbConnection GetConnection(int doID)
+        public static IDbConnection GetConnection(string doID, EnumDataLake datalake)
         {
             DOConn iConn = new();
             IDbConnection cnn = null;
@@ -143,13 +144,13 @@ namespace doAPI.Utils
                 }
                 else
                 {
-                    cnn = iConn.GetNewConnection(doID);
+                    cnn = iConn.GetNewConnection(doID,datalake);
                 }
             }
             else
             {
                 iConn = new DOConn();
-                cnn = iConn.GetNewConnection(doID);
+                cnn = iConn.GetNewConnection(doID, datalake);
             }
 
             return cnn;
