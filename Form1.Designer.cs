@@ -505,7 +505,7 @@
             Controls.Add(tabControl1);
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Importador DataOn";
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             Config.ResumeLayout(false);
