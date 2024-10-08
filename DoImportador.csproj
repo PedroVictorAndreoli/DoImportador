@@ -14,9 +14,4 @@
     <PackageReference Include="Npgsql" Version="8.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="Padroes\Sismoura\" />
-  </ItemGroup>
-
 </Project>

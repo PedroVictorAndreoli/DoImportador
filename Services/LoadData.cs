@@ -32,5 +32,27 @@ namespace DoImportador.Services
             }
             return null;
         }
+
+        public static List<T> LoadDataByType<T>(string dbNameOrigin, string sql)
+        {
+            var doConn = new DOConn();
+            try
+            {
+                doConn.ConnectionOpen(dbNameOrigin, Enum.EnumDataLake.ORIGIN);
+
+                return CrudUtils.GetAll<T>(doConn.DoConnection, sql, doConn);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                doConn.ConnectionClose(doConn.DoConnection);
+                doConn.Dispose();
+            }
+            return new List<T>();
+        }
     }
 }

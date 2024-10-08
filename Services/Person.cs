@@ -19,14 +19,14 @@ namespace DoImportador.Services
             _form = form;
         }
 
-        public void ImportPeople(List<IDictionary> persons)
+        public void ImportData(List<IDictionary> data)
         {
             var iConn = new DOConn();
             try
             {
 
                 iConn.ConnectionOpen("",Enum.EnumDataLake.DESTINATION);
-                persons.ForEach(person =>
+                data.ForEach(person =>
                 {
 
                     /*************************************************PESSOA***********************************************************/
@@ -128,18 +128,13 @@ namespace DoImportador.Services
                         input.Add("IDPessoa", person["ID"]);
                         input.Add("RG", GenericUtil.ReturnNumber(person["RG"]));
                         input.Add("CPF", GenericUtil.ReturnNumber(person["CPF"]));
-                        input.Add("DataNascimento", person["DataNascimento"]);
+                        input.Add("DataNascimento", person["DataNascimento"] == null ? DBNull.Value : person["DataNascimento"]);
                         input.Add("IDSexo", GenericUtil.ReturnSexo(person["Sexo"]));
 
-                        try
-                        {
-                            CrudUtils.ExecuteQuery(iConn, input, query);
-                        } catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
                         
-
+                        CrudUtils.ExecuteQuery(iConn, input, query);
+                        
+                        
                         query = $"UPDATE pessoas set Tipo = 0 where id = {person["ID"]}";
                         CrudUtils.ExecuteQuery(iConn, null, query);
                     }

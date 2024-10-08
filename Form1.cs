@@ -1,4 +1,5 @@
 using DoImportador.Connection;
+using DoImportador.Model;
 using DoImportador.Services;
 using DoImportador.Utils;
 using System.Windows.Forms;
@@ -84,9 +85,9 @@ namespace DoImportador
             if (che_sql.Checked)
             {
                 var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
-                var thread = new Thread(() => person.ImportPeople(data));
+                var thread = new Thread(() => person.ImportData(data));
                 thread.Start();
-                
+
             }
         }
 
@@ -100,7 +101,7 @@ namespace DoImportador
             {
                 txt_logs.AppendText(log + Environment.NewLine);
             }
-            
+
         }
 
         private ConnectionProperties LoadPropertiesConnection()
@@ -161,6 +162,19 @@ namespace DoImportador
             }
         }
 
-        
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var animals = new Animals(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataByType<Animal>(db_origin.Text, txt_sql.Text);
+                var thread = new Thread(() => animals.ImportData(data));
+                thread.Start();
+
+            }
+        }
     }
 }
