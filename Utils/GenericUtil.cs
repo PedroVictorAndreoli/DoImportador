@@ -31,6 +31,19 @@ namespace DoImportador.Utils
             
         }
 
+        public static int LoadByID(DOConn iConn, string description, string table)
+        {
+            var query = $"SELECT top(1) ID FROM {table} where Descricao like '%{description}%'";
+
+            var output = CrudUtils.GetOne<IDictionary>(iConn.DoConnection, query, iConn);
+            if (output.Count == 0)
+            {
+                return 0;
+            }
+            return Int32.Parse(output["ID"].ToString());
+
+        }
+
         public static int ReturnSexo(object sexo)
         {
             if (sexo == null) return 0;

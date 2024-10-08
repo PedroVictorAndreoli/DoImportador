@@ -1,6 +1,7 @@
 ﻿using doAPI.Utils;
 using DoImportador.Connection;
 using DoImportador.Model;
+using DoImportador.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -93,7 +94,48 @@ namespace DoImportador.Services
                 data.ForEach(dt => 
                 {
 
+                    query = "SET IDENTITY_INSERT vet_animais ON; INSERT INTO vet_animais (ID,Nome,ChipNumero,ChipData,Pedigree,DataSeguro,IDEspecie,IDRaca,IDCor,DataNascimento,IDSexo,ObitoData,ObitoObservacao,PesoUltimo, Inativo,ObservacaoAlimentares,ObservacaoClinicas,DataPrimeiraVisita,DataUltimaVisita,IDDono,Obito,ObservacaoAlerta,DataCadastro)" +
+                    " VALUES " +
+                    "(@ID,@Nome,@ChipNumero,@ChipData,@Pedigree,@DataSeguro,@IDEspecie,@IDRaca,@IDCor,@DataNascimento,@IDSexo,@ObitoData,@ObitoObservacao,@PesoUltimo,@Inativo,@ObservacaoAlimentares,@ObservacaoClinicas,@DataPrimeiraVisita,@DataUltimaVisita,@IDDono,@Obito,@ObservacaoAlerta,@DataCadastro); SET IDENTITY_INSERT vet_animais OFF";
+                    input = new Hashtable();
+                    input.Add("ID", dt["ID"]);
+                    input.Add("Nome", dt["Nome"]);
+                    input.Add("ChipNumero","");
+                    input.Add("ChipData", DBNull.Value);
+                    input.Add("Pedigree", "");
+                    input.Add("DataSeguro", DBNull.Value);
 
+                    input.Add("DataNascimento", dt["DataNascimento"] == null ? DBNull.Value : dt["DataNascimento"]);
+
+                    input.Add("IDEspecie", GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Especie"]).ToString(), "vet_especies"));
+                    input.Add("IDRaca", GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Raca"]).ToString(), "vet_racas"));
+                    input.Add("IDCor", GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Cor"]).ToString(), "vet_cores"));
+                    input.Add("IDSexo", GenericUtil.ReturnSexo(dt["Sexo"]));
+
+
+                    input.Add("ObitoData", DBNull.Value);
+                    input.Add("ObitoObservacao", "");
+                    input.Add("PesoUltimo", dt["Peso"]);
+                    input.Add("Inativo",0);
+                    input.Add("ObservacaoAlimentares", "");
+                    input.Add("ObservacaoClinicas", "");
+                    input.Add("DataPrimeiraVisita", DBNull.Value);
+                    input.Add("DataUltimaVisita", DBNull.Value);
+                    input.Add("IDDono", dt["IDDono"]);
+                    input.Add("Obito",0);
+                    input.Add("ObservacaoAlerta", "");
+                    input.Add("DataCadastro", DateTime.Now);
+
+                    CrudUtils.ExecuteQuery(iConn, input, query);
+
+                    query = "INSERT INTO dbo.vet_animais_donos (IDAnimal,IDDonoNew,IDDonoOld,Data) VALUES (@IDAnimal,@IDDonoNew,@IDDonoOld,@Data)";
+                    input = new Hashtable();
+                    input.Add("IDAnimal", dt["ID"]);
+                    input.Add("IDDonoNew", dt["IDDono"]);
+                    input.Add("IDDonoOld", dt["IDDono"]);
+                    input.Add("Data", DateTime.Now);
+
+                    CrudUtils.ExecuteQuery(iConn, input, query);
 
 
                     _form.OnSetLog($"Importou: {dt["Nome"]}");
