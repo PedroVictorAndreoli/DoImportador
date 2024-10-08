@@ -77,11 +77,12 @@ namespace DoImportador
         private void button2_Click_1(object sender, EventArgs e)
         {
             DOFunctions.LoadHost(LoadPropertiesConnection());
-            var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
 
-            Console.WriteLine(data);
-
-
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                Person.ImportPeople(data);
+            }
         }
 
         private ConnectionProperties LoadPropertiesConnection()

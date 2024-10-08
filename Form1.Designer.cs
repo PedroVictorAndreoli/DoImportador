@@ -52,7 +52,7 @@
             db_origin = new TextBox();
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
-            SQL = new RadioButton();
+            che_sql = new RadioButton();
             button5 = new Button();
             button6 = new Button();
             label3 = new Label();
@@ -91,7 +91,7 @@
             Config.Controls.Add(groupBox1);
             Config.Controls.Add(radioButton3);
             Config.Controls.Add(radioButton2);
-            Config.Controls.Add(SQL);
+            Config.Controls.Add(che_sql);
             Config.Controls.Add(button5);
             Config.Controls.Add(button6);
             Config.Controls.Add(label3);
@@ -325,18 +325,18 @@
             radioButton2.Text = "JSON";
             radioButton2.UseVisualStyleBackColor = true;
             // 
-            // SQL
+            // che_sql
             // 
-            SQL.AutoSize = true;
-            SQL.Checked = true;
-            SQL.Location = new Point(7, 189);
-            SQL.Name = "SQL";
-            SQL.Size = new Size(46, 19);
-            SQL.TabIndex = 28;
-            SQL.TabStop = true;
-            SQL.Text = "SQL";
-            SQL.UseVisualStyleBackColor = true;
-            SQL.CheckedChanged += SQL_CheckedChanged;
+            che_sql.AutoSize = true;
+            che_sql.Checked = true;
+            che_sql.Location = new Point(7, 189);
+            che_sql.Name = "che_sql";
+            che_sql.Size = new Size(46, 19);
+            che_sql.TabIndex = 28;
+            che_sql.TabStop = true;
+            che_sql.Text = "SQL";
+            che_sql.UseVisualStyleBackColor = true;
+            che_sql.CheckedChanged += SQL_CheckedChanged;
             // 
             // button5
             // 
@@ -518,7 +518,7 @@
         private Label label4;
         private RadioButton radioButton3;
         private RadioButton radioButton2;
-        private RadioButton SQL;
+        private RadioButton che_sql;
         private Label label5;
         private TextBox db_origin;
         private GroupBox groupBox1;
