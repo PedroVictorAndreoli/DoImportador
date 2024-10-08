@@ -31,9 +31,11 @@ namespace DoImportador.Utils
             
         }
 
-        public static int ReturnSexo(string sexo)
+        public static int ReturnSexo(object sexo)
         {
-            return sexo == 'Masculino' ? 0 : 1;
+            if (sexo == null) return 0;
+
+            return sexo.ToString() == "Masculino" ? 0 : 1;
         }
 
         public static string ReturnNumber(object input)

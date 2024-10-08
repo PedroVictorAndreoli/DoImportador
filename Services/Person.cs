@@ -10,10 +10,16 @@ using System.Threading.Tasks;
 
 namespace DoImportador.Services
 {
-    internal class Person
+    public class Person
     {
 
-        public static void ImportPeople(List<IDictionary> persons)
+        private Form1 _form;
+
+        public Person(Form1 form) {
+            _form = form;
+        }
+
+        public void ImportPeople(List<IDictionary> persons)
         {
             var iConn = new DOConn();
             try
@@ -115,28 +121,35 @@ namespace DoImportador.Services
 
                     /*************************************************PESSOAS JURIDICAS/FISICAS***********************************************************/
 
-                    if (person["Tipo"].ToString().Equals("Fisica"))
+                    if (person["TipoPessoa"].ToString().Equals("Fisica"))
                     {
-                        query = "INSERT INTO dbo.pessoas_fisicas (IDPessoa,RG,CPF,DataNascimento,IDSexo) VALUES (@IDPessoa,@RG,@CPF,@DataNascimento,@Sexo)";
+                        query = "INSERT INTO dbo.pessoas_fisicas (IDPessoa,RG,CPF,DataNascimento,IDSexo) VALUES (@IDPessoa,@RG,@CPF,@DataNascimento,@IDSexo)";
                         input = new Hashtable();
                         input.Add("IDPessoa", person["ID"]);
                         input.Add("RG", GenericUtil.ReturnNumber(person["RG"]));
                         input.Add("CPF", GenericUtil.ReturnNumber(person["CPF"]));
                         input.Add("DataNascimento", person["DataNascimento"]);
-                        input.Add("IDSexo", GenericUtil.ReturnSexo(person["DataNascimento"].ToString()));
+                        input.Add("IDSexo", GenericUtil.ReturnSexo(person["Sexo"]));
 
-                        CrudUtils.ExecuteQuery(iConn, input, query);
+                        try
+                        {
+                            CrudUtils.ExecuteQuery(iConn, input, query);
+                        } catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        
 
                         query = $"UPDATE pessoas set Tipo = 0 where id = {person["ID"]}";
                         CrudUtils.ExecuteQuery(iConn, null, query);
                     }
-                    if (person["Tipo"].ToString().Equals("Juridica"))
+                    if (person["TipoPessoa"].ToString().Equals("Juridica"))
                     {
                         query = "INSERT INTO dbo.pessoas_juridicas (IDPessoa,CNPJ,RazaoSocial,InscricaoEstadual,InscricaoMunicipal) VALUES (@IDPessoa,@CNPJ,@RazaoSocial,@InscricaoEstadual,@InscricaoMunicipal)";
                         input = new Hashtable();
                         input.Add("IDPessoa", person["ID"]);
                         input.Add("CNPJ", GenericUtil.ReturnNumber(person["CNPJ"]));
-                        input.Add("RazaoSocial", person["RazaoSocial"]);
+                        input.Add("RazaoSocial", GenericUtil.NullForEmpty(person["RazaoSocial"]));
                         input.Add("InscricaoEstadual", GenericUtil.ReturnNumber(person["IE"]));
                         input.Add("InscricaoMunicipal", "");
 
@@ -151,10 +164,21 @@ namespace DoImportador.Services
                     query = "INSERT INTO dbo.pessoas_clientes (IDPessoa, Inativo, ObsGerais, LimiteCredito, InscricaoSUFRAMA) VALUES (@IDPessoa, @Inativo,@ObsGerais,@LimiteCredito,@InscricaoSUFRAMA)";
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
+                    input.Add("Inativo", 0);
+                    input.Add("ObsGerais", "");
+                    input.Add("LimiteCredito", 0);
+                    input.Add("InscricaoSUFRAMA", "");
+
+                    CrudUtils.ExecuteQuery(iConn, input, query);
 
 
+                    /*************************************************PESSOAS FORNEEDORES***********************************************************/
+
+                    _form.OnSetLog($"Importou: {person["Nome"]}");
 
                 });
+
+
 
                 MessageBox.Show("Dados importados com sucesso!!");
 

@@ -1,6 +1,7 @@
 using DoImportador.Connection;
 using DoImportador.Services;
 using DoImportador.Utils;
+using System.Windows.Forms;
 
 namespace DoImportador
 {
@@ -78,11 +79,28 @@ namespace DoImportador
         {
             DOFunctions.LoadHost(LoadPropertiesConnection());
 
+            var person = new Person(this);
+
             if (che_sql.Checked)
             {
                 var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
-                Person.ImportPeople(data);
+                var thread = new Thread(() => person.ImportPeople(data));
+                thread.Start();
+                
             }
+        }
+
+        public void OnSetLog(string log)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => OnSetLog(log)));
+            }
+            else
+            {
+                txt_logs.AppendText(log + Environment.NewLine);
+            }
+            
         }
 
         private ConnectionProperties LoadPropertiesConnection()
@@ -142,5 +160,7 @@ namespace DoImportador
                 iConn.Dispose();
             }
         }
+
+        
     }
 }

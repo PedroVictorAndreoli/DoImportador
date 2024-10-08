@@ -1,6 +1,7 @@
 select
     Pessoa.Codigo as ID,
     Nome as Nome,
+    Nome_Fantasia as RazaoSocial,
     CASE Tipo
         WHEN 'J' then CPF
         ELSE ''

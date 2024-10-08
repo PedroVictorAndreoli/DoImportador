@@ -68,17 +68,21 @@
             tabPage2 = new TabPage();
             label4 = new Label();
             txt_sql = new RichTextBox();
+            tabPage1 = new TabPage();
+            txt_logs = new RichTextBox();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             tabPage2.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(Config);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Location = new Point(1, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -473,6 +477,25 @@
             txt_sql.TabIndex = 0;
             txt_sql.Text = "";
             // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(txt_logs);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(868, 528);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "Logs";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txt_logs
+            // 
+            txt_logs.Location = new Point(3, 28);
+            txt_logs.Name = "txt_logs";
+            txt_logs.Size = new Size(862, 500);
+            txt_logs.TabIndex = 1;
+            txt_logs.Text = "";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -492,6 +515,7 @@
             groupBox1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -537,5 +561,7 @@
         private TextBox user_origin;
         private Button button8;
         private Button button7;
+        private TabPage tabPage1;
+        private RichTextBox txt_logs;
     }
 }
