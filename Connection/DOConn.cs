@@ -99,7 +99,14 @@ namespace DoImportador.Connection
         //sisFlexControl_1000 base de dados de demonstração para o site
         public String GetNewConnectionString(string dbname, EnumDataLake datalake)
         {
-            return $"Connection Timeout=120;Persist Security Info=False; Data Source={(datalake == EnumDataLake.ORIGIN ? DOFunctions._hostOrigin : DOFunctions._hostDest)}\\MSSQLSERVER2022;Initial Catalog={dbname};User ID=atmusinf;Password=Atmus@#4080";
+            if(datalake == EnumDataLake.ORIGIN)
+            {
+                return $"Connection Timeout=120;Persist Security Info=False; Data Source={DOFunctions._connectionProperties.hostOrigin};Initial Catalog={DOFunctions._connectionProperties.dbNameOrigin};User ID={DOFunctions._connectionProperties.userOrigin};Password={DOFunctions._connectionProperties.passwordOrigin};TrustServerCertificate=True;";
+            } else
+            {
+                return $"Connection Timeout=120;Persist Security Info=False; Data Source={DOFunctions._connectionProperties.hostDestination};Initial Catalog={DOFunctions._connectionProperties.dbNameDestination};User ID={DOFunctions._connectionProperties.userDestination};Password={DOFunctions._connectionProperties.passwordDestination};TrustServerCertificate=True;";
+            }
+            
         }
 
         public void ConnectionClose(IDbConnection pCnn)

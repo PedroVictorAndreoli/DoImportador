@@ -7,8 +7,7 @@ namespace DoImportador.Utils
     {
         public static DOConn DOConnTrans = null;
 
-        public static string _hostDest = "";
-        public static string _hostOrigin = "";
+        public static ConnectionProperties _connectionProperties = new ConnectionProperties();
 
 
         public static string ParseSQLToPostgreSQL(string sSQL)
@@ -29,10 +28,9 @@ namespace DoImportador.Utils
             return sSQL;
         }
 
-        public static void LoadHost(string hostOri, string hostDest)
+        public static void LoadHost(ConnectionProperties connectionPropertiest)
         {
-            _hostDest = hostDest;
-            _hostOrigin = hostOri;
+            _connectionProperties = connectionPropertiest;
         }
 
     }

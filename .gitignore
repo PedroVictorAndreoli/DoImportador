@@ -1,0 +1,6 @@
+# Ignorar a pasta .vs (Visual Studio)
+.vs/
+
+# Ignorar as pastas bin e obj (arquivos de compilação)
+bin/
+obj/

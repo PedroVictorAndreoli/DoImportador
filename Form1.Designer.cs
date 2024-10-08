@@ -31,15 +31,25 @@
             tabControl1 = new TabControl();
             Config = new TabPage();
             groupBox2 = new GroupBox();
+            button8 = new Button();
+            label10 = new Label();
+            password_destination = new TextBox();
+            label11 = new Label();
+            user_destination = new TextBox();
             label6 = new Label();
             label7 = new Label();
-            txt_db_destination = new TextBox();
-            textBox3 = new TextBox();
+            host_destination = new TextBox();
+            db_destination = new TextBox();
             groupBox1 = new GroupBox();
+            button7 = new Button();
+            label9 = new Label();
+            password_origin = new TextBox();
+            label8 = new Label();
+            user_origin = new TextBox();
             dsd = new Label();
             label5 = new Label();
-            txt_db_origin = new TextBox();
-            txt_db_name = new TextBox();
+            host_origin = new TextBox();
+            db_origin = new TextBox();
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
             SQL = new RadioButton();
@@ -105,121 +115,221 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(button8);
+            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(password_destination);
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(user_destination);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(txt_db_destination);
-            groupBox2.Controls.Add(textBox3);
+            groupBox2.Controls.Add(host_destination);
+            groupBox2.Controls.Add(db_destination);
             groupBox2.Location = new Point(439, 26);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(420, 93);
+            groupBox2.Size = new Size(420, 157);
             groupBox2.TabIndex = 34;
             groupBox2.TabStop = false;
             groupBox2.Text = "Destination";
+            // 
+            // button8
+            // 
+            button8.Location = new Point(324, 126);
+            button8.Name = "button8";
+            button8.Size = new Size(90, 23);
+            button8.TabIndex = 37;
+            button8.Text = "Test connect";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(212, 79);
+            label10.Name = "label10";
+            label10.Size = new Size(57, 15);
+            label10.TabIndex = 40;
+            label10.Text = "Password";
+            // 
+            // password_destination
+            // 
+            password_destination.Location = new Point(212, 97);
+            password_destination.Name = "password_destination";
+            password_destination.Size = new Size(200, 23);
+            password_destination.TabIndex = 39;
+            password_destination.Text = "Atmus@#4080";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 79);
+            label11.Name = "label11";
+            label11.Size = new Size(30, 15);
+            label11.TabIndex = 38;
+            label11.Text = "User";
+            // 
+            // user_destination
+            // 
+            user_destination.Location = new Point(6, 97);
+            user_destination.Name = "user_destination";
+            user_destination.Size = new Size(200, 23);
+            user_destination.TabIndex = 37;
+            user_destination.Text = "atmusinf";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(6, 30);
             label6.Name = "label6";
-            label6.Size = new Size(71, 15);
+            label6.Size = new Size(32, 15);
             label6.TabIndex = 15;
-            label6.Text = "DB Location";
+            label6.Text = "Host";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Location = new Point(212, 30);
             label7.Name = "label7";
-            label7.Size = new Size(87, 15);
+            label7.Size = new Size(57, 15);
             label7.TabIndex = 32;
-            label7.Text = "DBNameOrigin";
+            label7.Text = "DB Name";
             // 
-            // txt_db_destination
+            // host_destination
             // 
-            txt_db_destination.Location = new Point(6, 48);
-            txt_db_destination.Name = "txt_db_destination";
-            txt_db_destination.Size = new Size(200, 23);
-            txt_db_destination.TabIndex = 14;
-            txt_db_destination.Text = "localhost";
+            host_destination.Location = new Point(6, 48);
+            host_destination.Name = "host_destination";
+            host_destination.Size = new Size(200, 23);
+            host_destination.TabIndex = 14;
+            host_destination.Text = "localhost";
             // 
-            // textBox3
+            // db_destination
             // 
-            textBox3.Location = new Point(212, 48);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(200, 23);
-            textBox3.TabIndex = 31;
+            db_destination.Location = new Point(212, 48);
+            db_destination.Name = "db_destination";
+            db_destination.Size = new Size(200, 23);
+            db_destination.TabIndex = 31;
+            db_destination.Text = "atmusinf_Control-3344";
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(button7);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(password_origin);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(user_origin);
             groupBox1.Controls.Add(dsd);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txt_db_origin);
-            groupBox1.Controls.Add(txt_db_name);
+            groupBox1.Controls.Add(host_origin);
+            groupBox1.Controls.Add(db_origin);
             groupBox1.Location = new Point(7, 26);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(420, 93);
+            groupBox1.Size = new Size(420, 157);
             groupBox1.TabIndex = 33;
             groupBox1.TabStop = false;
             groupBox1.Text = "Origin";
+            // 
+            // button7
+            // 
+            button7.Location = new Point(322, 126);
+            button7.Name = "button7";
+            button7.Size = new Size(90, 23);
+            button7.TabIndex = 35;
+            button7.Text = "Test connect";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(212, 79);
+            label9.Name = "label9";
+            label9.Size = new Size(57, 15);
+            label9.TabIndex = 36;
+            label9.Text = "Password";
+            // 
+            // password_origin
+            // 
+            password_origin.Location = new Point(212, 97);
+            password_origin.Name = "password_origin";
+            password_origin.Size = new Size(200, 23);
+            password_origin.TabIndex = 35;
+            password_origin.Text = "Atmus@#4080";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 79);
+            label8.Name = "label8";
+            label8.Size = new Size(30, 15);
+            label8.TabIndex = 34;
+            label8.Text = "User";
+            // 
+            // user_origin
+            // 
+            user_origin.Location = new Point(6, 97);
+            user_origin.Name = "user_origin";
+            user_origin.Size = new Size(200, 23);
+            user_origin.TabIndex = 33;
+            user_origin.Text = "sa";
             // 
             // dsd
             // 
             dsd.AutoSize = true;
             dsd.Location = new Point(6, 30);
             dsd.Name = "dsd";
-            dsd.Size = new Size(71, 15);
+            dsd.Size = new Size(32, 15);
             dsd.TabIndex = 15;
-            dsd.Text = "DB Location";
+            dsd.Text = "Host";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Location = new Point(212, 30);
             label5.Name = "label5";
-            label5.Size = new Size(87, 15);
+            label5.Size = new Size(57, 15);
             label5.TabIndex = 32;
-            label5.Text = "DBNameOrigin";
+            label5.Text = "DB Name";
             // 
-            // txt_db_origin
+            // host_origin
             // 
-            txt_db_origin.Location = new Point(6, 48);
-            txt_db_origin.Name = "txt_db_origin";
-            txt_db_origin.Size = new Size(200, 23);
-            txt_db_origin.TabIndex = 14;
+            host_origin.Location = new Point(6, 48);
+            host_origin.Name = "host_origin";
+            host_origin.Size = new Size(200, 23);
+            host_origin.TabIndex = 14;
+            host_origin.Text = "172.21.199.151";
             // 
-            // txt_db_name
+            // db_origin
             // 
-            txt_db_name.Location = new Point(212, 48);
-            txt_db_name.Name = "txt_db_name";
-            txt_db_name.Size = new Size(200, 23);
-            txt_db_name.TabIndex = 31;
+            db_origin.Location = new Point(212, 48);
+            db_origin.Name = "db_origin";
+            db_origin.Size = new Size(200, 23);
+            db_origin.TabIndex = 31;
+            db_origin.Text = "sismoura";
             // 
             // radioButton3
             // 
             radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(118, 296);
+            radioButton3.Location = new Point(118, 189);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(46, 19);
             radioButton3.TabIndex = 30;
-            radioButton3.TabStop = true;
             radioButton3.Text = "CSV";
             radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(59, 296);
+            radioButton2.Location = new Point(59, 189);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(53, 19);
             radioButton2.TabIndex = 29;
-            radioButton2.TabStop = true;
             radioButton2.Text = "JSON";
             radioButton2.UseVisualStyleBackColor = true;
             // 
             // SQL
             // 
             SQL.AutoSize = true;
-            SQL.Location = new Point(7, 296);
+            SQL.Checked = true;
+            SQL.Location = new Point(7, 189);
             SQL.Name = "SQL";
             SQL.Size = new Size(46, 19);
             SQL.TabIndex = 28;
@@ -230,7 +340,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(769, 453);
+            button5.Location = new Point(769, 346);
             button5.Name = "button5";
             button5.Size = new Size(90, 23);
             button5.TabIndex = 27;
@@ -239,7 +349,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(664, 453);
+            button6.Location = new Point(664, 346);
             button6.Name = "button6";
             button6.Size = new Size(97, 23);
             button6.TabIndex = 26;
@@ -249,7 +359,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 435);
+            label3.Location = new Point(6, 328);
             label3.Name = "label3";
             label3.Size = new Size(96, 15);
             label3.TabIndex = 25;
@@ -257,7 +367,7 @@
             // 
             // txt_json_animals
             // 
-            txt_json_animals.Location = new Point(6, 453);
+            txt_json_animals.Location = new Point(6, 346);
             txt_json_animals.Name = "txt_json_animals";
             txt_json_animals.ReadOnly = true;
             txt_json_animals.Size = new Size(652, 23);
@@ -265,7 +375,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(769, 395);
+            button3.Location = new Point(769, 288);
             button3.Name = "button3";
             button3.Size = new Size(90, 23);
             button3.TabIndex = 23;
@@ -274,7 +384,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(664, 395);
+            button4.Location = new Point(664, 288);
             button4.Name = "button4";
             button4.Size = new Size(97, 23);
             button4.TabIndex = 22;
@@ -284,7 +394,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 377);
+            label2.Location = new Point(6, 270);
             label2.Name = "label2";
             label2.Size = new Size(97, 15);
             label2.TabIndex = 21;
@@ -292,7 +402,7 @@
             // 
             // txt_json_product
             // 
-            txt_json_product.Location = new Point(6, 395);
+            txt_json_product.Location = new Point(6, 288);
             txt_json_product.Name = "txt_json_product";
             txt_json_product.ReadOnly = true;
             txt_json_product.Size = new Size(652, 23);
@@ -300,7 +410,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(769, 346);
+            button2.Location = new Point(769, 239);
             button2.Name = "button2";
             button2.Size = new Size(90, 23);
             button2.TabIndex = 19;
@@ -310,7 +420,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(664, 346);
+            button1.Location = new Point(664, 239);
             button1.Name = "button1";
             button1.Size = new Size(97, 23);
             button1.TabIndex = 18;
@@ -320,7 +430,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 328);
+            label1.Location = new Point(6, 221);
             label1.Name = "label1";
             label1.Size = new Size(91, 15);
             label1.TabIndex = 17;
@@ -328,7 +438,7 @@
             // 
             // txt_json_person
             // 
-            txt_json_person.Location = new Point(6, 346);
+            txt_json_person.Location = new Point(6, 239);
             txt_json_person.Name = "txt_json_person";
             txt_json_person.ReadOnly = true;
             txt_json_person.Size = new Size(652, 23);
@@ -402,7 +512,7 @@
         private Label label1;
         private TextBox txt_json_person;
         private Label dsd;
-        private TextBox txt_db_origin;
+        private TextBox host_origin;
         private TabPage tabPage2;
         private RichTextBox txt_sql;
         private Label label4;
@@ -410,12 +520,22 @@
         private RadioButton radioButton2;
         private RadioButton SQL;
         private Label label5;
-        private TextBox txt_db_name;
+        private TextBox db_origin;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Label label6;
         private Label label7;
-        private TextBox txt_db_destination;
-        private TextBox textBox3;
+        private TextBox host_destination;
+        private TextBox db_destination;
+        private Label label10;
+        private TextBox password_destination;
+        private Label label11;
+        private TextBox user_destination;
+        private Label label9;
+        private TextBox password_origin;
+        private Label label8;
+        private TextBox user_origin;
+        private Button button8;
+        private Button button7;
     }
 }

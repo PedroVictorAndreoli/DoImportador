@@ -1,3 +1,4 @@
+using DoImportador.Connection;
 using DoImportador.Services;
 using DoImportador.Utils;
 
@@ -72,15 +73,73 @@ namespace DoImportador
         {
 
         }
-        
+
         private void button2_Click_1(object sender, EventArgs e)
         {
-            DOFunctions.LoadHost(txt_db_origin.Text, txt_db_destination.Text);
-            var data = LoadData.LoadDataDb(txt_db_name.Text, txt_sql.Text);
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+            var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
 
             Console.WriteLine(data);
 
 
+        }
+
+        private ConnectionProperties LoadPropertiesConnection()
+        {
+            var connection = new ConnectionProperties();
+            connection.hostOrigin = host_origin.Text;
+            connection.dbNameOrigin = db_origin.Text;
+            connection.userOrigin = user_origin.Text;
+            connection.passwordOrigin = password_origin.Text;
+
+            connection.hostDestination = host_destination.Text;
+            connection.dbNameDestination = db_destination.Text;
+            connection.userDestination = user_destination.Text;
+            connection.passwordDestination = password_destination.Text;
+
+            return connection;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var iConn = new DOConn();
+            try
+            {
+                DOFunctions.LoadHost(LoadPropertiesConnection());
+                iConn.ConnectionOpen("", Enum.EnumDataLake.ORIGIN);
+
+                MessageBox.Show("Conexão obtida com sucesso");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                iConn.ConnectionClose(iConn.DoConnection);
+                iConn.Dispose();
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var iConn = new DOConn();
+            try
+            {
+                DOFunctions.LoadHost(LoadPropertiesConnection());
+                iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
+
+                MessageBox.Show("Conexão obtida com sucesso");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                iConn.ConnectionClose(iConn.DoConnection);
+                iConn.Dispose();
+            }
         }
     }
 }
