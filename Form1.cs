@@ -170,7 +170,7 @@ namespace DoImportador
 
             if (che_sql.Checked)
             {
-                var data = LoadData.LoadDataByType<Animal>(db_origin.Text, txt_sql.Text);
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
                 var thread = new Thread(() => animals.ImportData(data));
                 thread.Start();
 
