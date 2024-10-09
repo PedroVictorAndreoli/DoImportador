@@ -386,6 +386,7 @@
             button3.TabIndex = 23;
             button3.Text = "Import";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 

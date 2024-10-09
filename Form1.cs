@@ -176,5 +176,20 @@ namespace DoImportador
 
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var product = new Product(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var thread = new Thread(() => product.ImportData(data));
+                thread.Start();
+
+            }
+        }
     }
 }

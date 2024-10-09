@@ -18,6 +18,11 @@ namespace DoImportador.Utils
             return value == null ? "" : value;
         }
 
+        public static object NullForZero(object value)
+        {
+            return value == null ? 0 : value;
+        }
+
         public static int LoadCity(DOConn iConn, string cityName)
         {
             var query = $"SELECT top(1) ID FROM cidades where Nome like '%{cityName}%'";
@@ -31,9 +36,9 @@ namespace DoImportador.Utils
             
         }
 
-        public static int LoadByID(DOConn iConn, string description, string table)
+        public static int LoadByID(DOConn iConn, string description, string table, string column = "descricao")
         {
-            var query = $"SELECT top(1) ID FROM {table} where Descricao like '%{description}%'";
+            var query = $"SELECT top(1) ID FROM {table} where {column} like '%{description}%'";
 
             var output = CrudUtils.GetOne<IDictionary>(iConn.DoConnection, query, iConn);
             if (output.Count == 0)
@@ -49,6 +54,13 @@ namespace DoImportador.Utils
             if (sexo == null) return 0;
 
             return sexo.ToString() == "Masculino" ? 1 : 2;
+        }
+
+        public static int ReturnTypeItem(object item)
+        {
+            if (item == null) return 0;
+
+            return item.ToString() == "Produto" ? 0 : 1;
         }
 
         public static string ReturnNumber(object input)
