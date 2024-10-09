@@ -25,7 +25,7 @@ namespace DoImportador.Utils
 
         public static int LoadCity(DOConn iConn, string cityName)
         {
-            var query = $"SELECT top(1) ID FROM cidades where Nome like '%{cityName}%'";
+            var query = $"SELECT top(1) ID FROM cidades where UPPER(Nome) like UPPER('%{cityName}%')";
 
             var output = CrudUtils.GetOne<IDictionary>(iConn.DoConnection, query, iConn);
             if(output.Count == 0)
@@ -38,7 +38,7 @@ namespace DoImportador.Utils
 
         public static int LoadByID(DOConn iConn, string description, string table, string column = "descricao")
         {
-            var query = $"SELECT top(1) ID FROM {table} where {column} like '%{description}%'";
+            var query = $"SELECT top(1) ID FROM {table} where UPPER({column}) like UPPER('%{description}%')";
 
             var output = CrudUtils.GetOne<IDictionary>(iConn.DoConnection, query, iConn);
             if (output.Count == 0)

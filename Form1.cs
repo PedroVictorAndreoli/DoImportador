@@ -86,8 +86,15 @@ namespace DoImportador
             if (che_sql.Checked)
             {
                 var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
-                var thread = new Thread(() => person.ImportData(data));
-                thread.Start();
+                if (data != null)
+                {
+                    var thread = new Thread(() => person.ImportData(data));
+                    thread.Start();
+                } else
+                {
+                    MessageBox.Show("Nenhum dado foi carregado");
+                }
+                
 
             }
         }

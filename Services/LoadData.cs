@@ -1,11 +1,13 @@
 ﻿using doAPI.Utils;
 using DoImportador.Connection;
+using DoImportador.Utils;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DoImportador.Services
@@ -18,8 +20,9 @@ namespace DoImportador.Services
             try
             {
                 doConn.ConnectionOpen(dbNameOrigin, Enum.EnumDataLake.ORIGIN);
+                var query = Regex.Replace(sql, @"[\u000B\r\n]+", " ").Replace("\v", ""); ;
 
-                return CrudUtils.GetAll<IDictionary>(doConn.DoConnection, sql, doConn);
+                return CrudUtils.GetAll<IDictionary>(doConn.DoConnection, query, doConn);
                 
             } catch (Exception e)
             {
@@ -27,7 +30,7 @@ namespace DoImportador.Services
             }
             finally
             {
-                doConn.ConnectionClose(doConn.DoConnection);
+                doConn.ConnectionClose(doConn.DoConnection, DOFunctions._connectionProperties.dbType);
                 doConn.Dispose();
             }
             return null;
@@ -49,7 +52,7 @@ namespace DoImportador.Services
             }
             finally
             {
-                doConn.ConnectionClose(doConn.DoConnection);
+                doConn.ConnectionClose(doConn.DoConnection, DOFunctions._connectionProperties.dbType);
                 doConn.Dispose();
             }
             return new List<T>();

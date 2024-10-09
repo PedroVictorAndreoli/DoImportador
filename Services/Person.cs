@@ -80,7 +80,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 0);
-                    input.Add("Fone", GenericUtil.NullForEmpty(person["TelefoneFixo"]));
+                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["TelefoneFixo"])));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -89,7 +89,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 1);
-                    input.Add("Fone", GenericUtil.NullForEmpty(person["TelefoneComercial"]));
+                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["TelefoneComercial"])));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -98,7 +98,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 2);
-                    input.Add("Fone", GenericUtil.NullForEmpty(person["Celular"]));
+                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Celular"])));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -169,7 +169,7 @@ namespace DoImportador.Services
 
                     /*************************************************PESSOAS FORNEEDORES***********************************************************/
 
-                    _form.OnSetLog($"Importou: {person["Nome"]}");
+                    _form.OnSetLog($"Importou: {person["ID"]} - {person["Nome"]}");
 
                 });
 

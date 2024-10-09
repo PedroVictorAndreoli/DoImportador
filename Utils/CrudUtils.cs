@@ -158,7 +158,14 @@ namespace doAPI.Utils
 
         private static Object ConstructorCommand(IDbConnection con, string sql, int type, DOConn doConn)
         {
-            SqlCommand command = new SqlCommand(sql, (SqlConnection)con);
+
+            var providerType = con.GetType().Name.ToUpper() switch
+            {
+                "SQLCONNECTION" => EnumProviderType.SQLServer,
+                "NPGSQLCONNECTION" => EnumProviderType.PostGreSQL,
+                _ => EnumProviderType.SQLServer
+            };
+            var command = doConn.GetNewCommand(sql,con,providerType: providerType);
             if (doConn != null)
             {
                 if (doConn.DoTransaction != null)
@@ -166,7 +173,7 @@ namespace doAPI.Utils
                     command.Transaction = (SqlTransaction)doConn.DoTransaction;
                 }
             }
-            SqlDataReader dr = command.ExecuteReader();
+            var dr = command.ExecuteReader();
 
             Hashtable table = new();
             List<Hashtable> tbl = new List<Hashtable>();
