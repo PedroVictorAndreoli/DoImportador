@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace DoImportador.Enum
 {
-    public enum enumProviderType
+    public enum EnumProviderType
     {
         Auto = -1,
         SQLServer = 0,
-        PostGreSQL = 1
+        PostGreSQL = 1,
+        MySql = 2
     }
 
     public enum EnumDataLake

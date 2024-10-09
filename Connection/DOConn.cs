@@ -1,6 +1,7 @@
 ﻿using DoImportador.Enum;
 using DoImportador.Utils;
 using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using Npgsql;
 
 using System.Data;
@@ -15,7 +16,7 @@ namespace DoImportador.Connection
         private IDbTransaction mvarDoTransaction;
         private IDbConnection mvarDoConnection;
         private Int32 mvarDoID = -1000;
-        private enumProviderType mvarProviderType;
+        private EnumProviderType mvarProviderType;
 
         public void Dispose()
         {
@@ -32,9 +33,9 @@ namespace DoImportador.Connection
 
         public DOConn()
         {
-            mvarProviderType = enumProviderType.SQLServer;
+            mvarProviderType = EnumProviderType.SQLServer;
         }
-        public DOConn(enumProviderType providerType)
+        public DOConn(EnumProviderType providerType)
         {
             mvarProviderType = providerType;
         }
@@ -50,7 +51,7 @@ namespace DoImportador.Connection
             get { return mvarDoConnection; }
             set { mvarDoConnection = value; }
         }
-        public enumProviderType ProviderType
+        public EnumProviderType ProviderType
         {
             get { return mvarProviderType; }
         }
@@ -83,7 +84,21 @@ namespace DoImportador.Connection
 
             cnnString = getConnectionString(doID, datalake);
 
-            cnn = new SqlConnection(cnnString);
+            if(EnumDataLake.ORIGIN == datalake)
+            {
+                cnn = DOFunctions._connectionProperties.dbType switch
+                {
+                    EnumProviderType.SQLServer => new SqlConnection(cnnString),
+                    EnumProviderType.MySql => new MySqlConnection(cnnString),
+                    EnumProviderType.PostGreSQL => new NpgsqlConnection(cnnString),
+                    _ => new SqlConnection(cnnString)
+                };
+                
+            }
+            else
+            {
+                cnn = new SqlConnection(cnnString);
+            }
 
             cnn.Open();
 
@@ -97,19 +112,27 @@ namespace DoImportador.Connection
         }
 
         //sisFlexControl_1000 base de dados de demonstração para o site
-        public String GetNewConnectionString(string dbname, EnumDataLake datalake)
+        public String GetNewConnectionString(string dbname, EnumDataLake datalake, EnumProviderType providerType = EnumProviderType.Auto)
         {
             if(datalake == EnumDataLake.ORIGIN)
             {
-                return $"Connection Timeout=120;Persist Security Info=False; Data Source={DOFunctions._connectionProperties.hostOrigin};Initial Catalog={DOFunctions._connectionProperties.dbNameOrigin};User ID={DOFunctions._connectionProperties.userOrigin};Password={DOFunctions._connectionProperties.passwordOrigin};TrustServerCertificate=True;";
+
+                return DOFunctions._connectionProperties.dbType switch
+                {
+                    EnumProviderType.MySql => $"Server={DOFunctions._connectionProperties.hostOrigin};Port={DOFunctions._connectionProperties.portOrigin};Database={DOFunctions._connectionProperties.dbNameOrigin};Uid={DOFunctions._connectionProperties.userOrigin};Pwd={DOFunctions._connectionProperties.passwordOrigin}",
+                    EnumProviderType.PostGreSQL => $"Host={DOFunctions._connectionProperties.hostOrigin};Port={DOFunctions._connectionProperties.portOrigin};Database={DOFunctions._connectionProperties.dbNameOrigin};Username={DOFunctions._connectionProperties.userOrigin};Password={DOFunctions._connectionProperties.passwordOrigin};",
+                    _ => $"Connection Timeout=120;Persist Security Info=False; Data Source={DOFunctions._connectionProperties.hostOrigin};Initial Catalog={DOFunctions._connectionProperties.dbNameOrigin};User ID={DOFunctions._connectionProperties.userOrigin};Password={DOFunctions._connectionProperties.passwordOrigin};TrustServerCertificate=True;"
+
+                };
             } else
             {
                 return $"Connection Timeout=120;Persist Security Info=False; Data Source={DOFunctions._connectionProperties.hostDestination};Initial Catalog={DOFunctions._connectionProperties.dbNameDestination};User ID={DOFunctions._connectionProperties.userDestination};Password={DOFunctions._connectionProperties.passwordDestination};TrustServerCertificate=True;";
+
             }
-            
+
         }
 
-        public void ConnectionClose(IDbConnection pCnn)
+        public void ConnectionClose(IDbConnection pCnn, EnumProviderType providerType = EnumProviderType.Auto)
         {
             if (pCnn != null)
             {
@@ -119,11 +142,15 @@ namespace DoImportador.Connection
                 }
                 pCnn.Dispose();
 
-                switch (pCnn.GetType().Name.ToUpper().Trim())
+                switch (providerType)
                 {
-                    case "NPGSQLCONNECTION":
+                    case EnumProviderType.PostGreSQL:
                         NpgsqlConnection.ClearAllPools();
                         NpgsqlConnection.ClearPool((NpgsqlConnection)pCnn);
+                        break;
+                    case EnumProviderType.MySql:
+                        MySqlConnection.ClearAllPools();
+                        MySqlConnection.ClearPool((MySqlConnection)pCnn);
                         break;
                     default: // providerType.SQLServer
                         SqlConnection.ClearAllPools();
@@ -133,17 +160,22 @@ namespace DoImportador.Connection
             }
         }
 
-        public IDbCommand GetNewCommand(string cmdText, IDbConnection cnn, int timeOut = 60)
+        public IDbCommand GetNewCommand(string cmdText, IDbConnection cnn, int timeOut = 60, EnumProviderType providerType = EnumProviderType.Auto)
         {
             IDbCommand command = null;
 
-            switch (cnn.GetType().Name.ToUpper().Trim())
+
+            switch (providerType)
             {
-                case "NPGSQLCONNECTION":
+                case EnumProviderType.PostGreSQL:
                     //As consultas foram feitas para SQL Server, então tenho
                     //que normalizar ou parsear o SQL para o PostgreSQL
                     cmdText = DOFunctions.ParseSQLToPostgreSQL(cmdText);
                     command = new NpgsqlCommand(cmdText, (NpgsqlConnection)cnn);
+                    command.CommandTimeout = timeOut;
+                    break;
+                case EnumProviderType.MySql:
+                    command = new MySqlCommand(cmdText, (MySqlConnection)cnn);
                     command.CommandTimeout = timeOut;
                     break;
                 default: //SQLServer
@@ -155,16 +187,20 @@ namespace DoImportador.Connection
             return command;
         }
 
-        public IDbDataParameter GetNewParameter(string parameterName, object value, enumProviderType providerType = enumProviderType.Auto)
+        public IDbDataParameter GetNewParameter(string parameterName, object value, EnumProviderType providerType = EnumProviderType.Auto)
         {
             IDbDataParameter parameter = null;
 
-            if (providerType == enumProviderType.Auto) { providerType = mvarProviderType; }
+
+            if (providerType == EnumProviderType.Auto) { providerType = mvarProviderType; }
 
             switch (providerType)
             {
-                case enumProviderType.PostGreSQL:
+                case EnumProviderType.PostGreSQL:
                     parameter = new NpgsqlParameter(parameterName, value);
+                    break;
+                case EnumProviderType.MySql:
+                    parameter = new MySqlParameter(parameterName, value);
                     break;
                 default: //SQLServer
                     parameter = new SqlParameter(parameterName, value);
@@ -172,126 +208,6 @@ namespace DoImportador.Connection
             }
 
             return parameter;
-        }
-
-        public IDbDataParameter GetNewParameter(string parameterName, SqlDbType parameterType, enumProviderType providerType = enumProviderType.Auto)
-        {
-            IDbDataParameter parameter = null;
-
-            if (providerType == enumProviderType.Auto) { providerType = mvarProviderType; }
-
-            switch (providerType)
-            {
-                case enumProviderType.PostGreSQL:
-                    parameter = new NpgsqlParameter(parameterName, this.ConvertSQLDbTypeToNpgsqlDbType(parameterType));
-                    break;
-                default: //SQLServer
-                    parameter = new SqlParameter(parameterName, (SqlDbType)parameterType);
-                    break;
-            }
-
-            return parameter;
-        }
-        public IDbDataParameter GetNewParameter(string parameterName, SqlDbType parameterType, int size, enumProviderType providerType = enumProviderType.Auto)
-        {
-            IDbDataParameter parameter = null;
-
-            if (providerType == enumProviderType.Auto) { providerType = mvarProviderType; }
-
-            switch (providerType)
-            {
-                case enumProviderType.PostGreSQL:
-                    parameter = new NpgsqlParameter(parameterName, this.ConvertSQLDbTypeToNpgsqlDbType(parameterType));
-                    break;
-                default: //SQLServer
-                    parameter = new SqlParameter(parameterName, (SqlDbType)parameterType, size);
-                    break;
-            }
-
-            return parameter;
-        }
-
-        public DbType ConvertSQLDbTypeToNpgsqlDbType(SqlDbType type)
-        {
-            DbType ret = DbType.Object;
-
-            switch (type)
-            {
-                case SqlDbType.BigInt:
-                    ret = DbType.Int64;
-                    break;
-                case SqlDbType.Binary:
-                    ret = DbType.Binary;
-                    break;
-                case SqlDbType.Bit:
-                    ret = DbType.Boolean;
-                    break;
-                case SqlDbType.Char:
-                    ret = DbType.String;
-                    break;
-                case SqlDbType.Date:
-                    ret = DbType.Date;
-                    break;
-                case SqlDbType.DateTime2:
-                    ret = DbType.DateTime2;
-                    break;
-                case SqlDbType.DateTimeOffset:
-                    ret = DbType.DateTimeOffset;
-                    break;
-                case SqlDbType.Decimal:
-                    ret = DbType.Decimal;
-                    break;
-                case SqlDbType.Float:
-                    ret = DbType.Decimal;
-                    break;
-                case SqlDbType.Image:
-                    ret = DbType.Binary;
-                    break;
-                case SqlDbType.Int:
-                    ret = DbType.Int32;
-                    break;
-                case SqlDbType.Money:
-                    ret = DbType.Currency;
-                    break;
-                case SqlDbType.NChar:
-                    ret = DbType.String;
-                    break;
-                case SqlDbType.Real:
-                    ret = DbType.Decimal;
-                    break;
-                case SqlDbType.SmallDateTime:
-                    ret = DbType.DateTime;
-                    break;
-                case SqlDbType.SmallInt:
-                    ret = DbType.Int16;
-                    break;
-                case SqlDbType.SmallMoney:
-                    ret = DbType.Currency;
-                    break;
-                case SqlDbType.Text:
-                    ret = DbType.String;
-                    break;
-                case SqlDbType.UniqueIdentifier:
-                    ret = DbType.Guid;
-                    break;
-                case SqlDbType.Time:
-                    ret = DbType.Time;
-                    break;
-                case SqlDbType.Timestamp:
-                    ret = DbType.Time;
-                    break;
-                case SqlDbType.TinyInt:
-                    ret = DbType.Int16;
-                    break;
-                case SqlDbType.Xml:
-                    ret = DbType.Xml;
-                    break;
-                default:
-                    ret = DbType.Object;
-                    break;
-            }
-
-            return ret;
         }
     }
 }

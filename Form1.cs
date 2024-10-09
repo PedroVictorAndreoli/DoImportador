@@ -1,4 +1,5 @@
 using DoImportador.Connection;
+using DoImportador.Enum;
 using DoImportador.Model;
 using DoImportador.Services;
 using DoImportador.Utils;
@@ -111,6 +112,15 @@ namespace DoImportador
             connection.dbNameOrigin = db_origin.Text;
             connection.userOrigin = user_origin.Text;
             connection.passwordOrigin = password_origin.Text;
+            connection.portOrigin = port_origin.Text;
+
+            connection.dbType = cmb_db.Text switch
+            {
+                "SQLSERVER" => EnumProviderType.SQLServer,
+                "POSTGRESSQL" => EnumProviderType.PostGreSQL,
+                "MYSQL" => EnumProviderType.MySql,
+                _ => EnumProviderType.SQLServer
+            };
 
             connection.hostDestination = host_destination.Text;
             connection.dbNameDestination = db_destination.Text;
@@ -136,7 +146,7 @@ namespace DoImportador
             }
             finally
             {
-                iConn.ConnectionClose(iConn.DoConnection);
+                iConn.ConnectionClose(iConn.DoConnection,DOFunctions._connectionProperties.dbType);
                 iConn.Dispose();
             }
         }

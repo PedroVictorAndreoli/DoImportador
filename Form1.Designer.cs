@@ -41,6 +41,7 @@
             host_destination = new TextBox();
             db_destination = new TextBox();
             groupBox1 = new GroupBox();
+            cmb_db = new ComboBox();
             button7 = new Button();
             label9 = new Label();
             password_origin = new TextBox();
@@ -70,6 +71,8 @@
             txt_sql = new RichTextBox();
             tabPage1 = new TabPage();
             txt_logs = new RichTextBox();
+            port_origin = new TextBox();
+            label12 = new Label();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -215,6 +218,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label12);
+            groupBox1.Controls.Add(port_origin);
+            groupBox1.Controls.Add(cmb_db);
             groupBox1.Controls.Add(button7);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(password_origin);
@@ -230,6 +236,16 @@
             groupBox1.TabIndex = 33;
             groupBox1.TabStop = false;
             groupBox1.Text = "Origin";
+            // 
+            // cmb_db
+            // 
+            cmb_db.FormattingEnabled = true;
+            cmb_db.Items.AddRange(new object[] { "SQLSERVER", "POSTGRESSQL", "MYSQL" });
+            cmb_db.Location = new Point(6, 127);
+            cmb_db.Name = "cmb_db";
+            cmb_db.Size = new Size(200, 23);
+            cmb_db.TabIndex = 35;
+            cmb_db.Text = "SQLSERVER";
             // 
             // button7
             // 
@@ -297,7 +313,7 @@
             // 
             host_origin.Location = new Point(6, 48);
             host_origin.Name = "host_origin";
-            host_origin.Size = new Size(200, 23);
+            host_origin.Size = new Size(144, 23);
             host_origin.TabIndex = 14;
             host_origin.Text = "172.21.199.151";
             // 
@@ -498,6 +514,22 @@
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
             // 
+            // port_origin
+            // 
+            port_origin.Location = new Point(156, 48);
+            port_origin.Name = "port_origin";
+            port_origin.Size = new Size(50, 23);
+            port_origin.TabIndex = 35;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(156, 30);
+            label12.Name = "label12";
+            label12.Size = new Size(29, 15);
+            label12.TabIndex = 37;
+            label12.Text = "Port";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -565,5 +597,8 @@
         private Button button7;
         private TabPage tabPage1;
         private RichTextBox txt_logs;
+        private ComboBox cmb_db;
+        private Label label12;
+        private TextBox port_origin;
     }
 }

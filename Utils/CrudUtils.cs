@@ -22,18 +22,18 @@ namespace doAPI.Utils
          * UPDATE tableName SET key=@key WHERE ID=@ID 
          * 
         **/
-        public static bool ExecuteQuery(DOConn DOConn, Hashtable parameters, string query)
+        public static bool ExecuteQuery(DOConn DOConn, Hashtable parameters, string query, EnumProviderType provider = EnumProviderType.Auto)
         {
             IDbCommand command = null;
             
             IDbConnection cnn = DOConn.DoConnection;
-            command = DOConn.GetNewCommand(query, cnn);
+            command = DOConn.GetNewCommand(query, cnn,providerType: provider);
             command.CommandTimeout = 120;
             if(parameters != null)
             {
                 foreach (DictionaryEntry entry in parameters)
                 {
-                    command.Parameters.Add(DOConn.GetNewParameter($"@{entry.Key}", entry.Value));
+                    command.Parameters.Add(DOConn.GetNewParameter($"@{entry.Key}", entry.Value, provider));
                 }
             }
             
@@ -57,18 +57,18 @@ namespace doAPI.Utils
          * UPDATE tableName SET key=@key WHERE ID=@ID 
          * 
         **/
-        public static object ExecuteScalar(DOConn DOConn, Hashtable parameters, string query)
+        public static object ExecuteScalar(DOConn DOConn, Hashtable parameters, string query, EnumProviderType provider = EnumProviderType.Auto)
         {
             IDbCommand command = null;
 
             IDbConnection cnn = DOConn.DoConnection;
-            command = DOConn.GetNewCommand(query, cnn);
+            command = DOConn.GetNewCommand(query, cnn, providerType: provider);
             command.CommandTimeout = 120;
             if (parameters != null)
             {
                 foreach (DictionaryEntry entry in parameters)
                 {
-                    command.Parameters.Add(DOConn.GetNewParameter($"@{entry.Key}", entry.Value));
+                    command.Parameters.Add(DOConn.GetNewParameter($"@{entry.Key}", entry.Value,provider));
                 }
             }
 
