@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DoImportador.Utils
 {
@@ -16,6 +17,18 @@ namespace DoImportador.Utils
         public static object NullForEmpty(object value)
         {
             return value == null ? "" : value;
+        }
+
+        public static object VerifyValidDateTime(object value)
+        {
+            DateTime data;
+            bool isDataValida = DateTime.TryParse(value.ToString(), out data);
+            if(data.Year < 1900 || data.Year > 3000)
+            {
+                isDataValida = false;
+            }
+
+            return isDataValida ? value : DBNull.Value;
         }
 
         public static object NullForZero(object value)

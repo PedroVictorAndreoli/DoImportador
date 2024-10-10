@@ -47,11 +47,11 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 0);
-                    input.Add("CEP", GenericUtil.NullForEmpty(person["Cep"]));
-                    input.Add("Endereco", GenericUtil.NullForEmpty(person["Endereco"]));
-                    input.Add("Bairro", GenericUtil.NullForEmpty(person["Bairro"]));
-                    input.Add("Numero", GenericUtil.NullForEmpty(person["Numero"]));
-                    input.Add("Complemento", GenericUtil.NullForEmpty(person["Complemento"]));
+                    input.Add("CEP", GenericUtil.NullForEmpty(person["CEP_Principal"]));
+                    input.Add("Endereco", GenericUtil.NullForEmpty(person["Endereco_Principal"]));
+                    input.Add("Bairro", GenericUtil.NullForEmpty(person["Bairro_Principal"]));
+                    input.Add("Numero", GenericUtil.NullForEmpty(person["Numero_Principal"]));
+                    input.Add("Complemento", GenericUtil.NullForEmpty(person["Complemento_Principal"]));
                     input.Add("Observacao", "");
                     input.Add("IDCidade", GenericUtil.LoadCity(iConn, GenericUtil.NullForEmpty(person["Cidade"]).ToString()));
 
@@ -80,7 +80,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 0);
-                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["TelefoneFixo"])));
+                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Residencial"])));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -89,7 +89,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 1);
-                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["TelefoneComercial"])));
+                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Comercial"])));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -98,7 +98,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 2);
-                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Celular"])));
+                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Celular"])));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -121,7 +121,7 @@ namespace DoImportador.Services
 
                     /*************************************************PESSOAS JURIDICAS/FISICAS***********************************************************/
 
-                    if (person["TipoPessoa"].ToString().Equals("Fisica"))
+                    if (person["Tipo"].ToString().Equals("Fisica"))
                     {
                         query = "INSERT INTO dbo.pessoas_fisicas (IDPessoa,RG,CPF,DataNascimento,IDSexo) VALUES (@IDPessoa,@RG,@CPF,@DataNascimento,@IDSexo)";
                         input = new Hashtable();
@@ -138,15 +138,15 @@ namespace DoImportador.Services
                         query = $"UPDATE pessoas set Tipo = 0 where id = {person["ID"]}";
                         CrudUtils.ExecuteQuery(iConn, null, query);
                     }
-                    if (person["TipoPessoa"].ToString().Equals("Juridica"))
+                    if (person["Tipo"].ToString().Equals("Juridica"))
                     {
                         query = "INSERT INTO dbo.pessoas_juridicas (IDPessoa,CNPJ,RazaoSocial,InscricaoEstadual,InscricaoMunicipal) VALUES (@IDPessoa,@CNPJ,@RazaoSocial,@InscricaoEstadual,@InscricaoMunicipal)";
                         input = new Hashtable();
                         input.Add("IDPessoa", person["ID"]);
                         input.Add("CNPJ", GenericUtil.ReturnNumber(person["CNPJ"]));
                         input.Add("RazaoSocial", GenericUtil.NullForEmpty(person["RazaoSocial"]));
-                        input.Add("InscricaoEstadual", GenericUtil.ReturnNumber(person["IE"]));
-                        input.Add("InscricaoMunicipal", "");
+                        input.Add("InscricaoEstadual", GenericUtil.ReturnNumber(person["InscricaoEstadual"]));
+                        input.Add("InscricaoMunicipal", GenericUtil.ReturnNumber(person["InscricaoMunicipal"]));
 
                         CrudUtils.ExecuteQuery(iConn, input, query);
 

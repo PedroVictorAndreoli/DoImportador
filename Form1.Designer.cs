@@ -41,6 +41,8 @@
             host_destination = new TextBox();
             db_destination = new TextBox();
             groupBox1 = new GroupBox();
+            label12 = new Label();
+            port_origin = new TextBox();
             cmb_db = new ComboBox();
             button7 = new Button();
             label9 = new Label();
@@ -71,8 +73,6 @@
             txt_sql = new RichTextBox();
             tabPage1 = new TabPage();
             txt_logs = new RichTextBox();
-            port_origin = new TextBox();
-            label12 = new Label();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -206,7 +206,7 @@
             host_destination.Name = "host_destination";
             host_destination.Size = new Size(200, 23);
             host_destination.TabIndex = 14;
-            host_destination.Text = "localhost";
+            host_destination.Text = "localhost\\MSSQLSERVER2022";
             // 
             // db_destination
             // 
@@ -236,6 +236,22 @@
             groupBox1.TabIndex = 33;
             groupBox1.TabStop = false;
             groupBox1.Text = "Origin";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(156, 30);
+            label12.Name = "label12";
+            label12.Size = new Size(29, 15);
+            label12.TabIndex = 37;
+            label12.Text = "Port";
+            // 
+            // port_origin
+            // 
+            port_origin.Location = new Point(156, 48);
+            port_origin.Name = "port_origin";
+            port_origin.Size = new Size(50, 23);
+            port_origin.TabIndex = 35;
             // 
             // cmb_db
             // 
@@ -315,7 +331,7 @@
             host_origin.Name = "host_origin";
             host_origin.Size = new Size(144, 23);
             host_origin.TabIndex = 14;
-            host_origin.Text = "172.21.199.151";
+            host_origin.Text = "vm.geovane-linux.com";
             // 
             // db_origin
             // 
@@ -513,22 +529,6 @@
             txt_logs.Size = new Size(862, 500);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
-            // 
-            // port_origin
-            // 
-            port_origin.Location = new Point(156, 48);
-            port_origin.Name = "port_origin";
-            port_origin.Size = new Size(50, 23);
-            port_origin.TabIndex = 35;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(156, 30);
-            label12.Name = "label12";
-            label12.Size = new Size(29, 15);
-            label12.TabIndex = 37;
-            label12.Text = "Port";
             // 
             // Form1
             // 
