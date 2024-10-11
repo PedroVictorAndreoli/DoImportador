@@ -31,7 +31,7 @@ namespace DoImportador.Services
                 iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
 
                 var grupos = data.GroupBy(p => p["Grupo"]).ToList();
-                var unidades = data.GroupBy(p => p["UN"]).ToList();
+                var unidades = data.GroupBy(p => p["Unidade"]).ToList();
                 var marcas = data.GroupBy(p => p["Marca"]).ToList();
 
 
@@ -87,12 +87,13 @@ namespace DoImportador.Services
 
                 data.ForEach(dt => {
 
-                    query = "INSERT INTO produtos(IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
+                    query = "SET IDENTITY_INSERT produtos ON; INSERT INTO produtos(ID,IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
                     "DescontoPermitido, MargemLucro, TipoItemFiscal, CodigoBarras, EstoqueAtual, IDTipoGrade, V01_infAdProd, IDNcm, IDRegraICMSSaida, IDRegraICMSEntrada, IDSistemaContexto, TipoVet, IDLaboratorio, QtdePlano,PesoLiquido,PesoBruto,Largura,Altura,Comprimento,Volume,VendeEcommerce,DescricaoECommerce,Observacoes)" +
                         " VALUES " +
-                        "(@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); SELECT IDENT_CURRENT('PRODUTOS');";
+                        "(@ID,@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); SET IDENTITY_INSERT vet_animais OFF;";
                     input = new Hashtable();
 
+                    input.Add("ID", dt["ID"]);
                     input.Add("IDMultiEmpresa", 0);
                     input.Add("IDGrupo", GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Grupo"]).ToString(), "produtos_grupos_subgrupos"));
                     input.Add("IDLocalArmazenamento", 1);
@@ -109,18 +110,18 @@ namespace DoImportador.Services
                     input.Add("EAN", GenericUtil.NullForEmpty(dt["CodigoBarra"]));
                     input.Add("ExTIPI", "");
                     input.Add("Genero", "");
-                    var unidade = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["UN"]).ToString(), "produtos_unidades");
+                    var unidade = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Unidade"]).ToString(), "produtos_unidades");
                     input.Add("IDUnidadeComercial", unidade);
                     input.Add("IDUnidadeTributavel", unidade);
 
-                    input.Add("ValorCusto", dt["ValorCusto"]);
+                    input.Add("ValorCusto", dt["ValorCompra"]);
                     input.Add("ValorVendaVista", dt["ValorVenda"]);
                     input.Add("ValorVendaPrazo", dt["ValorVenda"]);
                     input.Add("ValorVendaPromocional", 0);
 
                     input.Add("DescontoPermitido", 0);
                     var venda = Decimal.Parse(GenericUtil.NullForZero(dt["ValorVenda"]).ToString());
-                    var custo = Decimal.Parse(GenericUtil.NullForZero(dt["ValorCusto"]).ToString());
+                    var custo = Decimal.Parse(GenericUtil.NullForZero(dt["ValorCompra"]).ToString());
                     var margem = 100.00M;
                     if(venda > 0 && custo > 0)
                         margem = (((venda - custo) / custo) * 100);
@@ -131,15 +132,24 @@ namespace DoImportador.Services
 
                     input.Add("CodigoBarras", GenericUtil.NullForEmpty(dt["CodigoBarra"]));
 
-                    input.Add("EstoqueAtual", GenericUtil.NullForZero(dt["EstoqueAtual"]).ToString());
+                    input.Add("EstoqueAtual", Decimal.Parse(GenericUtil.NullForZero(dt["EstoqueAtual"]).ToString()));
 
                     input.Add("IDTipoGrade", 0);
                     input.Add("V01_infAdProd", "");
 
                     input.Add("IDNcm", GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["NCM"]).ToString(), "ncm", "NCM"));
 
+                    var tributacao = dt["Tributacao"].ToString() switch
+                    {
+                        "102" or "500" => 1,
+                        "101" => 9,
+                        "400" => 2,
+                        "103" => 11,
+                        _ => -1
+                    };
                     // Ajustar
-                    input.Add("IDRegraICMSSaida", 1);
+                    input.Add("IDRegraICMSSaida", tributacao);
+
                     input.Add("IDRegraICMSEntrada", -2);
 
                     input.Add("IDSistemaContexto", 0);
@@ -159,13 +169,14 @@ namespace DoImportador.Services
                     input.Add("DescricaoECommerce", dt["Descricao"]);
                     input.Add("Observacoes", "");
                     //input.Add("Foto", DBNull.Value);
-                    var IDProduto = CrudUtils.ExecuteScalar(iConn, input, query);
+
+                    CrudUtils.ExecuteQuery(iConn, input, query);
                    
                     query = " INSERT INTO produtos_grades_estoque(IDProduto,CodigoBarras,ValorCusto,ValorVendaVista,ValorVendaPrazo,DescontoPermitido,EstoqueAtual, ValorVendaPromocional)" +
                    " VALUES " +
                    "(@IDProduto,@CodigoBarras,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@DescontoPermitido,@EstoqueAtual, @ValorVendaPromocional); SET IDENTITY_INSERT produtos_grades_estoque OFF";
                     input = new Hashtable();
-                    input.Add("IDProduto", IDProduto);
+                    input.Add("IDProduto", dt["ID"]);
                     input.Add("CodigoBarras", dt["CodigoBarra"]);
                     input.Add("ValorCusto", custo);
                     input.Add("ValorVendaVista", venda);

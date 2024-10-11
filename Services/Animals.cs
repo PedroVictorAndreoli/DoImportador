@@ -30,111 +30,111 @@ namespace DoImportador.Services
                 iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
 
 
-                //var racas = data.GroupBy(p => p["Raca"]).ToList();
-                //var cores = data.GroupBy(p => p["Cor"]).ToList();
-                //var especies = data.GroupBy(p => p["Especie"]).ToList();
-                //var pelagens = data.GroupBy(p => p["Pelo"]).ToList();
-                //var temperamento = data.GroupBy(p => p["Temperamento"]).ToList();
-                //var dieta = data.GroupBy(p => p["Dieta"]).ToList();
-                //var porte = data.GroupBy(p => p["Dieta"]).ToList();
+                var racas = data.GroupBy(p => p["Raca"]).ToList();
+                var cores = data.GroupBy(p => p["Cor"]).ToList();
+                var especies = data.GroupBy(p => p["Especie"]).ToList();
+                var pelagens = data.GroupBy(p => p["Pelo"]).ToList();
+                var temperamento = data.GroupBy(p => p["Temperamento"]).ToList();
+                var dieta = data.GroupBy(p => p["Dieta"]).ToList();
+                var porte = data.GroupBy(p => p["Dieta"]).ToList();
 
                 var query = "";
                 var input = new Hashtable();
 
-                //racas.ForEach(data =>
-                //{
-                //    if(data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_racas (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                racas.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_racas (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
-                //});
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
+                });
 
-                //cores.ForEach(data =>
-                //{
-                //    if (data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_cores (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                cores.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_cores (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
-                //});
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
+                });
 
-                //especies.ForEach(data =>
-                //{
-                //    if (data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_especies (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                especies.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_especies (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
-                //});
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
+                });
 
-                //pelagens.ForEach(data =>
-                //{
-                //    if (data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_pelos (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                pelagens.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_pelos (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
 
-                //});
+                });
 
-                //temperamento.ForEach(data =>
-                //{
-                //    if (data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_temperamentos (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                temperamento.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_temperamentos (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
 
-                //});
+                });
 
-                //dieta.ForEach(data =>
-                //{
-                //    if (data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_dietas (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                dieta.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_dietas (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
 
-                //});
+                });
 
-                //porte.ForEach(data =>
-                //{
-                //    if (data.Key != null && !data.Key.Equals(""))
-                //    {
-                //        query = "INSERT INTO vet_estaturas (Descricao) VALUES (@Descricao)";
-                //        input = new Hashtable();
-                //        input.Add("Descricao", data.Key);
-                //        CrudUtils.ExecuteQuery(iConn, input, query);
+                porte.ForEach(data =>
+                {
+                    if (data.Key != null && !data.Key.Equals(""))
+                    {
+                        query = "INSERT INTO vet_estaturas (Descricao) VALUES (@Descricao)";
+                        input = new Hashtable();
+                        input.Add("Descricao", data.Key);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
 
-                //        _form.OnSetLog($"Importou: {data.Key}");
-                //    }
+                        _form.OnSetLog($"Importou: {data.Key}");
+                    }
 
-                //});
+                });
 
                 data.ForEach(dt => 
                 {
