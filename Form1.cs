@@ -15,16 +15,6 @@ namespace DoImportador
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             txt_json_person.Text = loadPath();
@@ -35,10 +25,6 @@ namespace DoImportador
             txt_json_product.Text = loadPath();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private string loadPath()
         {
@@ -51,31 +37,6 @@ namespace DoImportador
             return "";
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            txt_json_animals.Text = loadPath();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SQL_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -90,11 +51,12 @@ namespace DoImportador
                 {
                     var thread = new Thread(() => person.ImportData(data));
                     thread.Start();
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Nenhum dado foi carregado");
                 }
-                
+
 
             }
         }
@@ -153,7 +115,7 @@ namespace DoImportador
             }
             finally
             {
-                iConn.ConnectionClose(iConn.DoConnection,DOFunctions._connectionProperties.dbType);
+                iConn.ConnectionClose(iConn.DoConnection, DOFunctions._connectionProperties.dbType);
                 iConn.Dispose();
             }
         }
@@ -206,6 +168,32 @@ namespace DoImportador
                 var thread = new Thread(() => product.ImportData(data));
                 thread.Start();
 
+            }
+        }
+
+        private void cmb_db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cmb_db.Text.Equals("SQLSERVER"))
+            {
+                db_origin.Text = "";
+                user_origin.Text = "sa";
+                password_origin.Text = "Atmus@#4080";
+                port_origin.Text = "";
+            }
+            else if (cmb_db.Text.Equals("POSTGRESSQL"))
+            {
+                db_origin.Text = "";
+                user_origin.Text = "postgres";
+                password_origin.Text = "553322";
+                port_origin.Text = "5434";
+            }
+            else if (cmb_db.Text.Equals("MYSQL"))
+            {
+                db_origin.Text = "";
+                user_origin.Text = "root";
+                password_origin.Text = "553322";
+                port_origin.Text = "3306";
             }
         }
     }

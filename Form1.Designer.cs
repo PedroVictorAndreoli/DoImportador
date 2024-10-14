@@ -118,7 +118,6 @@
             Config.TabIndex = 0;
             Config.Text = "Config";
             Config.UseVisualStyleBackColor = true;
-            Config.Click += tabPage1_Click_1;
             // 
             // groupBox2
             // 
@@ -262,6 +261,7 @@
             cmb_db.Size = new Size(200, 23);
             cmb_db.TabIndex = 35;
             cmb_db.Text = "SQLSERVER";
+            cmb_db.SelectedIndexChanged += cmb_db_SelectedIndexChanged;
             // 
             // button7
             // 
@@ -372,7 +372,6 @@
             che_sql.TabStop = true;
             che_sql.Text = "SQL";
             che_sql.UseVisualStyleBackColor = true;
-            che_sql.CheckedChanged += SQL_CheckedChanged;
             // 
             // button5
             // 
@@ -539,7 +538,6 @@
             MaximizeBox = false;
             Name = "Form1";
             Text = "Importador DataOn";
-            Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             Config.ResumeLayout(false);
             Config.PerformLayout();
