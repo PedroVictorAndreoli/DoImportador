@@ -463,6 +463,7 @@
             button1.TabIndex = 18;
             button1.Text = "Load file";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -533,10 +534,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Desktop;
+            BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(873, 560);
             Controls.Add(tabControl1);
             MaximizeBox = false;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Importador DataOn";
             tabControl1.ResumeLayout(false);
             Config.ResumeLayout(false);

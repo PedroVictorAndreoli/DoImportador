@@ -107,7 +107,7 @@ namespace DoImportador.Services
                     input.Add("CEST", "");
 
                     input.Add("EAN_Tributavel", "");
-                    input.Add("EAN", GenericUtil.NullForEmpty(dt["CodigoBarra"]));
+                    input.Add("EAN", GenericUtil.TruncateString(GenericUtil.NullForEmpty(dt["CodigoBarra"]).ToString(),14));
                     input.Add("ExTIPI", "");
                     input.Add("Genero", "");
                     var unidade = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Unidade"]).ToString(), "produtos_unidades");

@@ -163,6 +163,7 @@ namespace doAPI.Utils
             {
                 "SQLCONNECTION" => EnumProviderType.SQLServer,
                 "NPGSQLCONNECTION" => EnumProviderType.PostGreSQL,
+                "MYSQLCONNECTION" => EnumProviderType.MySql,
                 _ => EnumProviderType.SQLServer
             };
             var command = doConn.GetNewCommand(sql,con,providerType: providerType);

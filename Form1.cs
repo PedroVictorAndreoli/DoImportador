@@ -15,15 +15,6 @@ namespace DoImportador
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            txt_json_person.Text = loadPath();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            txt_json_product.Text = loadPath();
-        }
 
 
         private string loadPath()
@@ -70,7 +61,11 @@ namespace DoImportador
             else
             {
                 txt_logs.AppendText(log + Environment.NewLine);
+                txt_logs.SelectionStart = txt_logs.Text.Length;
+                txt_logs.ScrollToCaret();
             }
+
+            
 
         }
 
@@ -195,6 +190,11 @@ namespace DoImportador
                 password_origin.Text = "553322";
                 port_origin.Text = "3306";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

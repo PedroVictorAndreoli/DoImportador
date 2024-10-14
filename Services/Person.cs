@@ -80,7 +80,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 0);
-                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Residencial"])));
+                    input.Add("Fone", GenericUtil.TruncateString(GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Residencial"])),15));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -89,7 +89,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 1);
-                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Comercial"])));
+                    input.Add("Fone", GenericUtil.TruncateString(GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Comercial"])),15));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
@@ -98,7 +98,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 2);
-                    input.Add("Fone", GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Celular"])));
+                    input.Add("Fone", GenericUtil.TruncateString(GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Fone_Celular"])), 15));
                     input.Add("Ramal", "");
                     input.Add("Observacao", "");
 
