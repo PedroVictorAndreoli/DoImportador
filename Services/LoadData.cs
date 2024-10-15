@@ -58,16 +58,6 @@ namespace DoImportador.Services
             return new List<T>();
         }
 
-        public string LoadFile(string path)
-        {
-            try
-            {
-                return File.ReadAllText(path);
-            }catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return "";
-            }
-        }
+
     }
 }

@@ -106,5 +106,18 @@ namespace DoImportador.Utils
             }
 
         }
+
+        public static string LoadFile(string path)
+        {
+            try
+            {
+                return File.ReadAllText(path);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return "";
+            }
+        }
     }
 }

@@ -30,6 +30,10 @@
         {
             tabControl1 = new TabControl();
             Config = new TabPage();
+            button9 = new Button();
+            button10 = new Button();
+            label13 = new Label();
+            textBox1 = new TextBox();
             groupBox2 = new GroupBox();
             button8 = new Button();
             label10 = new Label();
@@ -89,11 +93,15 @@
             tabControl1.Location = new Point(1, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(876, 556);
+            tabControl1.Size = new Size(876, 649);
             tabControl1.TabIndex = 0;
             // 
             // Config
             // 
+            Config.Controls.Add(button9);
+            Config.Controls.Add(button10);
+            Config.Controls.Add(label13);
+            Config.Controls.Add(textBox1);
             Config.Controls.Add(groupBox2);
             Config.Controls.Add(groupBox1);
             Config.Controls.Add(radioButton3);
@@ -114,10 +122,47 @@
             Config.Location = new Point(4, 24);
             Config.Name = "Config";
             Config.Padding = new Padding(3);
-            Config.Size = new Size(868, 528);
+            Config.Size = new Size(868, 621);
             Config.TabIndex = 0;
             Config.Text = "Config";
             Config.UseVisualStyleBackColor = true;
+            Config.Click += Config_Click;
+            // 
+            // button9
+            // 
+            button9.Location = new Point(769, 400);
+            button9.Name = "button9";
+            button9.Size = new Size(90, 23);
+            button9.TabIndex = 38;
+            button9.Text = "Import";
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(664, 400);
+            button10.Name = "button10";
+            button10.Size = new Size(97, 23);
+            button10.TabIndex = 37;
+            button10.Text = "Load file";
+            button10.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(6, 382);
+            label13.Name = "label13";
+            label13.Size = new Size(112, 15);
+            label13.TabIndex = 36;
+            label13.Text = "Load file VetPacotes";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(6, 400);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(652, 23);
+            textBox1.TabIndex = 35;
             // 
             // groupBox2
             // 
@@ -489,7 +534,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(868, 528);
+            tabPage2.Size = new Size(868, 621);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "SQL";
             tabPage2.UseVisualStyleBackColor = true;
@@ -517,7 +562,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(868, 528);
+            tabPage1.Size = new Size(868, 621);
             tabPage1.TabIndex = 2;
             tabPage1.Text = "Logs";
             tabPage1.UseVisualStyleBackColor = true;
@@ -534,9 +579,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Desktop;
+            BackColor = SystemColors.Control;
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(873, 560);
+            ClientSize = new Size(870, 650);
             Controls.Add(tabControl1);
             MaximizeBox = false;
             Name = "Form1";
@@ -602,5 +647,9 @@
         private ComboBox cmb_db;
         private Label label12;
         private TextBox port_origin;
+        private Button button9;
+        private Button button10;
+        private Label label13;
+        private TextBox textBox1;
     }
 }

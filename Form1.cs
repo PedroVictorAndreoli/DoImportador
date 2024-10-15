@@ -65,7 +65,7 @@ namespace DoImportador
                 txt_logs.ScrollToCaret();
             }
 
-            
+
 
         }
 
@@ -194,6 +194,27 @@ namespace DoImportador
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void Config_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var pacotes = new VetPacotes(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var thread = new Thread(() => pacotes.ImportData(data));
+                thread.Start();
+
+            }
 
         }
     }
