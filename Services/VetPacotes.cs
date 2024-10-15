@@ -28,6 +28,7 @@ namespace DoImportador.Services
             var loadModel = GenericUtil.LoadFile(filePath);
 
             Console.WriteLine(loadModel);
+            
 
             var token = SecurityUtil.OnLoginToken("999");
 
@@ -35,7 +36,24 @@ namespace DoImportador.Services
             {
                 data.ForEach(item =>
                 {
+                    var model = loadModel;
 
+
+                    model = model
+                        .Replace("<<UUID>>", Guid.NewGuid().ToString())
+                        .Replace("<<PRODUTO>>", item["Descricao"].ToString())
+                        .Replace("<<IDPRODUTO>>", item["IDProduto"].ToString())
+                        .Replace("<<IDANIMAL>>", item["IDAnimal"].ToString())
+                        .Replace("<<ANIMAL>>", item["NomeAnimal"].ToString())
+                        .Replace("<<CLIENTE>>", item["NomePessoa"].ToString())
+                        .Replace("<<DATA_AGENDAMENTO>>", item["DataAgendamento"].ToString())
+                        .Replace("<<DATA_EXECUCAO>>", "")
+                        .Replace("<<IDCLIENTE>>", item["NomePessoa"].ToString())
+                        .Replace("<<STATUSFATURAMENTO>>", "2")
+                        .Replace("<<CURRENT_DATA>>", DateTime.Now.ToString())
+                        .Replace("<<VALOR>>", item["Valor"].ToString());
+
+                    _form.OnSetLog($"Carregou arquivo de modelo: {model}");
                 });
             }
 
