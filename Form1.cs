@@ -160,7 +160,7 @@ namespace DoImportador
             if (che_sql.Checked)
             {
                 var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
-                var thread = new Thread(() => product.ImportData(data));
+                var thread = new Thread(() => product.ImportData(data, check_original_id.Checked));
                 thread.Start();
 
             }

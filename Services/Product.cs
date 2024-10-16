@@ -20,7 +20,7 @@ namespace DoImportador.Services
             _form = form;
         }
 
-        public void ImportData(List<IDictionary> data)
+        public void ImportData(List<IDictionary> data, bool isChecked)
         {
             var iConn = new DOConn();
             var query = "";
@@ -87,13 +87,23 @@ namespace DoImportador.Services
 
                 data.ForEach(dt => {
 
-                    query = "SET IDENTITY_INSERT produtos ON; INSERT INTO produtos(ID,IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
-                    "DescontoPermitido, MargemLucro, TipoItemFiscal, CodigoBarras, EstoqueAtual, IDTipoGrade, V01_infAdProd, IDNcm, IDRegraICMSSaida, IDRegraICMSEntrada, IDSistemaContexto, TipoVet, IDLaboratorio, QtdePlano,PesoLiquido,PesoBruto,Largura,Altura,Comprimento,Volume,VendeEcommerce,DescricaoECommerce,Observacoes)" +
-                        " VALUES " +
-                        "(@ID,@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); SET IDENTITY_INSERT vet_animais OFF;";
                     input = new Hashtable();
+                    if (isChecked)
+                    {
+                        query = "SET IDENTITY_INSERT produtos ON; INSERT INTO produtos(ID,IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
+                                            "DescontoPermitido, MargemLucro, TipoItemFiscal, CodigoBarras, EstoqueAtual, IDTipoGrade, V01_infAdProd, IDNcm, IDRegraICMSSaida, IDRegraICMSEntrada, IDSistemaContexto, TipoVet, IDLaboratorio, QtdePlano,PesoLiquido,PesoBruto,Largura,Altura,Comprimento,Volume,VendeEcommerce,DescricaoECommerce,Observacoes)" +
+                                                " VALUES " +
+                                                "(@ID,@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); SET IDENTITY_INSERT vet_animais OFF;";
+                        input.Add("ID", dt["ID"]);
+                    } else
+                    {
+                        query = "INSERT INTO produtos(ID,IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
+                                            "DescontoPermitido, MargemLucro, TipoItemFiscal, CodigoBarras, EstoqueAtual, IDTipoGrade, V01_infAdProd, IDNcm, IDRegraICMSSaida, IDRegraICMSEntrada, IDSistemaContexto, TipoVet, IDLaboratorio, QtdePlano,PesoLiquido,PesoBruto,Largura,Altura,Comprimento,Volume,VendeEcommerce,DescricaoECommerce,Observacoes)" +
+                                                " VALUES " +
+                                                "(@ID,@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); Select Scope_Identity()";
+                    }
 
-                    input.Add("ID", dt["ID"]);
+                    
                     input.Add("IDMultiEmpresa", 0);
                     input.Add("IDGrupo", GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(dt["Grupo"]).ToString(), "produtos_grupos_subgrupos"));
                     input.Add("IDLocalArmazenamento", 1);
@@ -169,8 +179,13 @@ namespace DoImportador.Services
                     input.Add("DescricaoECommerce", dt["Descricao"]);
                     input.Add("Observacoes", "");
                     //input.Add("Foto", DBNull.Value);
-
-                    CrudUtils.ExecuteQuery(iConn, input, query);
+                    if(isChecked)
+                        CrudUtils.ExecuteQuery(iConn, input, query);
+                    else
+                    {
+                        var idProduto = CrudUtils.ExecuteScalar(iConn, input, query);
+                        dt.Add("ID", idProduto); 
+                    }
                    
                     query = " INSERT INTO produtos_grades_estoque(IDProduto,CodigoBarras,ValorCusto,ValorVendaVista,ValorVendaPrazo,DescontoPermitido,EstoqueAtual, ValorVendaPromocional)" +
                    " VALUES " +

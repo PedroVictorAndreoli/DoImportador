@@ -62,6 +62,19 @@ namespace DoImportador.Utils
 
         }
 
+        public static int LoadID(DOConn iConn, object description, string table, string column = "ID")
+        {
+            var query = $"SELECT top(1) ID FROM {table} where {column} = {description}";
+
+            var output = CrudUtils.GetOne<IDictionary>(iConn.DoConnection, query, iConn);
+            if (output.Count == 0)
+            {
+                return 0;
+            }
+            return Int32.Parse(output["ID"].ToString());
+
+        }
+
         public static int ReturnSexo(object sexo)
         {
             if (sexo == null) return 0;
@@ -105,6 +118,15 @@ namespace DoImportador.Utils
                 return value.Length <= maxLength ? RemoveAccents(value) : RemoveAccents(value.Substring(0, maxLength));
             }
 
+        }
+
+        public static object OnConvertDateToString(object value)
+        {
+            if (value == null) return null;
+
+            DateTime data = DateTime.Parse(value.ToString());
+
+            return data;
         }
 
         public static string LoadFile(string path)

@@ -77,6 +77,7 @@
             txt_sql = new RichTextBox();
             tabPage1 = new TabPage();
             txt_logs = new RichTextBox();
+            check_original_id = new CheckBox();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -98,6 +99,7 @@
             // 
             // Config
             // 
+            Config.Controls.Add(check_original_id);
             Config.Controls.Add(button9);
             Config.Controls.Add(button10);
             Config.Controls.Add(label13);
@@ -487,7 +489,7 @@
             txt_json_product.Location = new Point(6, 288);
             txt_json_product.Name = "txt_json_product";
             txt_json_product.ReadOnly = true;
-            txt_json_product.Size = new Size(652, 23);
+            txt_json_product.Size = new Size(562, 23);
             txt_json_product.TabIndex = 20;
             // 
             // button2
@@ -575,6 +577,18 @@
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
             // 
+            // check_original_id
+            // 
+            check_original_id.AutoSize = true;
+            check_original_id.Checked = true;
+            check_original_id.CheckState = CheckState.Checked;
+            check_original_id.Location = new Point(578, 294);
+            check_original_id.Name = "check_original_id";
+            check_original_id.Size = new Size(82, 19);
+            check_original_id.TabIndex = 39;
+            check_original_id.Text = "Original ID";
+            check_original_id.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -651,5 +665,6 @@
         private Button button10;
         private Label label13;
         private TextBox textBox1;
+        private CheckBox check_original_id;
     }
 }

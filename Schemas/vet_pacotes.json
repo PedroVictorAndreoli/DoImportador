@@ -1,6 +1,6 @@
 [
   {
-    "GuidKey": "<<UUID>>",
+    "GuidKey": "",
     "AddMode": true,
     "EditMode": false,
     "DelMode": false,
@@ -15,7 +15,7 @@
     },
     "CodiElo": 0,
     "CodiEloProduto": 0,
-    "Detalhe": "<<PRODUTO>> - IMPORTADO",
+    "Detalhe": "",
     "IDProduto": "<<IDPRODUTO>>",
     "IDProdutoOrigem": "<<IDPRODUTO>>",
     "NomeProduto": "<<PRODUTO>>",
@@ -32,7 +32,7 @@
     "Status": 1,
     "DescricaoStatus": "",
     "Observacao": "",
-    "DataAplicacao": "<<DATA_EXECUCAO>>",
+    "DataAplicacao": null,
     "DataAplicacaoOld": null,
     "IDCliente": "<<IDCLIENTE>>",
     "IDPessoaAgendador": -100,
@@ -106,7 +106,7 @@
     "FaturaDesconto": 0,
     "FaturaTotal": "<<VALOR>>",
     "AgendaStatus": "Finalizado",
-    "FaturamentoStatusID": <<STATUSFATURAMENTO>>,
+    "FaturamentoStatusID": 2,
     "Grupo": "",
     "Agendamento": {
       "DOInfo": {
