@@ -97,10 +97,10 @@ namespace DoImportador.Services
                         input.Add("ID", dt["ID"]);
                     } else
                     {
-                        query = "INSERT INTO produtos(ID,IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
+                        query = "INSERT INTO produtos(IDMultiEmpresa, IDGrupo, IDLocalArmazenamento, IDMarca, Tipo, Inativo, ControlaEstoque, Descricao,EstoqueMinimo, EstoqueMaximo, CEST, EAN_Tributavel, EAN, ExTIPI, Genero, IDUnidadeComercial, IDUnidadeTributavel, ValorCusto, ValorVendaVista, ValorVendaPrazo, ValorVendaPromocional, " +
                                             "DescontoPermitido, MargemLucro, TipoItemFiscal, CodigoBarras, EstoqueAtual, IDTipoGrade, V01_infAdProd, IDNcm, IDRegraICMSSaida, IDRegraICMSEntrada, IDSistemaContexto, TipoVet, IDLaboratorio, QtdePlano,PesoLiquido,PesoBruto,Largura,Altura,Comprimento,Volume,VendeEcommerce,DescricaoECommerce,Observacoes)" +
                                                 " VALUES " +
-                                                "(@ID,@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); Select Scope_Identity()";
+                                                "(@IDMultiEmpresa,@IDGrupo,@IDLocalArmazenamento,@IDMarca,@Tipo,@Inativo,@ControlaEstoque,@Descricao,@EstoqueMinimo,@EstoqueMaximo,@CEST,@EAN_Tributavel,@EAN,@ExTIPI,@Genero,@IDUnidadeComercial,@IDUnidadeTributavel,@ValorCusto,@ValorVendaVista,@ValorVendaPrazo,@ValorVendaPromocional,@DescontoPermitido,@MargemLucro,@TipoItemFiscal,@CodigoBarras,@EstoqueAtual,@IDTipoGrade,@V01_infAdProd,@IDNcm,@IDRegraICMSSaida,@IDRegraICMSEntrada,@IDSistemaContexto,@TipoVet,@IDLaboratorio,@QtdePlano,@PesoLiquido,@PesoBruto,@Largura,@Altura,@Comprimento,@Volume,@VendeEcommerce,@DescricaoECommerce,@Observacoes); Select Scope_Identity()";
                     }
 
                     
@@ -184,7 +184,7 @@ namespace DoImportador.Services
                     else
                     {
                         var idProduto = CrudUtils.ExecuteScalar(iConn, input, query);
-                        dt.Add("ID", idProduto); 
+                        dt["ID"] = idProduto; 
                     }
                    
                     query = " INSERT INTO produtos_grades_estoque(IDProduto,CodigoBarras,ValorCusto,ValorVendaVista,ValorVendaPrazo,DescontoPermitido,EstoqueAtual, ValorVendaPromocional)" +
