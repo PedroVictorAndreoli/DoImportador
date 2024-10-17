@@ -217,5 +217,27 @@ namespace DoImportador
             }
 
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ID;\nCodigo;\nTipo;\nNome;\nDataNascimento;\nCPF;\nRG;\nCNPJ;\nRazaoSocial;\nInscricaoEstadual;\nFone_Residencial;\nFone_Celular;\nEndereco_Principal;\nBairro_Principal;\nComplemento_Principal;\nNumero_Principal;\nCEP_Principal;\nEmail_Principal;\nEmail_Cobranca;\nFone_Comercial", "Campos Obrigatirios");
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ID;\nTipo\nDescricao\nCodigoBarra\nUnidade\nMarca\nGrupo\nEstoqueMinimo\nEstoqueMaximo\nEstoqueAtual\nValorCompra;\nMargemLucro;\nValorVenda;\nDescontoPermitido;\nNCM;\nCEST;\nEAN;\nCFOP;\nTributacao", "Campos Obrigatirios");
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ID;\nNomeAnimal;\nCodigoDono;\nNomeDono;\nDataNascimento;\nSexo;\nRaca;\nEspecie;\nCor;\nTemperamento;\nPelo;\nDieta;\nOlhos;\nObservacao;\nChipNumero;\nObito;\nPorte", "Campos Obrigatirios");
+            
+        }
     }
 }

@@ -30,6 +30,21 @@
         {
             tabControl1 = new TabControl();
             Config = new TabPage();
+            button18 = new Button();
+            button19 = new Button();
+            button20 = new Button();
+            label15 = new Label();
+            textBox3 = new TextBox();
+            button15 = new Button();
+            button16 = new Button();
+            button17 = new Button();
+            label14 = new Label();
+            textBox2 = new TextBox();
+            button14 = new Button();
+            button13 = new Button();
+            button12 = new Button();
+            button11 = new Button();
+            check_original_id = new CheckBox();
             button9 = new Button();
             button10 = new Button();
             label13 = new Label();
@@ -77,7 +92,7 @@
             txt_sql = new RichTextBox();
             tabPage1 = new TabPage();
             txt_logs = new RichTextBox();
-            check_original_id = new CheckBox();
+            label16 = new Label();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -99,6 +114,21 @@
             // 
             // Config
             // 
+            Config.Controls.Add(label16);
+            Config.Controls.Add(button18);
+            Config.Controls.Add(button19);
+            Config.Controls.Add(button20);
+            Config.Controls.Add(label15);
+            Config.Controls.Add(textBox3);
+            Config.Controls.Add(button15);
+            Config.Controls.Add(button16);
+            Config.Controls.Add(button17);
+            Config.Controls.Add(label14);
+            Config.Controls.Add(textBox2);
+            Config.Controls.Add(button14);
+            Config.Controls.Add(button13);
+            Config.Controls.Add(button12);
+            Config.Controls.Add(button11);
             Config.Controls.Add(check_original_id);
             Config.Controls.Add(button9);
             Config.Controls.Add(button10);
@@ -130,11 +160,150 @@
             Config.UseVisualStyleBackColor = true;
             Config.Click += Config_Click;
             // 
+            // button18
+            // 
+            button18.Location = new Point(828, 476);
+            button18.Name = "button18";
+            button18.Size = new Size(33, 23);
+            button18.TabIndex = 53;
+            button18.Text = "?";
+            button18.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            button19.Location = new Point(740, 477);
+            button19.Name = "button19";
+            button19.Size = new Size(82, 23);
+            button19.TabIndex = 52;
+            button19.Text = "Import";
+            button19.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            button20.Location = new Point(666, 477);
+            button20.Name = "button20";
+            button20.Size = new Size(68, 23);
+            button20.TabIndex = 51;
+            button20.Text = "Load file";
+            button20.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(8, 459);
+            label15.Name = "label15";
+            label15.Size = new Size(110, 15);
+            label15.TabIndex = 50;
+            label15.Text = "Load file Financeiro";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(8, 477);
+            textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
+            textBox3.Size = new Size(652, 23);
+            textBox3.TabIndex = 49;
+            // 
+            // button15
+            // 
+            button15.Location = new Point(827, 429);
+            button15.Name = "button15";
+            button15.Size = new Size(33, 23);
+            button15.TabIndex = 48;
+            button15.Text = "?";
+            button15.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            button16.Location = new Point(739, 430);
+            button16.Name = "button16";
+            button16.Size = new Size(82, 23);
+            button16.TabIndex = 47;
+            button16.Text = "Import";
+            button16.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            button17.Location = new Point(665, 430);
+            button17.Name = "button17";
+            button17.Size = new Size(68, 23);
+            button17.TabIndex = 46;
+            button17.Text = "Load file";
+            button17.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(7, 412);
+            label14.Name = "label14";
+            label14.Size = new Size(123, 15);
+            label14.TabIndex = 45;
+            label14.Text = "Load file VetConsultas";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(7, 430);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(652, 23);
+            textBox2.TabIndex = 44;
+            // 
+            // button14
+            // 
+            button14.Location = new Point(828, 383);
+            button14.Name = "button14";
+            button14.Size = new Size(33, 23);
+            button14.TabIndex = 43;
+            button14.Text = "?";
+            button14.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            button13.Location = new Point(828, 336);
+            button13.Name = "button13";
+            button13.Size = new Size(33, 23);
+            button13.TabIndex = 42;
+            button13.Text = "?";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
+            // 
+            // button12
+            // 
+            button12.Location = new Point(826, 287);
+            button12.Name = "button12";
+            button12.Size = new Size(33, 23);
+            button12.TabIndex = 41;
+            button12.Text = "?";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(826, 239);
+            button11.Name = "button11";
+            button11.Size = new Size(33, 23);
+            button11.TabIndex = 40;
+            button11.Text = "?";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
+            // check_original_id
+            // 
+            check_original_id.AutoSize = true;
+            check_original_id.Checked = true;
+            check_original_id.CheckState = CheckState.Checked;
+            check_original_id.Location = new Point(578, 294);
+            check_original_id.Name = "check_original_id";
+            check_original_id.Size = new Size(82, 19);
+            check_original_id.TabIndex = 39;
+            check_original_id.Text = "Original ID";
+            check_original_id.UseVisualStyleBackColor = true;
+            // 
             // button9
             // 
-            button9.Location = new Point(769, 400);
+            button9.Location = new Point(740, 384);
             button9.Name = "button9";
-            button9.Size = new Size(90, 23);
+            button9.Size = new Size(82, 23);
             button9.TabIndex = 38;
             button9.Text = "Import";
             button9.UseVisualStyleBackColor = true;
@@ -142,9 +311,9 @@
             // 
             // button10
             // 
-            button10.Location = new Point(664, 400);
+            button10.Location = new Point(666, 384);
             button10.Name = "button10";
-            button10.Size = new Size(97, 23);
+            button10.Size = new Size(68, 23);
             button10.TabIndex = 37;
             button10.Text = "Load file";
             button10.UseVisualStyleBackColor = true;
@@ -152,7 +321,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(6, 382);
+            label13.Location = new Point(8, 366);
             label13.Name = "label13";
             label13.Size = new Size(112, 15);
             label13.TabIndex = 36;
@@ -160,7 +329,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(6, 400);
+            textBox1.Location = new Point(8, 384);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(652, 23);
@@ -422,9 +591,9 @@
             // 
             // button5
             // 
-            button5.Location = new Point(769, 346);
+            button5.Location = new Point(740, 337);
             button5.Name = "button5";
-            button5.Size = new Size(90, 23);
+            button5.Size = new Size(82, 23);
             button5.TabIndex = 27;
             button5.Text = "Import";
             button5.UseVisualStyleBackColor = true;
@@ -432,9 +601,9 @@
             // 
             // button6
             // 
-            button6.Location = new Point(664, 346);
+            button6.Location = new Point(666, 337);
             button6.Name = "button6";
-            button6.Size = new Size(97, 23);
+            button6.Size = new Size(68, 23);
             button6.TabIndex = 26;
             button6.Text = "Load file";
             button6.UseVisualStyleBackColor = true;
@@ -442,15 +611,16 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 328);
+            label3.Location = new Point(8, 319);
             label3.Name = "label3";
             label3.Size = new Size(96, 15);
             label3.TabIndex = 25;
             label3.Text = "Load file animals";
+            label3.Click += label3_Click;
             // 
             // txt_json_animals
             // 
-            txt_json_animals.Location = new Point(6, 346);
+            txt_json_animals.Location = new Point(8, 337);
             txt_json_animals.Name = "txt_json_animals";
             txt_json_animals.ReadOnly = true;
             txt_json_animals.Size = new Size(652, 23);
@@ -458,9 +628,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(769, 288);
+            button3.Location = new Point(738, 287);
             button3.Name = "button3";
-            button3.Size = new Size(90, 23);
+            button3.Size = new Size(82, 23);
             button3.TabIndex = 23;
             button3.Text = "Import";
             button3.UseVisualStyleBackColor = true;
@@ -470,7 +640,7 @@
             // 
             button4.Location = new Point(664, 288);
             button4.Name = "button4";
-            button4.Size = new Size(97, 23);
+            button4.Size = new Size(68, 23);
             button4.TabIndex = 22;
             button4.Text = "Load file";
             button4.UseVisualStyleBackColor = true;
@@ -494,9 +664,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(769, 239);
+            button2.Location = new Point(738, 239);
             button2.Name = "button2";
-            button2.Size = new Size(90, 23);
+            button2.Size = new Size(82, 23);
             button2.TabIndex = 19;
             button2.Text = "Import";
             button2.UseVisualStyleBackColor = true;
@@ -506,7 +676,7 @@
             // 
             button1.Location = new Point(664, 239);
             button1.Name = "button1";
-            button1.Size = new Size(97, 23);
+            button1.Size = new Size(68, 23);
             button1.TabIndex = 18;
             button1.Text = "Load file";
             button1.UseVisualStyleBackColor = true;
@@ -554,7 +724,7 @@
             // 
             txt_sql.Location = new Point(3, 28);
             txt_sql.Name = "txt_sql";
-            txt_sql.Size = new Size(862, 500);
+            txt_sql.Size = new Size(862, 593);
             txt_sql.TabIndex = 0;
             txt_sql.Text = "";
             // 
@@ -573,21 +743,20 @@
             // 
             txt_logs.Location = new Point(3, 28);
             txt_logs.Name = "txt_logs";
-            txt_logs.Size = new Size(862, 500);
+            txt_logs.Size = new Size(862, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
             // 
-            // check_original_id
+            // label16
             // 
-            check_original_id.AutoSize = true;
-            check_original_id.Checked = true;
-            check_original_id.CheckState = CheckState.Checked;
-            check_original_id.Location = new Point(578, 294);
-            check_original_id.Name = "check_original_id";
-            check_original_id.Size = new Size(82, 19);
-            check_original_id.TabIndex = 39;
-            check_original_id.Text = "Original ID";
-            check_original_id.UseVisualStyleBackColor = true;
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label16.ForeColor = Color.Red;
+            label16.Location = new Point(3, 603);
+            label16.Name = "label16";
+            label16.Size = new Size(852, 19);
+            label16.TabIndex = 54;
+            label16.Text = "Os campos da SQL,CSV ou JSON devem ser exatamente como estão ao clicar no botão \"?\", caso contrario ocasionará em erro";
             // 
             // Form1
             // 
@@ -666,5 +835,20 @@
         private Label label13;
         private TextBox textBox1;
         private CheckBox check_original_id;
+        private Button button11;
+        private Button button13;
+        private Button button12;
+        private Button button18;
+        private Button button19;
+        private Button button20;
+        private Label label15;
+        private TextBox textBox3;
+        private Button button15;
+        private Button button16;
+        private Button button17;
+        private Label label14;
+        private TextBox textBox2;
+        private Button button14;
+        private Label label16;
     }
 }
