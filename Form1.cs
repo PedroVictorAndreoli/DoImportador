@@ -255,5 +255,40 @@ namespace DoImportador
         {
 
         }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
     }
 }
