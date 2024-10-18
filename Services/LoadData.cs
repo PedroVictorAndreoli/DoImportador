@@ -14,8 +14,10 @@ namespace DoImportador.Services
 {
     public class LoadData
     {
+        
         public static List<IDictionary> LoadDataDb(string dbNameOrigin, string sql)
         {
+            Form1 form1 = new Form1();
             var doConn = new DOConn();
             try
             {
@@ -26,7 +28,8 @@ namespace DoImportador.Services
                 
             } catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message);
+                
             }
             finally
             {
@@ -48,7 +51,7 @@ namespace DoImportador.Services
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message);
             }
             finally
             {
