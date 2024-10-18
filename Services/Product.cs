@@ -163,7 +163,7 @@ namespace DoImportador.Services
                     input.Add("IDRegraICMSEntrada", -2);
 
                     input.Add("IDSistemaContexto", 0);
-                    input.Add("TipoVet", 0);
+                    input.Add("TipoVet", dt["TipoVet"]);
 
 
                     input.Add("IDLaboratorio", 0);

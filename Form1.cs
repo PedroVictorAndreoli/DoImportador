@@ -231,13 +231,29 @@ namespace DoImportador
 
         private void button12_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("ID;\nTipo\nDescricao\nCodigoBarra\nUnidade\nMarca\nGrupo\nEstoqueMinimo\nEstoqueMaximo\nEstoqueAtual\nValorCompra;\nMargemLucro;\nValorVenda;\nDescontoPermitido;\nNCM;\nCEST;\nEAN;\nCFOP;\nTributacao", "Campos Obrigatirios");
+            MessageBox.Show("ID;\nTipo;\nDescricao;\nCodigoBarra;\nUnidade;\nMarca;\nGrupo;\nEstoqueMinimo;\nEstoqueMaximo;\nEstoqueAtual;\nValorCompra;\nMargemLucro;\nValorVenda;\nDescontoPermitido;\nNCM;\nCEST;\nEAN;\nCFOP;\nTributacao;\nTipoVet", "Campos Obrigatirios");
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("ID;\nNomeAnimal;\nCodigoDono;\nNomeDono;\nDataNascimento;\nSexo;\nRaca;\nEspecie;\nCor;\nTemperamento;\nPelo;\nDieta;\nOlhos;\nObservacao;\nChipNumero;\nObito;\nPorte", "Campos Obrigatirios");
-            
+            MessageBox.Show("ID;\nNomeAnimal;\nCodigoDono;\nNomeDono;\nDataNascimento;\nSexo;\nRaca;\nEspecie;\nCor;\nTemperamento;\nPelo;\nDieta;\nOlhos;\nObservacao;\nChipNumero;\nObito;\nPorte;\nPeso", "Campos Obrigatirios");
+
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ID;\nDataAgendamento;\nDataExecutado;\nIDProduto;\nDescricao;\nIDAnimal;\nNomeAnimal;\nIDPessoa;\nNomePessoa;\nValor;\nObservacoes;\nStatus", "Campos Obrigatirios");
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
