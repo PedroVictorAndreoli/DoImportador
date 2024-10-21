@@ -86,6 +86,14 @@ namespace DoImportador
                 _ => EnumProviderType.SQLServer
             };
 
+            connection.url = cmb_url.Text switch
+            {
+                "LOCAL" => "https://localhost:5001/api/",
+                "SERVER" => "https://api.dataon.com.br/v2/api/",
+                "SERVER - DEV" => "https://api.dataon.com.br/v2/api/",
+                _ => "https://localhost:5001/api/"
+            };
+
             connection.hostDestination = host_destination.Text;
             connection.dbNameDestination = db_destination.Text;
             connection.userDestination = user_destination.Text;
@@ -283,12 +291,33 @@ namespace DoImportador
 
         private void button27_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+            MessageBox.Show("Descricao;\nIDProduto;\nIDAnimal;\nNomeAnimal;\nDataAgendamento;\nStatus;\nDataExecutado;\nNomePessoa;\nIDPessoa;\nObservacoes;\nValor;\nStatusAgenda;", "Campos Obrigatirios");
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var import = new VetVacinas(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var thread = new Thread(() => import.ImportData(data));
+                thread.Start();
+
+            }
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

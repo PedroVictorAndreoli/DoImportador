@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Schemas\vet_vacinas.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Schemas\vet_pacotes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

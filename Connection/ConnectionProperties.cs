@@ -20,5 +20,7 @@ namespace DoImportador.Connection
         public string passwordDestination { get; set; } = "";
         public string userDestination { get; set; } = "";
         public string dbNameDestination { get; set; } = "";
+
+        public string url { get; set; } = "";
     }
 }

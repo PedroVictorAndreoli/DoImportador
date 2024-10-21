@@ -11,10 +11,10 @@ namespace DoImportador.Utils
 {
     public class HttpUtil
     {
-
-        public static string _url = "https://localhost:5001/api/";
+        public static string _url = DOFunctions._connectionProperties.url;
         public static T DoPost<T>(string url, string body, Hashtable headers = null)
         {
+
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Post, url);
 

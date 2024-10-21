@@ -31,7 +31,7 @@
             tabControl1 = new TabControl();
             Config = new TabPage();
             url_api = new Label();
-            comboBox1 = new ComboBox();
+            cmb_url = new ComboBox();
             button21 = new Button();
             button22 = new Button();
             button23 = new Button();
@@ -124,8 +124,8 @@
             label4 = new Label();
             txt_sql = new RichTextBox();
             tabPage1 = new TabPage();
-            txt_logs = new RichTextBox();
             label23 = new Label();
+            txt_logs = new RichTextBox();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -148,7 +148,7 @@
             // Config
             // 
             Config.Controls.Add(url_api);
-            Config.Controls.Add(comboBox1);
+            Config.Controls.Add(cmb_url);
             Config.Controls.Add(button21);
             Config.Controls.Add(button22);
             Config.Controls.Add(button23);
@@ -234,15 +234,15 @@
             url_api.TabIndex = 91;
             url_api.Text = "URL - API";
             // 
-            // comboBox1
+            // cmb_url
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "LOCAL", "SERVER", "SERVER - DEV" });
-            comboBox1.Location = new Point(9, 209);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(254, 23);
-            comboBox1.TabIndex = 38;
-            comboBox1.Text = "SQLSERVER";
+            cmb_url.FormattingEnabled = true;
+            cmb_url.Items.AddRange(new object[] { "LOCAL", "SERVER", "SERVER - DEV" });
+            cmb_url.Location = new Point(9, 209);
+            cmb_url.Name = "cmb_url";
+            cmb_url.Size = new Size(254, 23);
+            cmb_url.TabIndex = 38;
+            cmb_url.Text = "LOCAL";
             // 
             // button21
             // 
@@ -352,6 +352,7 @@
             button28.TabIndex = 79;
             button28.Text = "Import";
             button28.UseVisualStyleBackColor = true;
+            button28.Click += button28_Click;
             // 
             // button29
             // 
@@ -416,6 +417,7 @@
             button33.TabIndex = 71;
             button33.Text = "Import";
             button33.UseVisualStyleBackColor = true;
+            button33.Click += button33_Click;
             // 
             // button34
             // 
@@ -1106,14 +1108,6 @@
             tabPage1.Text = "Logs";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txt_logs
-            // 
-            txt_logs.Location = new Point(3, 28);
-            txt_logs.Name = "txt_logs";
-            txt_logs.Size = new Size(1143, 593);
-            txt_logs.TabIndex = 1;
-            txt_logs.Text = "";
-            // 
             // label23
             // 
             label23.AutoSize = true;
@@ -1122,6 +1116,14 @@
             label23.Size = new Size(32, 15);
             label23.TabIndex = 17;
             label23.Text = "Logs";
+            // 
+            // txt_logs
+            // 
+            txt_logs.Location = new Point(3, 28);
+            txt_logs.Name = "txt_logs";
+            txt_logs.Size = new Size(1143, 593);
+            txt_logs.TabIndex = 1;
+            txt_logs.Text = "";
             // 
             // Form1
             // 
@@ -1248,7 +1250,7 @@
         private Label label3;
         private TextBox txt_json_animals;
         private Label url_api;
-        private ComboBox comboBox1;
+        private ComboBox cmb_url;
         private Label label23;
     }
 }
