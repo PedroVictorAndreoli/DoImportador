@@ -588,6 +588,7 @@
             button19.TabIndex = 52;
             button19.Text = "Import";
             button19.UseVisualStyleBackColor = true;
+            button19.Click += button19_Click;
             // 
             // button20
             // 

@@ -319,5 +319,20 @@ namespace DoImportador
         {
 
         }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var import = new Financial(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var thread = new Thread(() => import.ImportData(data));
+                thread.Start();
+
+            }
+        }
     }
 }
