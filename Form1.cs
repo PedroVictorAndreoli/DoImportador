@@ -271,7 +271,7 @@ namespace DoImportador
 
         private void button18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+            MessageBox.Show("ID;\nTipoDuplicata;\nIDPessoa;\nDataEmissao;\nDataVencimento;\nDataPagamento;\nValor;\nDescricao;\nTipoPagamento", "Campos Obrigatirios");
         }
 
         private void button32_Click(object sender, EventArgs e)
