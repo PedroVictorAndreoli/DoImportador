@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DoImportador.Services
 {
@@ -216,6 +217,90 @@ namespace DoImportador.Services
                 iConn.ConnectionClose(iConn.DoConnection);
                 iConn.Dispose();
             }
+        }
+
+        public void ImportProductsAllDatabase()
+        {
+            var iConn = new DOConn();
+            try
+            {
+
+                var headers = new Hashtable();
+                var token = SecurityUtil.OnLoginToken("999");
+
+                headers.Add("DoToken", token);
+                headers.Add("Authorization", "Basic ZGF0YW9uOkRhdGFPbkFQSUAj");
+
+                iConn.ConnectionOpen(DOFunctions._connectionProperties.dbNameOrigin, Enum.EnumDataLake.ORIGIN);
+
+                var clientes = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID=999&doIDUser=3274&route=mnuCadastros_mnuClientes_mnuCadastro&filter=&sorters=ID%20DESC&system=-10&type=0&extraCritSQL=%20AND%20(Pessoas_clientes.Inativo%20%3D%200)%20&page=1&start=0&limit=10000",null, headers);
+
+                foreach( var cliente in clientes.paging.data)
+                {
+                    if(Int32.Parse(cliente["ID"].ToString()) > 1004)
+                    {
+
+                        var produtos = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={Int32.Parse(cliente["ID"].ToString())}&doIDUser=-100&route=mnuEstoque_mnuProdutosServicos&filter=&sorters=ID%20DESC&system=0&type=0&extraCritSQL=&page=1&start=0&limit=20000", null, headers);
+                        if(Int32.Parse(produtos.paging.totalRecords.ToString()) > 0)
+                        {
+                            foreach (var produto in produtos.paging.data)
+                            {
+                                var dataInclude = new Hashtable();
+                                var query = "insert into produto (descricao, estoqueatual, codigobarras, valorcusto, valorvenda," +
+                                    "  valorpromocional, margemlucro, descontopermitido, ncm, cest, tributacao_saida, grupo, marca," +
+                                    " armazenamento, unidade, inativo, tipo, client_id)" +
+                                    " values (@descricao, @estoqueatual, @codigobarras, @valorcusto, @valorvenda, @valorpromocional, @margemlucro, " +
+                                    "@descontopermitido, @ncm, @cest, @tributacao_saida, @grupo, @marca, @armazenamento, @unidade, @inativo, @tipo, @client_id);";
+
+                                dataInclude.Add("descricao", produto["DESCRICAO"].ToString());
+                                dataInclude.Add("estoqueatual", Decimal.Parse(produto["ESTOQUEATUAL"].ToString()));
+                                dataInclude.Add("codigobarras", produto["CODIGOBARRAS"].ToString());
+                                dataInclude.Add("valorcusto", Decimal.Parse(produto["VALORCUSTO"].ToString()));
+                                dataInclude.Add("valorvenda", Decimal.Parse(produto["VALORVENDA"].ToString()));
+                                dataInclude.Add("valorpromocional", Decimal.Parse(produto["VALORPROMOCIONAL"].ToString()));
+                                dataInclude.Add("margemlucro", Decimal.Parse(produto["MARGEMLUCRO"].ToString()));
+                                dataInclude.Add("descontopermitido", Decimal.Parse(produto["DESCONTOPERMITIDO"].ToString()));
+                                dataInclude.Add("ncm", produto["NCM"].ToString());
+                                dataInclude.Add("cest", produto["CEST"].ToString());
+                                dataInclude.Add("tributacao_saida", produto["TRIBUTAÇÃO SAÍDA"].ToString());
+                                dataInclude.Add("grupo", produto["GRUPO"].ToString());
+                                dataInclude.Add("marca", produto["MARCA"].ToString());
+                                dataInclude.Add("armazenamento", produto["ARMAZENAMENTO"].ToString());
+                                dataInclude.Add("unidade", produto["UNIDADE"].ToString());
+                                dataInclude.Add("inativo", (produto["INATIVO"].ToString().Equals("Não") ? false : true));
+                                dataInclude.Add("tipo", produto["TIPO"].ToString());
+                                dataInclude.Add("client_id", Int32.Parse(cliente["ID"].ToString()));
+
+                                try
+                                {
+                                    CrudUtils.ExecuteQuery(iConn, dataInclude, query, DOFunctions._connectionProperties.dbType);
+                                }
+                                catch(Exception ex)
+                                {
+                                    //MessageBox.Show(ex.Message);
+                                }
+                                
+
+                                _form.OnSetLog($"cliente: {cliente["ID"]} - {produto["ID"]} - {produto["DESCRICAO"]}");
+                            }
+
+                        }
+                        
+                    }
+                    
+                }
+
+                
+            }
+            catch(Exception ex) { 
+                MessageBox.Show( ex.Message); 
+            } finally
+            {
+                iConn.ConnectionClose(iConn.DoConnection, DOFunctions._connectionProperties.dbType);
+                iConn.Dispose();
+            }
+
+            
         }
     }
 }

@@ -126,12 +126,15 @@
             tabPage1 = new TabPage();
             label23 = new Label();
             txt_logs = new RichTextBox();
+            tabPage3 = new TabPage();
+            button39 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage3.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -139,6 +142,7 @@
             tabControl1.Controls.Add(Config);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Location = new Point(1, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -1127,6 +1131,27 @@
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
             // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(button39);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1146, 621);
+            tabPage3.TabIndex = 3;
+            tabPage3.Text = "Outros";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button39
+            // 
+            button39.Location = new Point(7, 18);
+            button39.Name = "button39";
+            button39.Size = new Size(160, 23);
+            button39.TabIndex = 0;
+            button39.Text = "Importar Produtos";
+            button39.UseVisualStyleBackColor = true;
+            button39.Click += button39_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1151,6 +1176,7 @@
             tabPage2.PerformLayout();
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1254,5 +1280,7 @@
         private Label url_api;
         private ComboBox cmb_url;
         private Label label23;
+        private TabPage tabPage3;
+        private Button button39;
     }
 }

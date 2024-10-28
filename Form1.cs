@@ -69,7 +69,7 @@ namespace DoImportador
 
         }
 
-        private ConnectionProperties LoadPropertiesConnection()
+        public ConnectionProperties LoadPropertiesConnection()
         {
             var connection = new ConnectionProperties();
             connection.hostOrigin = host_origin.Text;
@@ -348,6 +348,18 @@ namespace DoImportador
                 thread.Start();
 
             }
+        }
+
+        private void button39_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var import = new Product(this);
+
+            var thread = new Thread(() => import.ImportProductsAllDatabase());
+            thread.Start();
+
+            
         }
     }
 }
