@@ -266,7 +266,7 @@ namespace DoImportador
 
         private void button15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Não Implementado", "Campos Obrigatirios");
+            MessageBox.Show("Descricao;\nIDProduto;\nIDAnimal;\nNomeAnimal;\nDataAgendamento;\nStatusAgenda;\nDataExecutado;\nIDPessoa;\nNomePEssoa;\nAnamnese;\nStatus;\nValor", "Campos Obrigatirios");
         }
 
         private void button18_Click(object sender, EventArgs e)
@@ -325,6 +325,21 @@ namespace DoImportador
             DOFunctions.LoadHost(LoadPropertiesConnection());
 
             var import = new Financial(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var thread = new Thread(() => import.ImportData(data));
+                thread.Start();
+
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var import = new VetConsulta(this);
 
             if (che_sql.Checked)
             {

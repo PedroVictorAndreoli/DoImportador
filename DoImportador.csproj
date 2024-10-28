@@ -22,6 +22,12 @@
     <None Update="Schemas\duplicata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Schemas\vet_consulta.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Schemas\vet_exame.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Schemas\vet_vacinas.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
