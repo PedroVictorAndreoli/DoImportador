@@ -120,29 +120,31 @@
             button1 = new Button();
             label1 = new Label();
             txt_json_person = new TextBox();
-            tabPage2 = new TabPage();
+            sql = new TabPage();
             label4 = new Label();
             txt_sql = new RichTextBox();
-            tabPage1 = new TabPage();
+            utilitatio = new TabPage();
+            txtbase = new TextBox();
+            button40 = new Button();
+            button39 = new Button();
+            logs = new TabPage();
             label23 = new Label();
             txt_logs = new RichTextBox();
-            tabPage3 = new TabPage();
-            button39 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
-            tabPage2.SuspendLayout();
-            tabPage1.SuspendLayout();
-            tabPage3.SuspendLayout();
+            sql.SuspendLayout();
+            utilitatio.SuspendLayout();
+            logs.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(Config);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(sql);
+            tabControl1.Controls.Add(utilitatio);
+            tabControl1.Controls.Add(logs);
             tabControl1.Location = new Point(1, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -225,7 +227,7 @@
             Config.Padding = new Padding(3);
             Config.Size = new Size(1146, 621);
             Config.TabIndex = 0;
-            Config.Text = "Config";
+            Config.Text = "Configurações de importação";
             Config.UseVisualStyleBackColor = true;
             Config.Click += Config_Click;
             // 
@@ -1073,17 +1075,17 @@
             txt_json_person.Size = new Size(365, 23);
             txt_json_person.TabIndex = 16;
             // 
-            // tabPage2
+            // sql
             // 
-            tabPage2.Controls.Add(label4);
-            tabPage2.Controls.Add(txt_sql);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1146, 621);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "SQL";
-            tabPage2.UseVisualStyleBackColor = true;
+            sql.Controls.Add(label4);
+            sql.Controls.Add(txt_sql);
+            sql.Location = new Point(4, 24);
+            sql.Name = "sql";
+            sql.Padding = new Padding(3);
+            sql.Size = new Size(1146, 621);
+            sql.TabIndex = 1;
+            sql.Text = "SQL";
+            sql.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -1102,17 +1104,57 @@
             txt_sql.TabIndex = 0;
             txt_sql.Text = "";
             // 
-            // tabPage1
+            // utilitatio
             // 
-            tabPage1.Controls.Add(label23);
-            tabPage1.Controls.Add(txt_logs);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1146, 621);
-            tabPage1.TabIndex = 2;
-            tabPage1.Text = "Logs";
-            tabPage1.UseVisualStyleBackColor = true;
+            utilitatio.Controls.Add(txtbase);
+            utilitatio.Controls.Add(button40);
+            utilitatio.Controls.Add(button39);
+            utilitatio.Location = new Point(4, 24);
+            utilitatio.Name = "utilitatio";
+            utilitatio.Padding = new Padding(3);
+            utilitatio.Size = new Size(1146, 621);
+            utilitatio.TabIndex = 3;
+            utilitatio.Text = "Outros Utilitarios";
+            utilitatio.UseVisualStyleBackColor = true;
+            // 
+            // txtbase
+            // 
+            txtbase.Location = new Point(114, 48);
+            txtbase.Name = "txtbase";
+            txtbase.Size = new Size(93, 23);
+            txtbase.TabIndex = 2;
+            // 
+            // button40
+            // 
+            button40.Location = new Point(7, 47);
+            button40.Name = "button40";
+            button40.Size = new Size(101, 23);
+            button40.TabIndex = 1;
+            button40.Text = "Buscar Backup";
+            button40.UseVisualStyleBackColor = true;
+            button40.Click += button40_Click;
+            // 
+            // button39
+            // 
+            button39.Location = new Point(7, 18);
+            button39.Name = "button39";
+            button39.Size = new Size(200, 23);
+            button39.TabIndex = 0;
+            button39.Text = "Importar Produtos todas bases";
+            button39.UseVisualStyleBackColor = true;
+            button39.Click += button39_Click;
+            // 
+            // logs
+            // 
+            logs.Controls.Add(label23);
+            logs.Controls.Add(txt_logs);
+            logs.Location = new Point(4, 24);
+            logs.Name = "logs";
+            logs.Padding = new Padding(3);
+            logs.Size = new Size(1146, 621);
+            logs.TabIndex = 2;
+            logs.Text = "Logs";
+            logs.UseVisualStyleBackColor = true;
             // 
             // label23
             // 
@@ -1130,27 +1172,6 @@
             txt_logs.Size = new Size(1143, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
-            // 
-            // tabPage3
-            // 
-            tabPage3.Controls.Add(button39);
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1146, 621);
-            tabPage3.TabIndex = 3;
-            tabPage3.Text = "Outros";
-            tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // button39
-            // 
-            button39.Location = new Point(7, 18);
-            button39.Name = "button39";
-            button39.Size = new Size(160, 23);
-            button39.TabIndex = 0;
-            button39.Text = "Importar Produtos";
-            button39.UseVisualStyleBackColor = true;
-            button39.Click += button39_Click;
             // 
             // Form1
             // 
@@ -1172,11 +1193,12 @@
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
-            tabPage3.ResumeLayout(false);
+            sql.ResumeLayout(false);
+            sql.PerformLayout();
+            utilitatio.ResumeLayout(false);
+            utilitatio.PerformLayout();
+            logs.ResumeLayout(false);
+            logs.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1194,7 +1216,7 @@
         private TextBox txt_json_person;
         private Label dsd;
         private TextBox host_origin;
-        private TabPage tabPage2;
+        private TabPage sql;
         private RichTextBox txt_sql;
         private Label label4;
         private RadioButton radioButton3;
@@ -1218,7 +1240,7 @@
         private TextBox user_origin;
         private Button button8;
         private Button button7;
-        private TabPage tabPage1;
+        private TabPage logs;
         private RichTextBox txt_logs;
         private ComboBox cmb_db;
         private Label label12;
@@ -1280,7 +1302,9 @@
         private Label url_api;
         private ComboBox cmb_url;
         private Label label23;
-        private TabPage tabPage3;
+        private TabPage utilitatio;
         private Button button39;
+        private TextBox txtbase;
+        private Button button40;
     }
 }

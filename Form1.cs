@@ -359,7 +359,21 @@ namespace DoImportador
             var thread = new Thread(() => import.ImportProductsAllDatabase());
             thread.Start();
 
-            
+
+        }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+            if (txtbase.Text.Trim() == "")
+            {
+                MessageBox.Show("Digite a base que se quer o backup");
+                return;
+            }
+
+            var bk = new BackupService(this, txtbase.Text);
+
+            var thread = new Thread(() => bk.GetBackup());
+            thread.Start();
         }
     }
 }
