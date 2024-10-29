@@ -130,6 +130,7 @@
             logs = new TabPage();
             label23 = new Label();
             txt_logs = new RichTextBox();
+            button41 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -1146,6 +1147,7 @@
             // 
             // logs
             // 
+            logs.Controls.Add(button41);
             logs.Controls.Add(label23);
             logs.Controls.Add(txt_logs);
             logs.Location = new Point(4, 24);
@@ -1172,6 +1174,16 @@
             txt_logs.Size = new Size(1143, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
+            // 
+            // button41
+            // 
+            button41.Location = new Point(1068, 3);
+            button41.Name = "button41";
+            button41.Size = new Size(75, 23);
+            button41.TabIndex = 18;
+            button41.Text = "Limpar Logs";
+            button41.UseVisualStyleBackColor = true;
+            button41.Click += button41_Click;
             // 
             // Form1
             // 
@@ -1306,5 +1318,6 @@
         private Button button39;
         private TextBox txtbase;
         private Button button40;
+        private Button button41;
     }
 }

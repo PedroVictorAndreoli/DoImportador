@@ -66,6 +66,18 @@ namespace DoImportador
             }
         }
 
+        public void OnClearLogs()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => OnClearLogs()));
+            }
+            else
+            {
+                txt_logs.Clear();
+            }
+        }
+
         public void OnSetLogCurrentLine(string log)
         {
             if (InvokeRequired)
@@ -386,6 +398,11 @@ namespace DoImportador
 
             var thread = new Thread(() => bk.GetBackup());
             thread.Start();
+        }
+
+        private void button41_Click(object sender, EventArgs e)
+        {
+            OnClearLogs();
         }
     }
 }
