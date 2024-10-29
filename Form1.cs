@@ -64,9 +64,20 @@ namespace DoImportador
                 txt_logs.SelectionStart = txt_logs.Text.Length;
                 txt_logs.ScrollToCaret();
             }
+        }
 
-
-
+        public void OnSetLogCurrentLine(string log)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => OnSetLogCurrentLine(log)));
+            }
+            else
+            {
+                txt_logs.AppendText(log);
+                txt_logs.SelectionStart = txt_logs.Text.Length;
+                txt_logs.ScrollToCaret();
+            }
         }
 
         public ConnectionProperties LoadPropertiesConnection()
@@ -364,6 +375,7 @@ namespace DoImportador
 
         private void button40_Click(object sender, EventArgs e)
         {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
             if (txtbase.Text.Trim() == "")
             {
                 MessageBox.Show("Digite a base que se quer o backup");

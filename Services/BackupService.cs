@@ -1,4 +1,5 @@
-﻿using DoImportador.Utils;
+﻿using DoImportador.Connection;
+using DoImportador.Utils;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Data.SqlClient;
 using System;
@@ -90,7 +91,7 @@ namespace DoImportador.Services
 
         private void Downloader_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            _form.OnSetLog($"Processo: {e.ProgressPercentage}");
+            _form.OnSetLogCurrentLine($".");
 
         }
 
@@ -128,17 +129,19 @@ namespace DoImportador.Services
 
                 string query = "";
 
-                string connectionString = "Server=.\\MSSQLSERVER2022;User ID=atmusinf;Password=Atmus@#4080;database=master";
+                string connectionString = "Server=localhost\\MSSQLSERVER2022;User ID=atmusinf;Password=Atmus@#4080;database=master";
 
                 query = "ALTER DATABASE [atmusinf_control-" + _db.Trim() + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
                     " RESTORE DATABASE [atmusinf_control-" + _db.Trim() + "] FROM  DISK = N'D:\\aa\\" + _db.Trim() + ".bak' WITH  FILE = 1,  MOVE N'sisflexControl' TO N'D:\\SQLServer\\MSSQL16.MSSQLSERVER2022\\MSSQL\\DATA\\atmusinf_control-" + _db.Trim() + ".mdf',  MOVE N'sisflexControl_log' TO N'D:\\SQLServer\\MSSQL16.MSSQLSERVER2022\\MSSQL\\DATA\\atmusinf_control-" + _db.Trim() + "_log.ldf',  NOUNLOAD,  REPLACE,  STATS = 5" +
                     " ALTER DATABASE [atmusinf_control-" + _db.Trim() + "] SET MULTI_USER";
 
-                var conn = new SqlConnection(connectionString);
-                //SqlTransaction transaction;
-                var command = new SqlCommand(query, conn);
+                var iConn = new DOConn();
+                iConn.ConnectionOpen("master", Enum.EnumDataLake.DESTINATION);
 
-                conn.Open();
+                var conn = iConn.DoConnection;
+                //SqlTransaction transaction;
+                var command = new SqlCommand(query, (SqlConnection)conn);
+
                 try
                 {
                     command.ExecuteNonQuery();
@@ -150,7 +153,7 @@ namespace DoImportador.Services
                     connectionString = "Server=.\\MSSQLSERVER2022;User ID=atmusinf;Password=Atmus@#4080;database=atmusinf_control-" + _db.Trim();
                     conn = new SqlConnection(connectionString);
                     conn.Open();
-                    command = new SqlCommand("update pessoas_usuarios set Login = '2', Senha='2' where idpessoa = 0", conn);
+                    command = new SqlCommand("update pessoas_usuarios set Login = '2', Senha='2' where idpessoa = 0", (SqlConnection)conn);
 
                     command.ExecuteNonQuery();
 

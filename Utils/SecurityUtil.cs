@@ -15,7 +15,7 @@ namespace DoImportador.Utils
         {
             var body = "{ \"doID\": \""+ doID + "\", \"pLogin\":\"dataon\",    \"pPass\": \"796121\"}";
 
-            var token = HttpUtil.DoPost<string>($"{HttpUtil._url}security/GetTokenJwt", body);
+            var token = HttpUtil.DoPost<string>($"{DOFunctions._connectionProperties.url}security/GetTokenJwt", body);
 
             return token;
         }
