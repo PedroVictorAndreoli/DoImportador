@@ -91,7 +91,7 @@ namespace DoImportador.Services
 
         private void Downloader_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            _form.OnSetLogCurrentLine($".");
+            _form.OnSetLog($"{e.ProgressPercentage}");
 
         }
 
