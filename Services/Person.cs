@@ -187,5 +187,58 @@ namespace DoImportador.Services
 
             
         }
+
+        public void CorretionCity(List<IDictionary> data)
+        {
+            var iConn = new DOConn();
+            try
+            {
+
+                var headers = new Hashtable();
+                var token = SecurityUtil.OnLoginToken("999");
+
+                headers.Add("DoToken", token);
+                headers.Add("Authorization", "Basic ZGF0YW9uOkRhdGFPbkFQSUAj");
+
+                iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
+
+                var clientes = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID=4864&doIDUser=-100&route=mnuCadastros_mnuClientes_mnuCadastro&filter=&sorters=ID%20DESC&system=-10&type=0&extraCritSQL=%20AND%20(Pessoas_clientes.Inativo%20%3D%200)%20&page=1&start=0&limit=10000", null, headers);
+
+                foreach (var cliente in clientes.paging.data)
+                {
+                    var person = data.Find(e => Int32.Parse(e["ID"].ToString()) == Int32.Parse(cliente["ID"].ToString()));
+
+                    if (person != null)
+                    {
+
+                        var pessoa = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Pessoa/GetData?doID=4864&id={person["ID"]}&pContexto=1", null, headers);
+
+                        if (pessoa["RetWm"].ToString().Equals("success"))
+                        {
+                            var obj = pessoa["obj"];
+                            obj.EnderecoResidencial.IDCidade = GenericUtil.LoadCity(iConn, GenericUtil.NullForEmpty(person["Cidade"]).ToString());
+                            var json = JsonUtil.DoJsonSerializer(obj);
+                            var result = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Pessoa/SaveData?doID=4864&doIDUser=-100", json, headers);
+
+                            _form.OnSetLog($"{result["RetWm"]}");
+
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                iConn.ConnectionClose(iConn.DoConnection);
+                iConn.Dispose();
+            }
+
+
+        }
     }
 }

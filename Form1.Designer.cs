@@ -128,9 +128,10 @@
             button40 = new Button();
             button39 = new Button();
             logs = new TabPage();
+            button41 = new Button();
             label23 = new Label();
             txt_logs = new RichTextBox();
-            button41 = new Button();
+            button42 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -1107,6 +1108,7 @@
             // 
             // utilitatio
             // 
+            utilitatio.Controls.Add(button42);
             utilitatio.Controls.Add(txtbase);
             utilitatio.Controls.Add(button40);
             utilitatio.Controls.Add(button39);
@@ -1158,6 +1160,16 @@
             logs.Text = "Logs";
             logs.UseVisualStyleBackColor = true;
             // 
+            // button41
+            // 
+            button41.Location = new Point(1068, 3);
+            button41.Name = "button41";
+            button41.Size = new Size(75, 23);
+            button41.TabIndex = 18;
+            button41.Text = "Limpar Logs";
+            button41.UseVisualStyleBackColor = true;
+            button41.Click += button41_Click;
+            // 
             // label23
             // 
             label23.AutoSize = true;
@@ -1175,15 +1187,15 @@
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
             // 
-            // button41
+            // button42
             // 
-            button41.Location = new Point(1068, 3);
-            button41.Name = "button41";
-            button41.Size = new Size(75, 23);
-            button41.TabIndex = 18;
-            button41.Text = "Limpar Logs";
-            button41.UseVisualStyleBackColor = true;
-            button41.Click += button41_Click;
+            button42.Location = new Point(7, 77);
+            button42.Name = "button42";
+            button42.Size = new Size(200, 23);
+            button42.TabIndex = 3;
+            button42.Text = "Corrige cidade pessoas";
+            button42.UseVisualStyleBackColor = true;
+            button42.Click += button42_Click;
             // 
             // Form1
             // 
@@ -1319,5 +1331,6 @@
         private TextBox txtbase;
         private Button button40;
         private Button button41;
+        private Button button42;
     }
 }

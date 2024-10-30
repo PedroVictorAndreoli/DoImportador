@@ -237,7 +237,7 @@ namespace DoImportador.Services
 
                 foreach( var cliente in clientes.paging.data)
                 {
-                    if(Int32.Parse(cliente["ID"].ToString()) > 1004 && Int32.Parse(cliente["ID"].ToString()) < 3421)
+                    if(Int32.Parse(cliente["ID"].ToString()) > 1004)
                     {
 
                         var produtos = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={Int32.Parse(cliente["ID"].ToString())}&doIDUser=-100&route=mnuEstoque_mnuProdutosServicos&filter=&sorters=ID%20DESC&system=0&type=0&extraCritSQL=&page=1&start=0&limit=20000", null, headers);
@@ -283,6 +283,7 @@ namespace DoImportador.Services
 
                                 _form.OnSetLog($"cliente: {cliente["ID"]} - {produto["ID"]} - {produto["DESCRICAO"]}");
                             }
+                            _form.OnClearLogs();
 
                         }
                         
