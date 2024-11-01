@@ -303,5 +303,64 @@ namespace DoImportador.Services
 
             
         }
+
+        public void UpdateProductEcommerce()
+        {
+            var iConn = new DOConn();
+            try
+            {
+                var idbase = "3545";
+                var headers = new Hashtable();
+                var token = SecurityUtil.OnLoginToken("999");
+
+                headers.Add("DoToken", token);
+                headers.Add("Authorization", "Basic ZGF0YW9uOkRhdGFPbkFQSUAj");
+
+
+                var produtos = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={idbase}&doIDUser=-100&route=mnuEstoque_mnuProdutosServicos&filter=&sorters=ID%20DESC&system=0&type=0&extraCritSQL= AND (Produtos.VendeEcommerce = 1) &page=1&start=0&limit=20000", null, headers);
+
+
+
+
+                foreach (var produto in produtos.paging.data)
+                {
+
+                    var item = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Produto/GetData?doID={idbase}&id={produto["ID"]}", null, headers);
+
+                    if (item["RetWm"].ToString().Equals("success"))
+                    {
+                        var obj = item["obj"];
+                        var json = JsonUtil.DoJsonSerializer(obj);
+                        var result = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Produto/SaveData?doID={idbase}&doIDUser=-100", json, headers);
+
+                        _form.OnSetLog($"Atualizou produto: {result["RetWm"]} - {item.obj.Descricao}");
+
+                        if(result["RetWm"].ToString().Equals("success"))
+                        {
+                            var res = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Produto/UpdateIntegrations?doID={idbase}&doIDUser=-100&i=0&pFromWhere=cadProdutos", json, headers);
+
+                            if (res["RetWm"].ToString().Equals("success"))
+                            {
+                                _form.OnSetLog($"Atualizou ecommerce: {res["RetWm"]}");
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                iConn.ConnectionClose(iConn.DoConnection, DOFunctions._connectionProperties.dbType);
+                iConn.Dispose();
+            }
+
+
+        }
     }
 }

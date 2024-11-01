@@ -132,6 +132,7 @@
             button41 = new Button();
             label23 = new Label();
             txt_logs = new RichTextBox();
+            button43 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -1109,6 +1110,7 @@
             // 
             // utilitatio
             // 
+            utilitatio.Controls.Add(button43);
             utilitatio.Controls.Add(button42);
             utilitatio.Controls.Add(txtbase);
             utilitatio.Controls.Add(button40);
@@ -1197,6 +1199,16 @@
             txt_logs.Size = new Size(1143, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
+            // 
+            // button43
+            // 
+            button43.Location = new Point(7, 106);
+            button43.Name = "button43";
+            button43.Size = new Size(200, 23);
+            button43.TabIndex = 4;
+            button43.Text = "Atualiza imagens";
+            button43.UseVisualStyleBackColor = true;
+            button43.Click += button43_Click;
             // 
             // Form1
             // 
@@ -1333,5 +1345,6 @@
         private Button button40;
         private Button button41;
         private Button button42;
+        private Button button43;
     }
 }

@@ -419,5 +419,15 @@ namespace DoImportador
 
             }
         }
+
+        private void button43_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var import = new Product(this);
+
+            var thread = new Thread(() => import.UpdateProductEcommerce());
+            thread.Start();
+        }
     }
 }
