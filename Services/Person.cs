@@ -130,11 +130,10 @@ namespace DoImportador.Services
                         input = new Hashtable();
                         input.Add("IDPessoa", person["ID"]);
                         input.Add("RG", GenericUtil.ReturnNumber(person["RG"]));
-                        input.Add("CPF", GenericUtil.ReturnNumber(person["CPF"]));
+                        input.Add("CPF", GenericUtil.TruncateString(GenericUtil.ReturnNumber(person["CPF"]),11));
                         input.Add("DataNascimento", person["DataNascimento"] == null ? DBNull.Value : person["DataNascimento"]);
                         input.Add("IDSexo", GenericUtil.ReturnSexo(person["Sexo"]));
 
-                        
                         CrudUtils.ExecuteQuery(iConn, input, query);
                         
                         
