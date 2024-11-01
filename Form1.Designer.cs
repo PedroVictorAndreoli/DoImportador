@@ -124,6 +124,7 @@
             label4 = new Label();
             txt_sql = new RichTextBox();
             utilitatio = new TabPage();
+            button42 = new Button();
             txtbase = new TextBox();
             button40 = new Button();
             button39 = new Button();
@@ -131,7 +132,6 @@
             button41 = new Button();
             label23 = new Label();
             txt_logs = new RichTextBox();
-            button42 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -531,6 +531,7 @@
             button13.TabIndex = 59;
             button13.Text = "?";
             button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // button5
             // 
@@ -1120,6 +1121,16 @@
             utilitatio.Text = "Outros Utilitarios";
             utilitatio.UseVisualStyleBackColor = true;
             // 
+            // button42
+            // 
+            button42.Location = new Point(7, 77);
+            button42.Name = "button42";
+            button42.Size = new Size(200, 23);
+            button42.TabIndex = 3;
+            button42.Text = "Corrige cidade pessoas";
+            button42.UseVisualStyleBackColor = true;
+            button42.Click += button42_Click;
+            // 
             // txtbase
             // 
             txtbase.Location = new Point(114, 48);
@@ -1186,16 +1197,6 @@
             txt_logs.Size = new Size(1143, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
-            // 
-            // button42
-            // 
-            button42.Location = new Point(7, 77);
-            button42.Name = "button42";
-            button42.Size = new Size(200, 23);
-            button42.TabIndex = 3;
-            button42.Text = "Corrige cidade pessoas";
-            button42.UseVisualStyleBackColor = true;
-            button42.Click += button42_Click;
             // 
             // Form1
             // 
