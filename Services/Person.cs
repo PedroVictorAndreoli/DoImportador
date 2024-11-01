@@ -50,10 +50,13 @@ namespace DoImportador.Services
                     input.Add("CEP", GenericUtil.NullForEmpty(person["CEP_Principal"]));
                     input.Add("Endereco", GenericUtil.NullForEmpty(person["Endereco_Principal"]));
                     input.Add("Bairro", GenericUtil.NullForEmpty(person["Bairro_Principal"]));
-                    input.Add("Numero", GenericUtil.NullForEmpty(person["Numero_Principal"]));
+                    input.Add("Numero", GenericUtil.TruncateString(GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Numero_Principal"])),10));
                     input.Add("Complemento", GenericUtil.NullForEmpty(person["Complemento_Principal"]));
                     input.Add("Observacao", "");
                     input.Add("IDCidade", GenericUtil.LoadCity(iConn, GenericUtil.NullForEmpty(person["Cidade"]).ToString()));
+
+                   
+
 
                     // Salva as pessoasEndereços
                     CrudUtils.ExecuteQuery(iConn, input, query);
