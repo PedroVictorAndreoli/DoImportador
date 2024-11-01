@@ -191,6 +191,8 @@ namespace DoImportador.Services
         public void CorretionCity(List<IDictionary> data)
         {
             var iConn = new DOConn();
+
+            var idbase = "4858";
             try
             {
 
@@ -202,7 +204,7 @@ namespace DoImportador.Services
 
                 iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
 
-                var clientes = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID=4864&doIDUser=-100&route=mnuCadastros_mnuClientes_mnuCadastro&filter=&sorters=ID%20DESC&system=-10&type=0&extraCritSQL=%20AND%20(Pessoas_clientes.Inativo%20%3D%200)%20&page=1&start=0&limit=10000", null, headers);
+                var clientes = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={idbase}&doIDUser=-100&route=mnuCadastros_mnuClientes_mnuCadastro&filter=&sorters=ID%20DESC&system=-10&type=0&extraCritSQL=%20AND%20(Pessoas_clientes.Inativo%20%3D%200)%20&page=1&start=0&limit=10000", null, headers);
 
                 foreach (var cliente in clientes.paging.data)
                 {
@@ -211,14 +213,14 @@ namespace DoImportador.Services
                     if (person != null)
                     {
 
-                        var pessoa = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Pessoa/GetData?doID=4864&id={person["ID"]}&pContexto=1", null, headers);
+                        var pessoa = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Pessoa/GetData?doID={idbase}&id={person["ID"]}&pContexto=1", null, headers);
 
                         if (pessoa["RetWm"].ToString().Equals("success"))
                         {
                             var obj = pessoa["obj"];
-                            obj.EnderecoResidencial.IDCidade = GenericUtil.LoadCity(iConn, GenericUtil.NullForEmpty(person["Cidade"]).ToString());
+                            obj.EnderecoResidencial.IDCidade = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(person["IBGE"]).ToString(),"cidades", "CodigoIBGE");
                             var json = JsonUtil.DoJsonSerializer(obj);
-                            var result = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Pessoa/SaveData?doID=4864&doIDUser=-100", json, headers);
+                            var result = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Pessoa/SaveData?doID={idbase}&doIDUser=-100", json, headers);
 
                             _form.OnSetLog($"{result["RetWm"]}");
 
