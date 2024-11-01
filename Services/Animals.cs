@@ -36,7 +36,7 @@ namespace DoImportador.Services
                 var pelagens = data.GroupBy(p => p["Pelo"]).ToList();
                 var temperamento = data.GroupBy(p => p["Temperamento"]).ToList();
                 var dieta = data.GroupBy(p => p["Dieta"]).ToList();
-                var porte = data.GroupBy(p => p["Dieta"]).ToList();
+                var porte = data.GroupBy(p => p["Porte"]).ToList();
 
                 var query = "";
                 var input = new Hashtable();
