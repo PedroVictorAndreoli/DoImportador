@@ -170,8 +170,12 @@ namespace DoImportador.Services
                     input.Add("Obito", dt["Obito"]);
                     input.Add("ObservacaoAlerta", GenericUtil.NullForEmpty(dt["Observacoes"]));
                     input.Add("DataCadastro", DateTime.Now);
-
+                    // try { 
                     CrudUtils.ExecuteQuery(iConn, input, query);
+                    //}catch(Exception e)
+                    //{
+                    //   MessageBox.Show(e.Message);
+                    // }
 
                     query = "INSERT INTO dbo.vet_animais_donos (IDAnimal,IDDonoNew,IDDonoOld,Data) VALUES (@IDAnimal,@IDDonoNew,@IDDonoOld,@Data)";
                     input = new Hashtable();

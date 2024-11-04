@@ -22,7 +22,7 @@ namespace DoImportador.Services
             try
             {
                 doConn.ConnectionOpen(dbNameOrigin, Enum.EnumDataLake.ORIGIN);
-                var query = Regex.Replace(sql, @"[\u000B\r\n]+", " ").Replace("\v", ""); ;
+                var query = Regex.Replace(sql, @"[\u000B\r\n]+", " ").Replace("\v", ""); 
 
                 return CrudUtils.GetAll<IDictionary>(doConn.DoConnection, query, doConn);
                 
