@@ -38,7 +38,7 @@ namespace DoImportador.Utils
 
         public static int LoadCity(DOConn iConn, string cityName)
         {
-            var query = $"SELECT top(1) ID FROM cidades where UPPER(Nome) COLLATE Latin1_General_CI_AI like UPPER('%{cityName}%')";
+            var query = $"SELECT top(1) ID FROM cidades where UPPER(Nome) COLLATE Latin1_General_CI_AI like UPPER('{cityName}')";
 
             var output = CrudUtils.GetOne<IDictionary>(iConn.DoConnection, query, iConn);
             if(output.Count == 0)

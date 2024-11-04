@@ -81,7 +81,7 @@ namespace DoImportador.Services
 
                         if(GenericUtil.OnConvertDateToString(item["DataAgendamento"]) != null)
                         {
-                            var response = HttpUtil.DoPost<dynamic>($"{HttpUtil._url}vet/VetPacotes/SaveData?doID={DOFunctions._connectionProperties.dbNameDestination.Replace("atmusinf_Control-", "")}&doIDUser=-100", JsonUtil.DoJsonSerializer(model), headers);
+                            var response = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}vet/VetPacotes/SaveData?doID={DOFunctions._connectionProperties.dbNameDestination.Replace("atmusinf_Control-", "")}&doIDUser=-100", JsonUtil.DoJsonSerializer(model), headers);
 
                             if (response.RetWm.ToString().Equals("success"))
                             {

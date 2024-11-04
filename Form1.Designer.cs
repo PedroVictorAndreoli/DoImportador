@@ -124,6 +124,7 @@
             label4 = new Label();
             txt_sql = new RichTextBox();
             utilitatio = new TabPage();
+            button43 = new Button();
             button42 = new Button();
             txtbase = new TextBox();
             button40 = new Button();
@@ -132,7 +133,6 @@
             button41 = new Button();
             label23 = new Label();
             txt_logs = new RichTextBox();
-            button43 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -542,6 +542,7 @@
             button5.TabIndex = 58;
             button5.Text = "Import";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button6
             // 
@@ -1123,6 +1124,16 @@
             utilitatio.Text = "Outros Utilitarios";
             utilitatio.UseVisualStyleBackColor = true;
             // 
+            // button43
+            // 
+            button43.Location = new Point(7, 106);
+            button43.Name = "button43";
+            button43.Size = new Size(200, 23);
+            button43.TabIndex = 4;
+            button43.Text = "Atualiza imagens";
+            button43.UseVisualStyleBackColor = true;
+            button43.Click += button43_Click;
+            // 
             // button42
             // 
             button42.Location = new Point(7, 77);
@@ -1199,16 +1210,6 @@
             txt_logs.Size = new Size(1143, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
-            // 
-            // button43
-            // 
-            button43.Location = new Point(7, 106);
-            button43.Name = "button43";
-            button43.Size = new Size(200, 23);
-            button43.TabIndex = 4;
-            button43.Text = "Atualiza imagens";
-            button43.UseVisualStyleBackColor = true;
-            button43.Click += button43_Click;
             // 
             // Form1
             // 
