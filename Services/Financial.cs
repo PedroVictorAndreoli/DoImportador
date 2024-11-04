@@ -54,7 +54,6 @@ namespace DoImportador.Services
 
                         // Duplicata
                         model.GuidKey = Guid.NewGuid();
-
                         model.IDNota = item["TipoDuplicata"]; // 1 - Receita 0 - Despesa
                         model.IDPessoa = item["IDPessoa"];
                         model.IDPC_Gestao = (Int32.Parse(item["TipoDuplicata"].ToString()) == 1 ? 8 : 71);
