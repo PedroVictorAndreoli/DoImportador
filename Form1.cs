@@ -429,5 +429,15 @@ namespace DoImportador
             var thread = new Thread(() => import.UpdateProductEcommerce());
             thread.Start();
         }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -407,6 +407,7 @@
             button31.TabIndex = 74;
             button31.Text = "?";
             button31.UseVisualStyleBackColor = true;
+            button31.Click += button31_Click;
             // 
             // button32
             // 
@@ -462,6 +463,7 @@
             button35.TabIndex = 67;
             button35.Text = "Import";
             button35.UseVisualStyleBackColor = true;
+            button35.Click += button35_Click;
             // 
             // button36
             // 

@@ -2,6 +2,7 @@
 using doAPI.Utils;
 using DoImportador.Connection;
 using DoImportador.Utils;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,11 +44,9 @@ namespace DoImportador.Services
         public void ImportData(List<IDictionary> data)
         {
             var headers = new Hashtable();
-            
+            DateTime dataAgendamento;
             string filePath = Path.Combine(Application.StartupPath, folder, fileName);
             var loadModel = GenericUtil.LoadFile(filePath);
-           
-
             var token = SecurityUtil.OnLoginToken("999");
             var iConn = new DOConn();
 
@@ -66,7 +65,7 @@ namespace DoImportador.Services
                     var model = JsonUtil.DoJsonDeserialize<dynamic>(loadModel);
 
                     model[0].GuidKey = Guid.NewGuid();
-                    model[0].Detalhe = $"{item["Descricao"]} - Importado";
+                    model[0].Detalhe = $"{GenericUtil.TruncateString(item["Descricao"].ToString(), 38)} - Importado";
                     model[0].IDProduto = GenericUtil.LoadID(iConn, item["IDProduto"], "produtos_grades_estoque", "IDProduto");
                     model[0].IDProdutoOrigem = item["IDProduto"];
                     model[0].NomeProduto = item["Descricao"];
@@ -93,6 +92,12 @@ namespace DoImportador.Services
                     model[0].Agendamento.Ce.end = GenericUtil.OnConvertDateToString(item["DataAgendamento"]);
                     model[0].DataAplicacao = GenericUtil.OnConvertDateToString(item["DataExecutado"]);
 
+                    DateTime.TryParse(GenericUtil.OnConvertDateToString(item["DataAgendamento"]).ToString(), out dataAgendamento);
+
+                    if (dataAgendamento.Year < 1900 || dataAgendamento.Year > 3000)
+                    {
+                         item["DataAgendamento"] = null;
+                    }
 
                     if (GenericUtil.OnConvertDateToString(item["DataAgendamento"]) != null)
                     {
