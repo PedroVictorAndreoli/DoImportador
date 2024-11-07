@@ -91,12 +91,8 @@ namespace DoImportador.Services
                     model[0].Agendamento.Ce.start = GenericUtil.OnConvertDateToString(item["DataAgendamento"]);
                     model[0].Agendamento.Ce.end = GenericUtil.OnConvertDateToString(item["DataAgendamento"]);
                     model[0].DataAplicacao = GenericUtil.OnConvertDateToString(item["DataExecutado"]);
-
-                    DateTime.TryParse(GenericUtil.OnConvertDateToString(item["DataAgendamento"]).ToString(), out dataAgendamento);
-
-                    if (dataAgendamento.Year < 1900 || dataAgendamento.Year > 3000)
-                    {
-                         item["DataAgendamento"] = null;
+                    if (!GenericUtil.VerifyValidDateTime(model[0].Agendamento.Ce.end)) {
+                            item["DataAgendamento"] = null;
                     }
 
                     if (GenericUtil.OnConvertDateToString(item["DataAgendamento"]) != null)
