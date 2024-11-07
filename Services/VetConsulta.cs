@@ -64,6 +64,12 @@ namespace DoImportador.Services
                         model.IDCliente = item["IDPessoa"];
                         model.Anamnese = item["Anamnese"];
 
+                        model.Temperatura = item["Temperatura"];
+                        model.Peso = item["Peso"];
+                        model.ExameFisico = item["ExameFisico"];
+                        model.Diagnostico = item["Diagnostico"];
+                        model.CondutaClinica = item["CondutaClinica"];
+
 
 
 

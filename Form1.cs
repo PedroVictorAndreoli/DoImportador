@@ -289,7 +289,7 @@ namespace DoImportador
 
         private void button15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Descricao;\nIDProduto;\nIDAnimal;\nNomeAnimal;\nDataAgendamento;\nStatusAgenda;\nDataExecutado;\nIDPessoa;\nNomePEssoa;\nAnamnese;\nStatus;\nValor", "Campos Obrigatirios");
+            MessageBox.Show("Descricao;\nIDProduto;\nIDAnimal;\nNomeAnimal;\nDataAgendamento;\nStatusAgenda;\nDataExecutado;\nIDPessoa;\nNomePEssoa;\nAnamnese;\nStatus;\nValor;\nTemperatura;\nPeso;\nExameFisico;\nDiagnostico;\nCondutaClinica", "Campos Obrigatirios");
         }
 
         private void button18_Click(object sender, EventArgs e)
