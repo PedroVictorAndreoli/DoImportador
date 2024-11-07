@@ -156,20 +156,31 @@ namespace DoImportador.Services
                         CrudUtils.ExecuteQuery(iConn, null, query);
                     }
 
-                    /*************************************************PESSOAS CLIENTES***********************************************************/
+                    
 
-                    query = "INSERT INTO dbo.pessoas_clientes (IDPessoa, Inativo, ObsGerais, LimiteCredito, InscricaoSUFRAMA) VALUES (@IDPessoa, @Inativo,@ObsGerais,@LimiteCredito,@InscricaoSUFRAMA)";
-                    input = new Hashtable();
-                    input.Add("IDPessoa", person["ID"]);
-                    input.Add("Inativo", 0);
-                    input.Add("ObsGerais", "");
-                    input.Add("LimiteCredito", 0);
-                    input.Add("InscricaoSUFRAMA", "");
+                    if (person["TipoPessoa"].ToString().Equals("Cliente"))
+                    {
+                        /*************************************************PESSOAS CLIENTES***********************************************************/
+                        query = "INSERT INTO dbo.pessoas_clientes (IDPessoa, Inativo, ObsGerais, LimiteCredito, InscricaoSUFRAMA,TipoContribuinte) VALUES (@IDPessoa, @Inativo,@ObsGerais,@LimiteCredito,@InscricaoSUFRAMA,@TipoContribuinte)";
+                        input = new Hashtable();
+                        input.Add("IDPessoa", person["ID"]);
+                        input.Add("Inativo", 0);
+                        input.Add("ObsGerais", "");
+                        input.Add("LimiteCredito", 0);
+                        input.Add("InscricaoSUFRAMA", "");
+                        input.Add("TipoContribuinte", (person["Tipo"].ToString().Equals("Fisica") ? 9 : 0));
 
-                    CrudUtils.ExecuteQuery(iConn, input, query);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
+                    } else
+                    {
+
+                        /*************************************************PESSOAS FORNEEDORES***********************************************************/
+                    }
 
 
-                    /*************************************************PESSOAS FORNEEDORES***********************************************************/
+
+
+
 
                     _form.OnSetLog($"Importou: {person["ID"]} - {person["Nome"]}");
 

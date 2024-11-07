@@ -251,7 +251,7 @@ namespace DoImportador
 
         private void button11_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("ID;\nCodigo;\nTipo;\nNome;\nDataNascimento;\nCPF;\nRG;\nCNPJ;\nRazaoSocial;\nInscricaoEstadual;\nFone_Residencial;\nFone_Celular;\nEndereco_Principal;\nBairro_Principal;\nComplemento_Principal;\nNumero_Principal;\nCEP_Principal;\nEmail_Principal;\nEmail_Cobranca;\nFone_Comercial", "Campos Obrigatirios");
+            MessageBox.Show("ID;\nCodigo;\nTipo;\nNome;\nDataNascimento;\nCPF;\nRG;\nCNPJ;\nRazaoSocial;\nInscricaoEstadual;\nFone_Residencial;\nFone_Celular;\nEndereco_Principal;\nBairro_Principal;\nComplemento_Principal;\nNumero_Principal;\nCEP_Principal;\nEmail_Principal;\nEmail_Cobranca;\nFone_Comercial;\nTipoPessoa(Cliente;Fornecedor)", "Campos Obrigatirios");
 
         }
 
