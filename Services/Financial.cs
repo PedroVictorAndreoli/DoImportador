@@ -91,7 +91,7 @@ namespace DoImportador.Services
                         }
 
 
-                        if (GenericUtil.OnConvertDateToString(item["DataEmissao"]) != null)
+                        if (GenericUtil.OnConvertDateToString(item["DataEmissao"]) != null &&  GenericUtil.OnConvertDateToString(item["DataVencimento"]) != null)
                         {
                             var response = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}nfe/NFeCobrancaDuplicatas/SaveData?doID={DOFunctions._connectionProperties.dbNameDestination.Replace("atmusinf_Control-", "")}&doIDUser=-100", JsonUtil.DoJsonSerializer(model), headers);
 
