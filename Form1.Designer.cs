@@ -124,6 +124,7 @@
             label4 = new Label();
             txt_sql = new RichTextBox();
             utilitatio = new TabPage();
+            button44 = new Button();
             button43 = new Button();
             button42 = new Button();
             txtbase = new TextBox();
@@ -1113,6 +1114,7 @@
             // 
             // utilitatio
             // 
+            utilitatio.Controls.Add(button44);
             utilitatio.Controls.Add(button43);
             utilitatio.Controls.Add(button42);
             utilitatio.Controls.Add(txtbase);
@@ -1125,6 +1127,16 @@
             utilitatio.TabIndex = 3;
             utilitatio.Text = "Outros Utilitarios";
             utilitatio.UseVisualStyleBackColor = true;
+            // 
+            // button44
+            // 
+            button44.Location = new Point(7, 135);
+            button44.Name = "button44";
+            button44.Size = new Size(200, 23);
+            button44.TabIndex = 5;
+            button44.Text = "Produtos para Exames";
+            button44.UseVisualStyleBackColor = true;
+            button44.Click += button44_Click;
             // 
             // button43
             // 
@@ -1349,5 +1361,6 @@
         private Button button41;
         private Button button42;
         private Button button43;
+        private Button button44;
     }
 }

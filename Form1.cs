@@ -432,12 +432,22 @@ namespace DoImportador
 
         private void button31_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button35_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button44_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var import = new VetExame(this);
+
+            var thread = new Thread(() => import.UpdateProductToExam());
+            thread.Start();
         }
     }
 }

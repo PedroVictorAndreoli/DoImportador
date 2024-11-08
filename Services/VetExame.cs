@@ -123,5 +123,57 @@ namespace DoImportador.Services
                 iConn.Dispose();
             }
         }
+
+
+        public void UpdateProductToExam()
+        {
+            var iConn = new DOConn();
+            try
+            {
+                var idbase = "4860";
+                var headers = new Hashtable();
+                var token = SecurityUtil.OnLoginToken("999");
+
+                headers.Add("DoToken", token);
+                headers.Add("Authorization", "Basic ZGF0YW9uOkRhdGFPbkFQSUAj");
+
+
+                var produtos = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={idbase}&doIDUser=-100&route=mnuEstoque_mnuProdutosServicos&filter=&sorters=ID%20DESC&system=0&type=0&extraCritSQL=%20AND%20(produtos.idgrupo%20%3D%2045)&page=1&start=0&limit=500", null, headers);
+
+
+
+
+                foreach (var produto in produtos.paging.data)
+                {
+
+                    var item = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Produto/GetData?doID={idbase}&id={produto["ID"]}", null, headers);
+
+                    if (item["RetWm"].ToString().Equals("success"))
+                    {
+                        var obj = item["obj"];
+                        obj.TipoVet = -90;
+                        var json = JsonUtil.DoJsonSerializer(obj);
+                        var result = HttpUtil.DoPost<dynamic>($"{DOFunctions._connectionProperties.url}cadastros/Produto/SaveData?doID={idbase}&doIDUser=-100", json, headers);
+
+                        _form.OnSetLog($"Atualizou produto: {result["RetWm"]} - {item.obj.Descricao}");
+
+                    }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                iConn.ConnectionClose(iConn.DoConnection, DOFunctions._connectionProperties.dbType);
+                iConn.Dispose();
+            }
+
+
+        }
     }
 }
