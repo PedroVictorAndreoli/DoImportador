@@ -139,7 +139,8 @@ namespace DoImportador.Services
 
                     input.Add("MargemLucro", Decimal.Parse(margem.ToString("F2")));
 
-                    input.Add("TipoItemFiscal", 0);
+
+                    input.Add("TipoItemFiscal", (GenericUtil.ReturnTypeItem(dt["Tipo"]) == 0 ? 0 : 9));
 
                     input.Add("CodigoBarras", GenericUtil.NullForEmpty(dt["CodigoBarra"]));
 

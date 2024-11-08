@@ -161,7 +161,7 @@ namespace DoImportador.Services
                     if (person["TipoPessoa"].ToString().Equals("Cliente"))
                     {
                         /*************************************************PESSOAS CLIENTES***********************************************************/
-                        query = "INSERT INTO dbo.pessoas_clientes (IDPessoa, Inativo, ObsGerais, LimiteCredito, InscricaoSUFRAMA,TipoContribuinte) VALUES (@IDPessoa, @Inativo,@ObsGerais,@LimiteCredito,@InscricaoSUFRAMA,@TipoContribuinte)";
+                        query = "INSERT INTO pessoas_clientes (IDPessoa, Inativo, ObsGerais, LimiteCredito, InscricaoSUFRAMA,TipoContribuinte) VALUES (@IDPessoa, @Inativo,@ObsGerais,@LimiteCredito,@InscricaoSUFRAMA,@TipoContribuinte)";
                         input = new Hashtable();
                         input.Add("IDPessoa", person["ID"]);
                         input.Add("Inativo", 0);
@@ -173,13 +173,14 @@ namespace DoImportador.Services
                         CrudUtils.ExecuteQuery(iConn, input, query);
                     } else
                     {
-
                         /*************************************************PESSOAS FORNEEDORES***********************************************************/
+                        query = "INSERT INTO pessoas_fornecedores (IDPessoa, Inativo) VALUES (@IDPessoa, @Inativo)";
+                        input = new Hashtable();
+                        input.Add("IDPessoa", person["ID"]);
+                        input.Add("Inativo", 0);
+                        CrudUtils.ExecuteQuery(iConn, input, query);
+
                     }
-
-
-
-
 
 
                     _form.OnSetLog($"Importou: {person["ID"]} - {person["Nome"]}");

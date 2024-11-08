@@ -49,20 +49,7 @@ namespace DoImportador.Services
                     {
                         var model = JsonUtil.DoJsonDeserialize<dynamic>(loadModel);
 
-                        // Vacinaa
-                        model[0].GuidKey = Guid.NewGuid();
-                        model[0].Detalhe = $"{item["Descricao"]} - Importado";
-                        model[0].IDProduto = GenericUtil.LoadID(iConn, item["IDProduto"], "produtos_grades_estoque", "IDProduto");
-                        model[0].IDProdutoOrigem = item["IDProduto"];
-                        model[0].NomeProduto = item["Descricao"];
-                        model[0].IDAnimal = item["IDAnimal"];
-                        model[0].NomeAnimal = item["NomeAnimal"];
-                        model[0].DataAgendamento = GenericUtil.OnConvertDateToString(item["DataAgendamento"]);
-                        model[0].Status = (item["StatusAgenda"].ToString() == "3" ? 1 : 0);
-                        model[0].DataAplicacao = GenericUtil.OnConvertDateToString(item["DataExecutado"]);
-                        model[0].NomeCliente = item["NomePessoa"];
-                        model[0].IDCliente = item["IDPessoa"];
-                        model[0].Obs = item["Observacoes"];
+                        // Exames
 
 
 
@@ -89,19 +76,18 @@ namespace DoImportador.Services
 
                         if (GenericUtil.OnConvertDateToString(item["DataAgendamento"]) != null)
                         {
-                            var response = HttpUtil.DoPost<dynamic>($"{HttpUtil._url}vet/VetVacinas/SaveData?doID={DOFunctions._connectionProperties.dbNameDestination.Replace("atmusinf_Control-", "")}&doIDUser=-100", JsonUtil.DoJsonSerializer(model), headers);
+                            var response = HttpUtil.DoPost<dynamic>($"{HttpUtil._url}vet/VetExames/SaveData?doID={DOFunctions._connectionProperties.dbNameDestination.Replace("atmusinf_Control-", "")}&doIDUser=-100", JsonUtil.DoJsonSerializer(model), headers);
 
                             if (response.RetWm.ToString().Equals("success"))
                             {
-                                var param = new Hashtable();
-                                param.Add("ID", item["IDProduto"]);
-                                param.Add("TipoVet", -100);
-
-                                var query = "UPDATE produtos set TipoVet=@TipoVet WHERE ID=@ID";
-                                //CrudUtils.ExecuteQuery(iConn, param, query);
+                                _form.OnSetLog($"Importou pacote: {item["ID"]} - {item["Descricao"]} - {response.RetWm}");
+                            } 
+                            else
+                            {
+                                _form.OnSetLog($"Importou pacote: {item["ID"]} - {item["Descricao"]} - NÃO IMPORTADO");
                             }
 
-                            _form.OnSetLog($"Importou pacote: {item["ID"]} - {item["Descricao"]} - {response.RetWm}");
+                            
                         }
                         else
                         {
@@ -124,7 +110,10 @@ namespace DoImportador.Services
             }
         }
 
-
+        /*
+         * Converte produtos em exames 
+         * 
+         */
         public void UpdateProductToExam()
         {
             var iConn = new DOConn();
