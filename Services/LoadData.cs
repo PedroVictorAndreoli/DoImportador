@@ -1,5 +1,6 @@
 ﻿using doAPI.Utils;
 using DoImportador.Connection;
+using DoImportador.Enum;
 using DoImportador.Utils;
 using Microsoft.VisualBasic;
 using System;
@@ -15,13 +16,13 @@ namespace DoImportador.Services
     public class LoadData
     {
         
-        public static List<IDictionary> LoadDataDb(string dbNameOrigin, string sql)
+        public static List<IDictionary> LoadDataDb(string dbNameOrigin, string sql, EnumDataLake enumDataLake = Enum.EnumDataLake.ORIGIN)
         {
             Form1 form1 = new Form1();
             var doConn = new DOConn();
             try
             {
-                doConn.ConnectionOpen(dbNameOrigin, Enum.EnumDataLake.ORIGIN);
+                doConn.ConnectionOpen(dbNameOrigin, enumDataLake);
                 var query = Regex.Replace(sql, @"[\u000B\r\n]+", " ").Replace("\v", ""); 
 
                 return CrudUtils.GetAll<IDictionary>(doConn.DoConnection, query, doConn);
@@ -33,7 +34,14 @@ namespace DoImportador.Services
             }
             finally
             {
-                doConn.ConnectionClose(doConn.DoConnection, DOFunctions._connectionProperties.dbType);
+                if(enumDataLake == EnumDataLake.DESTINATION)
+                {
+                    doConn.ConnectionClose(doConn.DoConnection, EnumProviderType.SQLServer);
+                } else
+                {
+                    doConn.ConnectionClose(doConn.DoConnection, DOFunctions._connectionProperties.dbType);
+                }
+                
                 doConn.Dispose();
             }
             return null;

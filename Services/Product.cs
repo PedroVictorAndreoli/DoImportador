@@ -35,6 +35,10 @@ namespace DoImportador.Services
                 var unidades = data.GroupBy(p => p["Unidade"]).ToList();
                 var marcas = data.GroupBy(p => p["Marca"]).ToList();
 
+                //CrudUtils.ExecuteQuery(iConn, null, "delete from produtos_marcas where id > 197 ");
+                //CrudUtils.ExecuteQuery(iConn, null, "delete from produtos_unidades where id > 73 ");
+                //CrudUtils.ExecuteQuery(iConn, null, "delete from produtos_grupos_subgrupos where id > 43 ");
+
 
                 marcas.ForEach(data =>
                 {
@@ -43,7 +47,11 @@ namespace DoImportador.Services
                         query = "INSERT INTO dbo.produtos_marcas (Descricao) VALUES (@Descricao)";
                         input = new Hashtable();
                         input.Add("Descricao", data.Key);
-                        CrudUtils.ExecuteQuery(iConn, input, query);
+
+                        var id = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(data.Key).ToString(), "produtos_marcas");
+
+                        if(id == 0)
+                            CrudUtils.ExecuteQuery(iConn, input, query);
 
                         _form.OnSetLog($"Importou: {data.Key}");
                     }
@@ -57,7 +65,10 @@ namespace DoImportador.Services
                         input = new Hashtable();
                         input.Add("Descricao", data.Key);
                         input.Add("abreviatura", data.Key);
-                        CrudUtils.ExecuteQuery(iConn, input, query);
+
+                        var id = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(data.Key).ToString(), "produtos_unidades");
+                        if(id == 0)
+                            CrudUtils.ExecuteQuery(iConn, input, query);
 
                         _form.OnSetLog($"Importou: {data.Key}");
                     }
@@ -78,9 +89,14 @@ namespace DoImportador.Services
                         input.Add("DescricaoCompleta", $"//1 - Grupos - Sub-Grupos de Produtos/1.{i} - {data.Key}");
                         input.Add("IDSistemaContexto", 0);
                         input.Add("FidelidadePorc", 0.00);
-                        CrudUtils.ExecuteQuery(iConn, input, query);
-                        i += 1;
 
+                        var id = GenericUtil.LoadByID(iConn, GenericUtil.NullForEmpty(data.Key).ToString(), "produtos_grupos_subgrupos");
+                        if (id == 0)
+                        {
+                            CrudUtils.ExecuteQuery(iConn, input, query);
+                            i += 1;
+                        }
+                            
                         _form.OnSetLog($"Importou: {data.Key}");
                     }
                 });

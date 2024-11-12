@@ -119,7 +119,7 @@ namespace DoImportador.Services
             var iConn = new DOConn();
             try
             {
-                var idbase = "4860";
+                var idbase = "4853";
                 var headers = new Hashtable();
                 var token = SecurityUtil.OnLoginToken("999");
 
@@ -127,7 +127,7 @@ namespace DoImportador.Services
                 headers.Add("Authorization", "Basic ZGF0YW9uOkRhdGFPbkFQSUAj");
 
 
-                var produtos = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={idbase}&doIDUser=-100&route=mnuEstoque_mnuProdutosServicos&filter=&sorters=ID%20DESC&system=0&type=0&extraCritSQL=%20AND%20(produtos.idgrupo%20%3D%2045)&page=1&start=0&limit=500", null, headers);
+                var produtos = HttpUtil.DoGet<dynamic>($"{DOFunctions._connectionProperties.url}dataOn/doExplorer/DynamicQuery?doID={idbase}&doIDUser=-100&route=mnuEstoque_mnuProdutosServicos&filter=&sorters=ID%20DESC&system=0&type=0&extraCritSQL=%20AND%20(produtos.idgrupo%20%3D%2074)&page=1&start=0&limit=500", null, headers);
 
 
 

@@ -31,6 +31,18 @@ namespace DoImportador.Utils
             return isDataValida ? value : DBNull.Value;
         }
 
+        public static object VerifyValidDateTimeReturnBool(object value)
+        {
+            DateTime data;
+            bool isDataValida = DateTime.TryParse(value.ToString(), out data);
+            if (data.Year < 1900 || data.Year > 3000)
+            {
+                isDataValida = false;
+            }
+
+            return isDataValida;
+        }
+
         public static object NullForZero(object value)
         {
             return value == null ? 0 : value;

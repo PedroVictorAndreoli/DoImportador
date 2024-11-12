@@ -3,6 +3,7 @@ using DoImportador.Enum;
 using DoImportador.Model;
 using DoImportador.Services;
 using DoImportador.Utils;
+using System.Collections;
 using System.Windows.Forms;
 
 namespace DoImportador
@@ -40,7 +41,7 @@ namespace DoImportador
                 var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
                 if (data != null)
                 {
-                    var thread = new Thread(() => person.ImportData(data));
+                    var thread = new Thread(() => person.ImportData(data, che_person_original_id.Checked));
                     thread.Start();
                 }
                 else
@@ -274,7 +275,7 @@ namespace DoImportador
 
         private void button14_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("ID;\nDataAgendamento;\nDataExecutado;\nIDProduto;\nDescricao;\nIDAnimal;\nNomeAnimal;\nIDPessoa;\nNomePessoa;\nValor;\nObservacoes;\nStatus", "Campos Obrigatirios");
+            MessageBox.Show("ID;\nDataAgendamento;\nDataExecutado;\nIDProduto;\nDescricao;\nIDAnimal;\nNomeAnimal;\nIDPessoa;\nNomePessoa;\nValor;\nObservacoes;\nStatus;\nStatusAgenda(Tabela agenda_status_agendamentos)", "Campos Obrigatirios");
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -448,6 +449,90 @@ namespace DoImportador
 
             var thread = new Thread(() => import.UpdateProductToExam());
             thread.Start();
+        }
+
+        private void button45_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var person = new Person(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var dataOriginal = LoadData.LoadDataDb("SQLSERVER", "Select * from Pessoas", EnumDataLake.DESTINATION);
+                if (data != null)
+                {
+                    var iConn = new DOConn();
+                    iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
+                    var listData = new List<IDictionary>();
+                    data.ForEach(x =>
+                    {
+                        try
+                        {
+                            var has = dataOriginal.Find(e => e["Nome"].ToString().Equals(x["Nome"].ToString()));
+                            if (has == null)
+                                listData.Add(x);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+
+                    });
+
+                    var thread = new Thread(() => person.ImportData(listData, che_person_original_id.Checked));
+                    thread.Start();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum dado foi carregado");
+                }
+
+
+            }
+        }
+
+        private void button46_Click(object sender, EventArgs e)
+        {
+            DOFunctions.LoadHost(LoadPropertiesConnection());
+
+            var person = new Product(this);
+
+            if (che_sql.Checked)
+            {
+                var data = LoadData.LoadDataDb(db_origin.Text, txt_sql.Text);
+                var dataOriginal = LoadData.LoadDataDb("SQLSERVER", "Select * from produtos", EnumDataLake.DESTINATION);
+                if (data != null)
+                {
+                    var iConn = new DOConn();
+                    iConn.ConnectionOpen("", Enum.EnumDataLake.DESTINATION);
+                    var listData = new List<IDictionary>();
+                    data.ForEach(x =>
+                    {
+                        try
+                        {
+                            var has = dataOriginal.Find(e => e["Descricao"].ToString().Equals(x["Descricao"].ToString()));
+                            if (has == null)
+                                listData.Add(x);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+
+                    });
+
+                    var thread = new Thread(() => person.ImportData(listData, check_original_id.Checked));
+                    thread.Start();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum dado foi carregado");
+                }
+
+
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace DoImportador.Services
             _form = form;
         }
 
-        public void ImportData(List<IDictionary> data)
+        public void ImportData(List<IDictionary> data, bool isChecked)
         {
             var iConn = new DOConn();
             try
@@ -28,18 +28,31 @@ namespace DoImportador.Services
                 iConn.ConnectionOpen("",Enum.EnumDataLake.DESTINATION);
                 data.ForEach(person =>
                 {
-
-                    /*************************************************PESSOA***********************************************************/
-
-                    var query = "SET IDENTITY_INSERT pessoas ON; INSERT INTO dbo.pessoas (ID,DataCadastro,Nome,IDSistemaContexto) VALUES (@ID, @DataCadastro,@Nome,@IDSistemaContexto); SET IDENTITY_INSERT pessoas OFF";
                     var input = new Hashtable();
-                    input.Add("ID", person["ID"]);
-                    input.Add("DataCadastro", DateTime.Now);
+                    /*************************************************PESSOA***********************************************************/
+                    var query = "";
+                    if (isChecked)
+                    {
+                        query = "SET IDENTITY_INSERT pessoas ON; INSERT INTO dbo.pessoas (ID,DataCadastro,Nome,IDSistemaContexto) VALUES (@ID, @DataCadastro,@Nome,@IDSistemaContexto); SET IDENTITY_INSERT pessoas OFF";
+                        input.Add("ID", person["ID"]);
+                    }
+                    else
+                    {
+                        query = "INSERT INTO dbo.pessoas (DataCadastro,Nome,IDSistemaContexto) VALUES (@DataCadastro,@Nome,@IDSistemaContexto); Select Scope_Identity()";
+                    }
+                    
+                    
+                    input.Add("DataCadastro", person["DataCadastro"] == null ? DBNull.Value : person["DataCadastro"]);
                     input.Add("Nome", person["Nome"]);
                     input.Add("IDSistemaContexto", 0);
 
                     // Salva as pessoas
-                    CrudUtils.ExecuteQuery(iConn, input, query);
+                    if (isChecked)
+                        CrudUtils.ExecuteQuery(iConn, input, query);
+                    else
+                    {
+                        person["ID"] = CrudUtils.ExecuteScalar(iConn, input, query);
+                    }
 
                     /*************************************************ENDERECOS***********************************************************/
 

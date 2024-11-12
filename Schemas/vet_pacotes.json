@@ -146,7 +146,7 @@
       "FoneCelularCliente": "",
       "IDCliente": 0,
       "IDPessoaAgendador": 0,
-      "IDConvenioPlano": 2,
+      "IDConvenioPlano": -2,
       "NomeConvenioPlano": "PARTICULAR",
       "IDTipo": 4,
       "DescricaoTipo": "",

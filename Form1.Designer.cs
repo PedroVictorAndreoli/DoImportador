@@ -30,6 +30,7 @@
         {
             tabControl1 = new TabControl();
             Config = new TabPage();
+            che_person_original_id = new CheckBox();
             url_api = new Label();
             cmb_url = new ComboBox();
             button21 = new Button();
@@ -124,6 +125,7 @@
             label4 = new Label();
             txt_sql = new RichTextBox();
             utilitatio = new TabPage();
+            button45 = new Button();
             button44 = new Button();
             button43 = new Button();
             button42 = new Button();
@@ -134,6 +136,7 @@
             button41 = new Button();
             label23 = new Label();
             txt_logs = new RichTextBox();
+            button46 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -157,6 +160,7 @@
             // 
             // Config
             // 
+            Config.Controls.Add(che_person_original_id);
             Config.Controls.Add(url_api);
             Config.Controls.Add(cmb_url);
             Config.Controls.Add(button21);
@@ -234,6 +238,18 @@
             Config.Text = "Configurações de importação";
             Config.UseVisualStyleBackColor = true;
             Config.Click += Config_Click;
+            // 
+            // che_person_original_id
+            // 
+            che_person_original_id.AutoSize = true;
+            che_person_original_id.Checked = true;
+            che_person_original_id.CheckState = CheckState.Checked;
+            che_person_original_id.Location = new Point(293, 310);
+            che_person_original_id.Name = "che_person_original_id";
+            che_person_original_id.Size = new Size(82, 19);
+            che_person_original_id.TabIndex = 92;
+            che_person_original_id.Text = "Original ID";
+            che_person_original_id.UseVisualStyleBackColor = true;
             // 
             // url_api
             // 
@@ -1080,7 +1096,7 @@
             txt_json_person.Location = new Point(8, 306);
             txt_json_person.Name = "txt_json_person";
             txt_json_person.ReadOnly = true;
-            txt_json_person.Size = new Size(365, 23);
+            txt_json_person.Size = new Size(279, 23);
             txt_json_person.TabIndex = 16;
             // 
             // sql
@@ -1114,6 +1130,8 @@
             // 
             // utilitatio
             // 
+            utilitatio.Controls.Add(button46);
+            utilitatio.Controls.Add(button45);
             utilitatio.Controls.Add(button44);
             utilitatio.Controls.Add(button43);
             utilitatio.Controls.Add(button42);
@@ -1127,6 +1145,16 @@
             utilitatio.TabIndex = 3;
             utilitatio.Text = "Outros Utilitarios";
             utilitatio.UseVisualStyleBackColor = true;
+            // 
+            // button45
+            // 
+            button45.Location = new Point(7, 164);
+            button45.Name = "button45";
+            button45.Size = new Size(200, 23);
+            button45.TabIndex = 6;
+            button45.Text = "Importa Pessoas Validando Nome";
+            button45.UseVisualStyleBackColor = true;
+            button45.Click += button45_Click;
             // 
             // button44
             // 
@@ -1224,6 +1252,16 @@
             txt_logs.Size = new Size(1143, 593);
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
+            // 
+            // button46
+            // 
+            button46.Location = new Point(7, 193);
+            button46.Name = "button46";
+            button46.Size = new Size(200, 23);
+            button46.TabIndex = 7;
+            button46.Text = "Importa produtos validando nome";
+            button46.UseVisualStyleBackColor = true;
+            button46.Click += button46_Click;
             // 
             // Form1
             // 
@@ -1362,5 +1400,8 @@
         private Button button42;
         private Button button43;
         private Button button44;
+        private CheckBox che_person_original_id;
+        private Button button45;
+        private Button button46;
     }
 }

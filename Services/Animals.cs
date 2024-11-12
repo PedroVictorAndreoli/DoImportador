@@ -41,6 +41,14 @@ namespace DoImportador.Services
                 var query = "";
                 var input = new Hashtable();
 
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_racas where id > 257 ");
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_cores where id > 5 ");
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_especies where id > 8 ");
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_pelos where id > 3 ");
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_temperamentos where id > 4 ");
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_dietas where id > 3 ");
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_estaturas where id > 4 ");
+
                 racas.ForEach(data =>
                 {
                     if (data.Key != null && !data.Key.Equals(""))
