@@ -10,6 +10,42 @@ using System.Threading.Tasks;
 
 namespace DoImportador.Services
 {
+    /*
+     * CASE
+        WHEN
+                vet_vacinas.Status = 0
+        THEN
+                'Não Aplicada'
+        WHEN
+                vet_vacinas.Status = 1
+        THEN
+                'Aplicada'
+        ELSE
+                'Cancelada'
+        END AS Status,
+        CASE
+        WHEN
+                dbo.faturamento.Status = 0
+        THEN
+                'Pendente'
+        WHEN
+                dbo.faturamento.Status = 1
+        THEN
+                'A Faturar'
+        WHEN
+                dbo.faturamento.Status = 2
+        THEN
+                'Faturado'
+        WHEN
+                dbo.faturamento.Status = 98
+        THEN
+                'Sem Cobrança'
+        ELSE
+                ''
+        END                                         AS Faturado
+    */
+
+
     public class VetVacinas
     {
 
@@ -51,7 +87,7 @@ namespace DoImportador.Services
 
                         // Vacinaa
                         model[0].GuidKey = Guid.NewGuid();
-                        model[0].Detalhe = $"{item["Descricao"]} - Importado";
+                        model[0].Detalhe = $"{GenericUtil.TruncateString(item["Descricao"].ToString(), 38)} - Importado";
                         model[0].IDProduto = GenericUtil.LoadID(iConn, item["IDProduto"], "produtos_grades_estoque", "IDProduto");
                         model[0].IDProdutoOrigem = item["IDProduto"];
                         model[0].NomeProduto = item["Descricao"];
