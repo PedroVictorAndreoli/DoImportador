@@ -40,7 +40,7 @@ namespace DoImportador.Services
 
                 var query = "";
                 var input = new Hashtable();
-
+                CrudUtils.ExecuteQuery(iConn, null, "delete from vet_animais where id > 0 ");
                 CrudUtils.ExecuteQuery(iConn, null, "delete from vet_racas where id > 257 ");
                 CrudUtils.ExecuteQuery(iConn, null, "delete from vet_cores where id > 5 ");
                 CrudUtils.ExecuteQuery(iConn, null, "delete from vet_especies where id > 8 ");
