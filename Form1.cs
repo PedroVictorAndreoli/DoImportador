@@ -1,10 +1,15 @@
+using doAPI.Utils;
 using DoImportador.Connection;
 using DoImportador.Enum;
 using DoImportador.Model;
 using DoImportador.Services;
 using DoImportador.Utils;
+using Microsoft.Data.SqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DoImportador
 {
@@ -124,6 +129,56 @@ namespace DoImportador
             connection.passwordDestination = password_destination.Text;
 
             return connection;
+        }
+
+
+        public List<ConnectionProperties> LoadPropertiesConnectionAllDataBases()
+        {
+            string connectionString = "Server=127.0.0.1;Database=master;Integrated Security=True;TrustServerCertificate=True;";
+            List<string> connectionStrings = new List<string>();
+
+            using (SqlConnection connectionn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connectionn.Open();
+                    Console.WriteLine("Conectado ao SQL Server!");
+
+
+                    string query = "SELECT name FROM sys.databases";
+                    using (SqlCommand command = new SqlCommand(query, connectionn))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.GetString(0).Contains("atmusinf"))
+                                    connectionStrings.Add(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao conectar ou executar a consulta: " + ex.Message);
+                }
+            }
+
+            List<ConnectionProperties> connectionProperties = new List<ConnectionProperties>();
+            foreach (string con in connectionStrings)
+            {
+                var connection = new ConnectionProperties();
+                connection.hostOrigin = "127.0.0.1";
+                connection.dbNameOrigin = con;
+                connection.userOrigin = "atmusinf";
+                connection.passwordOrigin = "Atmus@#4080";
+                connection.portOrigin = port_origin.Text;
+                connection.dbType = EnumProviderType.SQLServer;
+                connection.url = "https://localhost:5001/api/";
+                connectionProperties.Add(connection);
+            }
+
+            return connectionProperties;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -530,9 +585,21 @@ namespace DoImportador
                 {
                     MessageBox.Show("Nenhum dado foi carregado");
                 }
-
-
             }
+        }
+
+        private void button47_Click(object sender, EventArgs e)
+        {
+            Integracao integracao = new(this);
+            var thread = new Thread(() => integracao.migraProduto(LoadPropertiesConnectionAllDataBases()));
+            thread.Start();
+        }
+
+        private void button48_Click(object sender, EventArgs e)
+        {
+            Integracao integracao = new(this);
+            var thread = new Thread(() => integracao.migraPessoa(LoadPropertiesConnectionAllDataBases()));
+            thread.Start();
         }
     }
 }

@@ -60,7 +60,7 @@ namespace DoImportador.Services
                     input = new Hashtable();
                     input.Add("IDPessoa", person["ID"]);
                     input.Add("Tipo", 0);
-                    input.Add("CEP", GenericUtil.NullForEmpty(person["CEP_Principal"]));
+                    input.Add("CEP", GenericUtil.NullForEmpty((GenericUtil.ReturnNumber(person["CEP_Principal"])));
                     input.Add("Endereco", GenericUtil.NullForEmpty(person["Endereco_Principal"]));
                     input.Add("Bairro", GenericUtil.NullForEmpty(person["Bairro_Principal"]));
                     input.Add("Numero", GenericUtil.TruncateString(GenericUtil.ReturnNumber(GenericUtil.NullForEmpty(person["Numero_Principal"])),10));
