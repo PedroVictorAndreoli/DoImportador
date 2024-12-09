@@ -34,10 +34,10 @@ namespace DoImportador.Services
                     string query;
                     Hashtable input;
                     insertVinculoIntegracao(dataOriginal, iConn, EnumVinculoIntegracao.PRODUTO, "EloIntegracao", "Id");
-                    _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracao");
+                    _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracao do Produto");
                     dataOriginal = LoadData.LoadDataDb("SQLSERVER", "SELECT EloIntegracaoVariant,Id FROM produtos where EloIntegracaoVariant is not null AND EloIntegracaoVariant<> ''", EnumDataLake.ORIGIN);
                     insertVinculoIntegracao(dataOriginal, iConn, EnumVinculoIntegracao.PRODUTO, "EloIntegracaoVariant", "Id");
-                    _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracaoVariant");
+                    _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracaoVariant do Produto");
                     dataOriginal = LoadData.LoadDataDb("SQLSERVER", "select id_vipCommerce,Id from produtos where id_vipCommerce is not null and id_vipCommerce<>'';", EnumDataLake.ORIGIN);
                     foreach (var d in dataOriginal)
                     {
@@ -49,7 +49,7 @@ namespace DoImportador.Services
                         input.Add("ExternalID", d["id_vipCommerce"].ToString());
                         CrudUtils.ExecuteQuery(iConn, input, query);
                     }
-                    _form.OnSetLog($"{conn.dbNameOrigin} migrou o Vip Comerce");
+                    _form.OnSetLog($"{conn.dbNameOrigin} migrou o Vip Comerce do Produto");
                 }
             }catch(Exception ex)
             {
@@ -68,7 +68,7 @@ namespace DoImportador.Services
                     var iConn = new DOConn();
                     iConn.ConnectionOpen("", Enum.EnumDataLake.ORIGIN);
                     insertVinculoIntegracao(dataOriginal, iConn, EnumVinculoIntegracao.PESSOAS, "EloIntegracao", "IDPessoa");
-                    _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracao");
+                    _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracao do cliente");
                 }
             }
             catch (Exception ex)
@@ -76,6 +76,37 @@ namespace DoImportador.Services
                 _form.OnSetLog($"{ex}");
             }
         }
+
+        public void migraGrupoSubGrupo(List<ConnectionProperties> connectionProperties)
+        {
+            foreach (ConnectionProperties conn in connectionProperties)
+            {
+                DOFunctions.LoadHost(conn);
+                var dataOriginal = LoadData.LoadDataDb("SQLSERVER", "SELECT EloIntegracao,Id FROM produtos_grupos_subgrupos where EloIntegracao is not null AND EloIntegracao<> ''", EnumDataLake.ORIGIN);
+                var iConn = new DOConn();
+                iConn.ConnectionOpen("", Enum.EnumDataLake.ORIGIN);
+                string query;
+                Hashtable input;
+                insertVinculoIntegracao(dataOriginal, iConn, EnumVinculoIntegracao.GRUPOPRODUTO, "EloIntegracao", "Id");
+                _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracao do Grupo");
+                dataOriginal = LoadData.LoadDataDb("SQLSERVER", "SELECT EloIntegracaoVariant,Id FROM produtos_grupos_subgrupos where EloIntegracaoVariant is not null AND EloIntegracaoVariant<> ''", EnumDataLake.ORIGIN);
+                insertVinculoIntegracao(dataOriginal, iConn, EnumVinculoIntegracao.GRUPOPRODUTO, "EloIntegracaoVariant", "Id");
+                _form.OnSetLog($"{conn.dbNameOrigin} migrou  o EloIntegracaoVariant do Grupo");
+                dataOriginal = LoadData.LoadDataDb("SQLSERVER", "select id_vipCommerce,Id from produtos_grupos_subgrupos where id_vipCommerce is not null and id_vipCommerce<>'';", EnumDataLake.ORIGIN);
+                foreach (var d in dataOriginal)
+                {
+                    query = "INSERT INTO vinculo_integracao (IDVinculo, IDTipoVinculo, IDIntegracao, ExternalID) VALUES (@IDVinculo, @IDTipoVinculo, @IDIntegracao, @ExternalID)";
+                    input = new Hashtable();
+                    input.Add("IDVinculo", d["Id"].ToString());
+                    input.Add("IDTipoVinculo", 12);
+                    input.Add("IDIntegracao", Enum.EnumIntegracao.VIPCOMERCE);
+                    input.Add("ExternalID", d["id_vipCommerce"].ToString());
+                    CrudUtils.ExecuteQuery(iConn, input, query);
+                }
+                _form.OnSetLog($"{conn.dbNameOrigin} migrou o Vip Comerce do Grupo");
+            }
+        }
+        
         private void insertVinculoIntegracao(List<IDictionary> dataOriginal, DOConn iConn, EnumVinculoIntegracao enumVinculoIntegracao,string EloIntegracao,string id)
         {
             foreach (var d in dataOriginal)
@@ -134,5 +165,7 @@ namespace DoImportador.Services
                 }
             }
         }
+
+
     }
 }

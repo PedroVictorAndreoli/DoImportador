@@ -601,5 +601,12 @@ namespace DoImportador
             var thread = new Thread(() => integracao.migraPessoa(LoadPropertiesConnectionAllDataBases()));
             thread.Start();
         }
+
+        private void button49_Click(object sender, EventArgs e)
+        {
+            Integracao integracao = new(this);
+            var thread = new Thread(() => integracao.migraGrupoSubGrupo(LoadPropertiesConnectionAllDataBases()));
+            thread.Start();
+        }
     }
 }

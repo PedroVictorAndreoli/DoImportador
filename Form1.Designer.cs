@@ -138,8 +138,9 @@
             label23 = new Label();
             txt_logs = new RichTextBox();
             tabPage1 = new TabPage();
-            button47 = new Button();
             button48 = new Button();
+            button47 = new Button();
+            button49 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -1270,6 +1271,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button49);
             tabPage1.Controls.Add(button48);
             tabPage1.Controls.Add(button47);
             tabPage1.Location = new Point(4, 24);
@@ -1279,6 +1281,16 @@
             tabPage1.TabIndex = 4;
             tabPage1.Text = "MigrarImportacao";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button48
+            // 
+            button48.Location = new Point(21, 95);
+            button48.Name = "button48";
+            button48.Size = new Size(150, 45);
+            button48.TabIndex = 1;
+            button48.Text = "Migrar Pessoas";
+            button48.UseVisualStyleBackColor = true;
+            button48.Click += button48_Click;
             // 
             // button47
             // 
@@ -1290,15 +1302,15 @@
             button47.UseVisualStyleBackColor = true;
             button47.Click += button47_Click;
             // 
-            // button48
+            // button49
             // 
-            button48.Location = new Point(21, 95);
-            button48.Name = "button48";
-            button48.Size = new Size(150, 45);
-            button48.TabIndex = 1;
-            button48.Text = "Migrar Pessoas";
-            button48.UseVisualStyleBackColor = true;
-            button48.Click += button48_Click;
+            button49.Location = new Point(21, 169);
+            button49.Name = "button49";
+            button49.Size = new Size(150, 53);
+            button49.TabIndex = 2;
+            button49.Text = "Migrar Grupos";
+            button49.UseVisualStyleBackColor = true;
+            button49.Click += button49_Click;
             // 
             // Form1
             // 
@@ -1444,5 +1456,6 @@
         private TabPage tabPage1;
         private Button button47;
         private Button button48;
+        private Button button49;
     }
 }
