@@ -125,6 +125,7 @@
             label4 = new Label();
             txt_sql = new RichTextBox();
             utilitatio = new TabPage();
+            button46 = new Button();
             button45 = new Button();
             button44 = new Button();
             button43 = new Button();
@@ -136,7 +137,10 @@
             button41 = new Button();
             label23 = new Label();
             txt_logs = new RichTextBox();
-            button46 = new Button();
+            tabPage1 = new TabPage();
+            button48 = new Button();
+            button47 = new Button();
+            button49 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -144,6 +148,7 @@
             sql.SuspendLayout();
             utilitatio.SuspendLayout();
             logs.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -152,6 +157,7 @@
             tabControl1.Controls.Add(sql);
             tabControl1.Controls.Add(utilitatio);
             tabControl1.Controls.Add(logs);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Location = new Point(1, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -531,7 +537,7 @@
             label22.AutoSize = true;
             label22.Location = new Point(583, 288);
             label22.Name = "label22";
-            label22.Size = new Size(111, 15);
+            label22.Size = new Size(110, 15);
             label22.TabIndex = 61;
             label22.Text = "Load file VetExames";
             // 
@@ -1146,6 +1152,16 @@
             utilitatio.Text = "Outros Utilitarios";
             utilitatio.UseVisualStyleBackColor = true;
             // 
+            // button46
+            // 
+            button46.Location = new Point(7, 193);
+            button46.Name = "button46";
+            button46.Size = new Size(200, 23);
+            button46.TabIndex = 7;
+            button46.Text = "Importa produtos validando nome";
+            button46.UseVisualStyleBackColor = true;
+            button46.Click += button46_Click;
+            // 
             // button45
             // 
             button45.Location = new Point(7, 164);
@@ -1253,15 +1269,48 @@
             txt_logs.TabIndex = 1;
             txt_logs.Text = "";
             // 
-            // button46
+            // tabPage1
             // 
-            button46.Location = new Point(7, 193);
-            button46.Name = "button46";
-            button46.Size = new Size(200, 23);
-            button46.TabIndex = 7;
-            button46.Text = "Importa produtos validando nome";
-            button46.UseVisualStyleBackColor = true;
-            button46.Click += button46_Click;
+            tabPage1.Controls.Add(button49);
+            tabPage1.Controls.Add(button48);
+            tabPage1.Controls.Add(button47);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1146, 621);
+            tabPage1.TabIndex = 4;
+            tabPage1.Text = "MigrarImportacao";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button48
+            // 
+            button48.Location = new Point(21, 95);
+            button48.Name = "button48";
+            button48.Size = new Size(150, 45);
+            button48.TabIndex = 1;
+            button48.Text = "Migrar Pessoas";
+            button48.UseVisualStyleBackColor = true;
+            button48.Click += button48_Click;
+            // 
+            // button47
+            // 
+            button47.Location = new Point(21, 18);
+            button47.Name = "button47";
+            button47.Size = new Size(150, 43);
+            button47.TabIndex = 0;
+            button47.Text = "Migrar Produtos";
+            button47.UseVisualStyleBackColor = true;
+            button47.Click += button47_Click;
+            // 
+            // button49
+            // 
+            button49.Location = new Point(21, 169);
+            button49.Name = "button49";
+            button49.Size = new Size(150, 53);
+            button49.TabIndex = 2;
+            button49.Text = "Migrar Grupos";
+            button49.UseVisualStyleBackColor = true;
+            button49.Click += button49_Click;
             // 
             // Form1
             // 
@@ -1289,6 +1338,7 @@
             utilitatio.PerformLayout();
             logs.ResumeLayout(false);
             logs.PerformLayout();
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1403,5 +1453,9 @@
         private CheckBox che_person_original_id;
         private Button button45;
         private Button button46;
+        private TabPage tabPage1;
+        private Button button47;
+        private Button button48;
+        private Button button49;
     }
 }
