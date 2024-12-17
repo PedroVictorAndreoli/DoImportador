@@ -138,9 +138,11 @@
             label23 = new Label();
             txt_logs = new RichTextBox();
             tabPage1 = new TabPage();
+            button50 = new Button();
+            button49 = new Button();
             button48 = new Button();
             button47 = new Button();
-            button49 = new Button();
+            button51 = new Button();
             tabControl1.SuspendLayout();
             Config.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -1271,6 +1273,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button51);
+            tabPage1.Controls.Add(button50);
             tabPage1.Controls.Add(button49);
             tabPage1.Controls.Add(button48);
             tabPage1.Controls.Add(button47);
@@ -1281,6 +1285,26 @@
             tabPage1.TabIndex = 4;
             tabPage1.Text = "MigrarImportacao";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button50
+            // 
+            button50.Location = new Point(21, 255);
+            button50.Name = "button50";
+            button50.Size = new Size(150, 52);
+            button50.TabIndex = 3;
+            button50.Text = "Migrar Marcas";
+            button50.UseVisualStyleBackColor = true;
+            button50.Click += button50_Click;
+            // 
+            // button49
+            // 
+            button49.Location = new Point(21, 169);
+            button49.Name = "button49";
+            button49.Size = new Size(150, 53);
+            button49.TabIndex = 2;
+            button49.Text = "Migrar Grupos";
+            button49.UseVisualStyleBackColor = true;
+            button49.Click += button49_Click;
             // 
             // button48
             // 
@@ -1302,15 +1326,15 @@
             button47.UseVisualStyleBackColor = true;
             button47.Click += button47_Click;
             // 
-            // button49
+            // button51
             // 
-            button49.Location = new Point(21, 169);
-            button49.Name = "button49";
-            button49.Size = new Size(150, 53);
-            button49.TabIndex = 2;
-            button49.Text = "Migrar Grupos";
-            button49.UseVisualStyleBackColor = true;
-            button49.Click += button49_Click;
+            button51.Location = new Point(21, 334);
+            button51.Name = "button51";
+            button51.Size = new Size(150, 52);
+            button51.TabIndex = 4;
+            button51.Text = "Migrar Unidades";
+            button51.UseVisualStyleBackColor = true;
+            button51.Click += button51_Click;
             // 
             // Form1
             // 
@@ -1457,5 +1481,7 @@
         private Button button47;
         private Button button48;
         private Button button49;
+        private Button button50;
+        private Button button51;
     }
 }

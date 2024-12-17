@@ -20,6 +20,8 @@ namespace DoImportador.Enum
         ESTETICA = 9,
         CONSULTAS = 10,
         PROCEDIMENTOS = 11,
-        GRUPOPRODUTO = 12
+        GRUPOPRODUTO = 12,
+        MARCA = 13,
+        UNIDADE = 14
     }
 }
